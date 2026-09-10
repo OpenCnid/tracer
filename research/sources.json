@@ -1,0 +1,315 @@
+[
+  {
+    "cached_at": "2026-09-10T22:59:13.2532848Z",
+    "sha256": "1be5ec7d2700811a2a6f4a6ddeb63654e458f80c9bc5ed5159a96dde15152393",
+    "cache": "rlm-v3.html",
+    "url": "https://arxiv.org/html/2512.24601v3",
+    "accessed_at": "2026-09-10T23:19:25.1795798Z",
+    "id": "rlm-v3",
+    "retrieved_url": "https://arxiv.org/html/2512.24601v3",
+    "representation": "html"
+  },
+  {
+    "cached_at": "2026-09-10T23:19:25.5164363Z",
+    "sha256": "030ddb6f967d94b17b8fbce6ab2ad1c0ba619a326bc7af636a3798e04e266522",
+    "cache": "memgpt.html",
+    "url": "https://arxiv.org/html/2310.08560v2",
+    "accessed_at": "2026-09-10T23:19:25.5192061Z",
+    "id": "memgpt",
+    "retrieved_url": "https://arxiv.org/html/2310.08560v2",
+    "representation": "html"
+  },
+  {
+    "cached_at": "2026-09-10T23:19:25.7100823Z",
+    "sha256": "9a9069ad7b90740b3245e80b0efc424b2e5c91601119a675536ef2193e12f701",
+    "cache": "lost-middle.html",
+    "url": "https://arxiv.org/html/2307.03172v3",
+    "accessed_at": "2026-09-10T23:19:25.7119927Z",
+    "id": "lost-middle",
+    "retrieved_url": "https://arxiv.org/html/2307.03172v3",
+    "representation": "html"
+  },
+  {
+    "cached_at": "2026-09-10T23:19:25.9445882Z",
+    "sha256": "29ccd65cdbfdf5519f7d68b2445e0ccad11076898b90b29c7ca42777069d4597",
+    "cache": "ruler.html",
+    "url": "https://arxiv.org/html/2404.06654v2",
+    "accessed_at": "2026-09-10T23:19:25.9456247Z",
+    "id": "ruler",
+    "retrieved_url": "https://arxiv.org/html/2404.06654v2",
+    "representation": "html"
+  },
+  {
+    "cached_at": "2026-09-10T23:19:26.1214073Z",
+    "sha256": "7663347c147b7cc648c9e3c5ba3fe78f72dcef817f219e774456dc79325beebe",
+    "cache": "context-folding.html",
+    "url": "https://context-folding.github.io/",
+    "accessed_at": "2026-09-10T23:19:26.1239735Z",
+    "id": "context-folding",
+    "retrieved_url": "https://context-folding.github.io/",
+    "representation": "html"
+  },
+  {
+    "cached_at": "2026-09-10T23:19:26.3116196Z",
+    "sha256": "d2744cae02fe7ae046952f961b0fecca5811885ced95d9ba80755dd722a68de6",
+    "cache": "resum.html",
+    "url": "https://arxiv.org/html/2509.13313v1",
+    "accessed_at": "2026-09-10T23:19:26.3122469Z",
+    "id": "resum",
+    "retrieved_url": "https://arxiv.org/html/2509.13313v1",
+    "representation": "html"
+  },
+  {
+    "cached_at": "2026-09-10T23:19:26.5766979Z",
+    "sha256": "d906ee7b3021205238cf1e841bf6a38f4753a0622e82d7015eb35bfc97582c84",
+    "cache": "anthropic-context.html",
+    "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "accessed_at": "2026-09-10T23:19:26.577819Z",
+    "id": "anthropic-context",
+    "retrieved_url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "representation": "html"
+  },
+  {
+    "cached_at": "2026-09-10T23:19:27.0013197Z",
+    "sha256": "0521879d41e71423f728893a23350d740ab145d64bab9ffefc02db402a16ea7e",
+    "cache": "anthropic-managed.html",
+    "url": "https://www.anthropic.com/engineering/managed-agents",
+    "accessed_at": "2026-09-10T23:19:27.0022223Z",
+    "id": "anthropic-managed",
+    "retrieved_url": "https://www.anthropic.com/engineering/managed-agents",
+    "representation": "html"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:10.0751358Z",
+    "sha256": "cd362395244dbe54056c086d79b6c71193e38bd98b4e63ab62adfa7920464f76",
+    "cache": "agents-overview.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+    "accessed_at": "2026-09-10T23:19:27.2477347Z",
+    "id": "agents-overview",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/overview.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:10.318889Z",
+    "sha256": "755df9fa1c04a492876c914dab97e88a358ef069a96c2acc39f88d189bdfc2e3",
+    "cache": "agents-architecture.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/architecture",
+    "accessed_at": "2026-09-10T23:19:27.2489114Z",
+    "id": "agents-architecture",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/architecture.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:10.4987612Z",
+    "sha256": "85d5142968767e87c30a4395df4a514dd0bed4fd380c1cb1d2ed48a5f7ac565f",
+    "cache": "agents-configuration.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/configuration",
+    "accessed_at": "2026-09-10T23:19:27.2498867Z",
+    "id": "agents-configuration",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/configuration.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:10.7071348Z",
+    "sha256": "f4de8af4987e740ef39338c8d2c2344efbd5188942fca5f7318493f443c25be6",
+    "cache": "agents-sessions.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/sessions",
+    "accessed_at": "2026-09-10T23:19:27.2510326Z",
+    "id": "agents-sessions",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/sessions.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:10.9219008Z",
+    "sha256": "c6cdcc63ea6050809eddc68c7cefd49de579e497b11f9999d3e62366c98c26fa",
+    "cache": "agents-sessions-events.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/sessions/events",
+    "accessed_at": "2026-09-10T23:19:27.2524187Z",
+    "id": "agents-sessions-events",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/sessions/events.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:11.1603348Z",
+    "sha256": "529f65e5ada0a61006fb3b803215498975701455f21d201d56c332539b30f775",
+    "cache": "agents-sessions-manage.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/sessions/manage",
+    "accessed_at": "2026-09-10T23:19:27.2534542Z",
+    "id": "agents-sessions-manage",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/sessions/manage.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:11.3968675Z",
+    "sha256": "26f0843313a17d716943971e7dbdceab2fa8773fcc9127145b116263779b156a",
+    "cache": "agents-environments-openai-hosted.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/environments/openai-hosted",
+    "accessed_at": "2026-09-10T23:19:27.2543996Z",
+    "id": "agents-environments-openai-hosted",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/environments/openai-hosted.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:11.6212646Z",
+    "sha256": "b1d11d4895f877c30104c71ee42f4ff73f2df0c4091a75f5f08840d22a4b8951",
+    "cache": "agents-environments-self-hosted.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/environments/self-hosted",
+    "accessed_at": "2026-09-10T23:19:27.2553788Z",
+    "id": "agents-environments-self-hosted",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/environments/self-hosted.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:11.8086859Z",
+    "sha256": "e65c4a3dc94098cf77a7d6d13294d6c4ee794e9824eedfdc110e7adb2eb38ace",
+    "cache": "agents-environments-lifecycle.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/environments/lifecycle",
+    "accessed_at": "2026-09-10T23:19:27.2563662Z",
+    "id": "agents-environments-lifecycle",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/environments/lifecycle.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:11.9541739Z",
+    "sha256": "1b3e14f59995ee7b11356a22c803502a172a24dbe0945b55bbd63197f587e40f",
+    "cache": "agents-environments-security.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/environments/security",
+    "accessed_at": "2026-09-10T23:19:27.2572935Z",
+    "id": "agents-environments-security",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/environments/security.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:12.1748022Z",
+    "sha256": "34dd01b53d78e715970201d8d8aade0d2801bbc3971a35388642ddf00f65f145",
+    "cache": "agents-environments-files.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/environments/files",
+    "accessed_at": "2026-09-10T23:19:27.2588658Z",
+    "id": "agents-environments-files",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/environments/files.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:12.387468Z",
+    "sha256": "eee18d12b0e6c65d65a1ede89e01c002a91b3b3a12764646b621a0a79ea5291c",
+    "cache": "agents-multi-agent.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/multi-agent",
+    "accessed_at": "2026-09-10T23:19:27.2599826Z",
+    "id": "agents-multi-agent",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/multi-agent.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T22:59:12.6463078Z",
+    "sha256": "5e7124efac18233bed82159b40391b4ec6136a45114af466b759cd6b1f4e628b",
+    "cache": "agents-observability.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/observability",
+    "accessed_at": "2026-09-10T23:19:27.2609261Z",
+    "id": "agents-observability",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/observability.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T23:00:50.2395729Z",
+    "sha256": "e52a9d4d5dffe2adb4fb339192fde6f94c349be8ee47d3c13c1b436f3089772a",
+    "cache": "agents-tools-functions.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/tools/functions",
+    "accessed_at": "2026-09-10T23:19:27.2619361Z",
+    "id": "agents-tools-functions",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/tools/functions.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T23:00:53.6729719Z",
+    "sha256": "2c60c09ba908a4940b5a8a723324945286c8474cd730617bfc915599a8632446",
+    "cache": "agents-tracing.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/tracing",
+    "accessed_at": "2026-09-10T23:19:27.2628437Z",
+    "id": "agents-tracing",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/tracing.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T23:00:49.9350615Z",
+    "sha256": "0410bf682e9b480eafd6c6018e332a5037d042e636693b71748c71f9a6f0855e",
+    "cache": "agents-quickstart.md",
+    "url": "https://developers.openai.com/api/docs/guides/agents-api/quickstart",
+    "accessed_at": "2026-09-10T23:19:27.2637522Z",
+    "id": "agents-quickstart",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/agents-api/quickstart.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T23:00:53.0451823Z",
+    "sha256": "a8f22abe131756aa74642046e880aa1d2b1ed86f65260b87f274cd691773d146",
+    "cache": "compaction.md",
+    "url": "https://developers.openai.com/api/docs/guides/compaction",
+    "accessed_at": "2026-09-10T23:19:27.2647563Z",
+    "id": "compaction",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/compaction.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T23:00:50.5498152Z",
+    "sha256": "56ab8d8f1cf03ef340334be1fd2ba02d5e7b361c9721e89dd5606c3a4e4fbf01",
+    "cache": "programmatic-tools.md",
+    "url": "https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling",
+    "accessed_at": "2026-09-10T23:19:27.265945Z",
+    "id": "ptc",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T23:02:17.3626632Z",
+    "sha256": "c390d663cfc85416270be1804ab1fd52f731bbaa7d2d789ea037156426b5343c",
+    "cache": "spend-limits.md",
+    "url": "https://developers.openai.com/api/docs/guides/spend-limits",
+    "accessed_at": "2026-09-10T23:19:27.2670262Z",
+    "id": "spend-limits",
+    "retrieved_url": "https://developers.openai.com/api/docs/guides/spend-limits.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T23:00:52.8635516Z",
+    "sha256": "7f822d6b6d7f9f55cc11b686db9bd45a1f6bea3decf6ae8ed46fdc2e3b1cb76e",
+    "cache": "agents-reference-create.md",
+    "url": "https://developers.openai.com/api/reference/typescript/resources/beta/subresources/agents/subresources/sessions/methods/create",
+    "accessed_at": "2026-09-10T23:19:27.2679681Z",
+    "id": "session-create",
+    "retrieved_url": "https://developers.openai.com/api/reference/typescript/resources/beta/subresources/agents/subresources/sessions/methods/create.md",
+    "representation": "markdown"
+  },
+  {
+    "cached_at": "2026-09-10T23:02:30.5922924Z",
+    "sha256": "54b6b16d75b558b95dcfbf2d8c95bcaf0d258625febd1647bba2f4dbc7aaf834",
+    "revision": "854e688fbba9d8f8989e3da9989812e4b6dfe270",
+    "cache": "rlm/rlm/core/rlm.py",
+    "url": "https://github.com/alexzhang13/rlm/tree/854e688fbba9d8f8989e3da9989812e4b6dfe270",
+    "accessed_at": "2026-09-10T23:19:27.2689499Z",
+    "id": "rlm-reference",
+    "retrieved_url": "https://github.com/alexzhang13/rlm/blob/854e688fbba9d8f8989e3da9989812e4b6dfe270/rlm/core/rlm.py",
+    "representation": "git-checked-out-file"
+  },
+  {
+    "cached_at": "2026-09-10T23:02:31.4975397Z",
+    "sha256": "c4643249f6c5dafb3abb58420455b65770062a6b1156568dd3bd3e53dc48a353",
+    "revision": "0e9f030300f9e5b37b76cdcd3d39bc490a251e79",
+    "cache": "deepseek-rlm/ARCHITECTURE.md",
+    "url": "https://github.com/OpenCnid/deepseek-rlm/tree/0e9f030300f9e5b37b76cdcd3d39bc490a251e79",
+    "accessed_at": "2026-09-10T23:19:27.2700079Z",
+    "id": "deepseek-rlm",
+    "retrieved_url": "https://github.com/OpenCnid/deepseek-rlm/blob/0e9f030300f9e5b37b76cdcd3d39bc490a251e79/ARCHITECTURE.md",
+    "representation": "git-checked-out-file"
+  },
+  {
+    "cached_at": "2026-09-10T23:03:24.3882106Z",
+    "sha256": "a9428a67be47b7039468d534118a9fd258862978cd6862fcf3f9dd2f687afb90",
+    "revision": "7.15.0",
+    "cache": "openai-7.15.0.tgz",
+    "url": "https://registry.npmjs.org/openai/7.15.0",
+    "accessed_at": "2026-09-10T23:19:27.2709552Z",
+    "id": "openai-sdk",
+    "retrieved_url": "https://registry.npmjs.org/openai/-/openai-7.15.0.tgz",
+    "representation": "npm-tarball"
+  }
+]

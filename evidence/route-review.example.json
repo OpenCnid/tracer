@@ -1,0 +1,12 @@
+{
+  "decision": "unestablished",
+  "protocolHash": "copy-from-manifest",
+  "sessionId": "copy-from-real-session",
+  "reviewer": "independent-reviewer-name",
+  "basis": "independent-generation-and-tool-traces",
+  "artifact": "reviewed-trace.txt",
+  "artifactSha256": "sha256-of-retained-evidence",
+  "spanIds": ["actual-generation-span", "actual-native-tool-span"],
+  "rejectionCategory": "only-for-an-observed-runtime-rejection",
+  "explanation": "Describe the observed execution and alternatives excluded. Never use an assistant self-report as route proof."
+}

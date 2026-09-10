@@ -1,0 +1,23 @@
+{
+  "name": "tracer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Independent managed-harness RLM review and falsifiable native-delegation probe",
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "engines": { "node": "^22.19.0 || >=24.0.0" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "pnpm typecheck && pnpm test",
+    "probe": "tsx src/cli.ts",
+    "replay": "tsx src/replay.ts"
+  },
+  "dependencies": { "openai": "7.15.0" },
+  "devDependencies": {
+    "@types/node": "22.20.0",
+    "tsx": "4.22.4",
+    "typescript": "6.0.3",
+    "vitest": "4.1.8"
+  }
+}
