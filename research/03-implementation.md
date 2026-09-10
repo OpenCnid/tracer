@@ -40,7 +40,7 @@ pnpm replay evidence/runs/<run-directory>
 
 If the shell resolves another pnpm version, use `npx --yes pnpm@11.7.0` in place of `pnpm`. The global installation need not be changed. `.env.example` lists the configuration; the local `.env` is ignored by Git. Never paste a credential into a log or review artifact.
 
-`plan` exits 0 after writing a plan. `preflight` and the presently blocked `run` exit 2 with an inconclusive result. Invalid invocation, damaged evidence or other implementation errors exit nonzero. `preflight --online` makes at most one read-only session-list request if a credential is configured; it records HTTP status and a result count, without publishing existing session data. This verifies read access only, not inference access or native-recursion support.
+`plan` exits 0 after writing a plan. `preflight` and the presently blocked `run` exit 2 with an inconclusive result; a package-manager wrapper can return 1 while reporting the underlying code 2. Invalid invocation, damaged evidence or other implementation errors exit nonzero. `preflight --online` makes at most one read-only session-list request if a credential is configured; it records HTTP status and a result count, without publishing existing session data. This verifies read access only, not inference access or native-recursion support.
 
 The initial study artifact directory contains `manifest.json`, `requests.json`, `sdk-audit.json`, `events.jsonl`, and `result.json`. If a future approved protocol permits live collection, each trial additionally has its request, collection summary and event log. No absent count is converted to zero usage. A source change is recorded through source hashes even if a development tree has not yet been committed.
 

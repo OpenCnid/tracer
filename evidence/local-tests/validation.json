@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-09-10T23:27:58.620Z",
+  "implementationCommit": "1c01cc6a0784b65c85d000879c935fdb97daca7c",
+  "kind": "local-verification",
+  "liveServiceRequests": 0,
+  "checks": [
+    {
+      "command": "npx --yes pnpm@11.7.0 typecheck",
+      "toolResult": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "44e1b8",
+          "wall_time_seconds": 3.3239002,
+          "exit_code": 0,
+          "original_token_count": 17,
+          "output": "Already up to date\nDone in 465ms using pnpm v11.7.0\n$ tsc --noEmit\n"
+        }
+      }
+    },
+    {
+      "command": "npx --yes pnpm@11.7.0 exec vitest run --reporter=default --reporter=json --outputFile.json=evidence/local-tests/vitest.json",
+      "toolResult": {
+        "status": "fulfilled",
+        "value": {
+          "chunk_id": "4e605b",
+          "wall_time_seconds": 4.0854034,
+          "exit_code": 0,
+          "original_token_count": 102,
+          "output": "Already up to date\nDone in 479ms using pnpm v11.7.0\n\n RUN  v4.1.8 C:/Users/Darian/Desktop/codex/tracer\n\n ✓ test/probe.test.ts (22 tests) 128ms\n\n Test Files  1 passed (1)\n      Tests  22 passed (22)\n   Start at  18:26:06\n   Duration  933ms (transform 129ms, setup 0ms, import 592ms, tests 128ms, environment 0ms)\n\nJSON report written to C:/Users/Darian/Desktop/codex/tracer/evidence/local-tests/vitest.json\n"
+        }
+      }
+    }
+  ]
+}
