@@ -1,0 +1,1 @@
+{"protocol":"context-observation-v10-transport","error":{"name":"Error","status":null,"code":null,"request_id":null,"reason":"RESTORE_PREFLIGHT_CHANGED"},"managedError":null,"managedCases":0,"budget":null,"newHttpAttempts":3,"totalHttpAttempts":117,"newAllowance":false,"finishedAt":"2026-09-11T13:59:25.712Z"}

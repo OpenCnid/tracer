@@ -1,0 +1,124 @@
+{
+  "readOnly": true,
+  "reviewedAt": "2026-09-11T15:07:02.420Z",
+  "source": "evidence/analysis/2026-09-11-observation-v10-publication-audit.json",
+  "credentialMatchesFieldMeans": "Unreviewed broad regular-expression candidates in the initial scan",
+  "candidates": [
+    {
+      "file": "evidence/runs/2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db/calibration-continuation/rolling-post-1-response.json",
+      "fields": [
+        {
+          "field": "root.output.0.encrypted_content",
+          "length": 1228
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db/http-003.json",
+      "fields": [
+        {
+          "field": "root.body.parsed.output.0.encrypted_content",
+          "length": 1228
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/compact-response.json",
+      "fields": [
+        {
+          "field": "root.output.1.encrypted_content",
+          "length": 2788
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/treatment/read-request.json",
+      "fields": [
+        {
+          "field": "root.input.1.encrypted_content",
+          "length": 2788
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/treatment/submit-request.json",
+      "fields": [
+        {
+          "field": "root.input.1.encrypted_content",
+          "length": 2788
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-post-1-request.json",
+      "fields": [
+        {
+          "field": "root.input.8.encrypted_content",
+          "length": 3020
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-post-2-request.json",
+      "fields": [
+        {
+          "field": "root.input.8.encrypted_content",
+          "length": 3020
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-post-3-request.json",
+      "fields": [
+        {
+          "field": "root.input.8.encrypted_content",
+          "length": 3020
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-recall-request.json",
+      "fields": [
+        {
+          "field": "root.input.8.encrypted_content",
+          "length": 3020
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    },
+    {
+      "file": "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-response.json",
+      "fields": [
+        {
+          "field": "root.output.8.encrypted_content",
+          "length": 3020
+        }
+      ],
+      "configuredSecretPresent": false,
+      "classification": "Substring inside canonical encrypted content; not a credential field or value"
+    }
+  ],
+  "unresolvedCandidates": 0,
+  "configuredCredentialMatches": 0,
+  "canonicalEncryptedContentUnchanged": true,
+  "missingLinks": [],
+  "verifiedLogs": 216,
+  "passed": true
+}

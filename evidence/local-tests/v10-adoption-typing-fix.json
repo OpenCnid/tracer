@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-09-11T14:11:13.287Z",
+  "sourcePath": "src/observation-managed-completion.ts",
+  "executedCommit": "e206ac7",
+  "typingFixCommit": "0c7dd14",
+  "sameEmittedJavaScript": true,
+  "beforeJavaScriptSha256": "a4fee472b2e31dabc6d2fb673058ec3fec435b59559db2bd6db762b78a30d2cc",
+  "afterJavaScriptSha256": "a4fee472b2e31dabc6d2fb673058ec3fec435b59559db2bd6db762b78a30d2cc",
+  "qualification": "The shell proceeded after a TypeScript diagnostic; the later annotation fix changes no emitted JavaScript. Subsequent check-and-run command sequences explicitly stop on check failure."
+}

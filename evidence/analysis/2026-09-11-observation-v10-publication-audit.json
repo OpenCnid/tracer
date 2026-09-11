@@ -1,0 +1,1105 @@
+{
+  "readOnly": true,
+  "createdAt": "2026-09-11T15:05:40.088Z",
+  "filesScanned": 1995,
+  "credentialMatches": [
+    "evidence/runs/2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db/calibration-continuation/rolling-post-1-response.json",
+    "evidence/runs/2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db/http-003.json",
+    "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/compact-response.json",
+    "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/treatment/read-request.json",
+    "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/treatment/submit-request.json",
+    "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-post-1-request.json",
+    "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-post-2-request.json",
+    "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-post-3-request.json",
+    "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-recall-request.json",
+    "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e/development/compact-response.json"
+  ],
+  "missingLocalMarkdownLinks": [],
+  "envExcluded": true,
+  "dispatchClaims": 8,
+  "verifiedLogs": 216,
+  "verifiedRecords": 8869,
+  "logs": [
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\adopted-dose-1\\events.jsonl",
+      "records": 3,
+      "sha256": "2437ffcb04c9f4a2a4f2ca90a20801cdb3d3ac2d3d90d2e9ed26a74321d283bc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\01-baseline-1\\events.jsonl",
+      "records": 24,
+      "sha256": "734ec2b2b49cb73cbc6cdd04fe6dff2bc04bb31b36d0844854306843164cde65"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "df9e789e950c5bb9c132f654af91a7fa13505db421b694dea57fc56e04135fa7"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\03-dose-1\\events.jsonl",
+      "records": 3,
+      "sha256": "2437ffcb04c9f4a2a4f2ca90a20801cdb3d3ac2d3d90d2e9ed26a74321d283bc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\04-dose-2\\events.jsonl",
+      "records": 33,
+      "sha256": "447da40f5a85ba4f0177e06de25f8297ec4502ca4d3b43270f65fdf774a318bf"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\05-dose-3\\events.jsonl",
+      "records": 6,
+      "sha256": "02e42940e61445a030fc52ad924a40a449335adc592bbbf688f09e1618301d8d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\06-dose-3-retry-1\\events.jsonl",
+      "records": 21,
+      "sha256": "01b743340e5b71423f715b2d10be3ddc3e13712877702c926cf102057fabab8e"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\07-dose-4\\events.jsonl",
+      "records": 33,
+      "sha256": "b3275961e449cdf42037e9b6d3b4cc82681766ced01dc58738827ec1dd8850f4"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\08-endpoint-1\\events.jsonl",
+      "records": 33,
+      "sha256": "caa1ddd12b96a946e5a41a8591ac9b3d0dc1261d0345a6728e76db3929bd7d9d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\09-endpoint-2\\events.jsonl",
+      "records": 34,
+      "sha256": "d8d6707755c5edf143b01f00db475c7054213f406a8c339956ef78ee9bdda00a"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\10-recall\\events.jsonl",
+      "records": 175,
+      "sha256": "511f99290edf6159d6cc5acdfdcf7f123ea64fe8ed1a52b5e7a8196210d698a0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\11-recovery\\events.jsonl",
+      "records": 284,
+      "sha256": "1f5560ef95eedac997d32216432a9897f3ce4a21a35f0dc0e6dd477c58946508"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\events.jsonl",
+      "records": 1,
+      "sha256": "b381173a987715c8cfd606e99073f29c1301cc9e7b3f6bdf866a61a2fe4710ec"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\b1-control\\recovery-ledger\\events.jsonl",
+      "records": 6,
+      "sha256": "6d5b6f1ee8cdf30ef9af850f67e3bb31e3332e41213a523137787469cb9b8cc6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\events.jsonl",
+      "records": 10,
+      "sha256": "9fda57990dd511250fc79d758877290e12986efef0791f3c25ad0e568e562631"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b\\preflight\\events.jsonl",
+      "records": 1,
+      "sha256": "75ca9af28a7908805d9b733b75c663bfe40a5d7eb775147333ca7160bf04651a"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\01-baseline-1\\events.jsonl",
+      "records": 24,
+      "sha256": "734ec2b2b49cb73cbc6cdd04fe6dff2bc04bb31b36d0844854306843164cde65"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "df9e789e950c5bb9c132f654af91a7fa13505db421b694dea57fc56e04135fa7"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\03-dose-1\\events.jsonl",
+      "records": 3,
+      "sha256": "2437ffcb04c9f4a2a4f2ca90a20801cdb3d3ac2d3d90d2e9ed26a74321d283bc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\04-dose-2\\events.jsonl",
+      "records": 33,
+      "sha256": "447da40f5a85ba4f0177e06de25f8297ec4502ca4d3b43270f65fdf774a318bf"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\05-dose-3\\events.jsonl",
+      "records": 6,
+      "sha256": "02e42940e61445a030fc52ad924a40a449335adc592bbbf688f09e1618301d8d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\06-dose-3-retry-1\\events.jsonl",
+      "records": 21,
+      "sha256": "01b743340e5b71423f715b2d10be3ddc3e13712877702c926cf102057fabab8e"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\07-dose-4\\events.jsonl",
+      "records": 33,
+      "sha256": "b3275961e449cdf42037e9b6d3b4cc82681766ced01dc58738827ec1dd8850f4"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\08-endpoint-1\\events.jsonl",
+      "records": 33,
+      "sha256": "caa1ddd12b96a946e5a41a8591ac9b3d0dc1261d0345a6728e76db3929bd7d9d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\09-endpoint-2\\events.jsonl",
+      "records": 34,
+      "sha256": "d8d6707755c5edf143b01f00db475c7054213f406a8c339956ef78ee9bdda00a"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\10-recall\\events.jsonl",
+      "records": 175,
+      "sha256": "511f99290edf6159d6cc5acdfdcf7f123ea64fe8ed1a52b5e7a8196210d698a0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\11-recovery\\events.jsonl",
+      "records": 284,
+      "sha256": "1f5560ef95eedac997d32216432a9897f3ce4a21a35f0dc0e6dd477c58946508"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\events.jsonl",
+      "records": 1,
+      "sha256": "b381173a987715c8cfd606e99073f29c1301cc9e7b3f6bdf866a61a2fe4710ec"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-control\\recovery-ledger\\events.jsonl",
+      "records": 6,
+      "sha256": "6d5b6f1ee8cdf30ef9af850f67e3bb31e3332e41213a523137787469cb9b8cc6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\00-setup\\events.jsonl",
+      "records": 70,
+      "sha256": "95f13c0f5fbc060eb281136c0ac6acee69ca28f4fc9e56a2036fa79268c88382"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\01-baseline-1\\events.jsonl",
+      "records": 20,
+      "sha256": "2f2288e9cd95d6ea9c1a9f5c1b2697640e6edc13687afa13a9fa615d700fbce6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\02-baseline-2\\events.jsonl",
+      "records": 21,
+      "sha256": "b784e20abedcd38eb59c97f8a4b49dd2ef58f48114a943506a010b9710ca0338"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\03-dose-1\\events.jsonl",
+      "records": 21,
+      "sha256": "204bd3533bfdb66c9ec8aa1cfbcee1468eb9391980659da87e74fe207504f997"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\04-dose-2\\events.jsonl",
+      "records": 19,
+      "sha256": "a1ae01ae11bef482dc22378da0aa54a44a29bab8dec472e008c30c144e8000c1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\05-dose-3\\events.jsonl",
+      "records": 19,
+      "sha256": "7e7be96e6e5b92f9d9fb9f01a46cf33cd8fa013a236b2ad737f1f62d984f193a"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\06-dose-4\\events.jsonl",
+      "records": 19,
+      "sha256": "2a7a572378f8fc9627020884b307229b31c0011ca946bf301e6aa3042cc09a91"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\07-endpoint-1\\events.jsonl",
+      "records": 19,
+      "sha256": "ae4e3ee418120f51e7742234e8ce8950543681faebb14414fe2d0e2ca54972c1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\08-endpoint-2\\events.jsonl",
+      "records": 22,
+      "sha256": "92633f1cd6563df851f9bb3a8736b8380c5fc7c377c3a6acad3b958e42e041ac"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b1-pressure\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "595879f39ed5a5255aa0d6ce258c69af6c4a1e619ee9e34b22191d464a57abc1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\00-setup\\events.jsonl",
+      "records": 155,
+      "sha256": "af5f9ded43aff181febc8a434c34e53f775a7509994a4e097516944bc79f7030"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\01-baseline-1\\events.jsonl",
+      "records": 23,
+      "sha256": "de58123d8beb36cf8ca123784d107e6627d28fb719360dca65227949053c8ae0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "067bded2989d3dab07c06f672820db52bedcc03174d4c7cf5e1ea256b7be7171"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\03-dose-1\\events.jsonl",
+      "records": 23,
+      "sha256": "8f0e617ad7b1d25df515864363478893de08ad8f2275d814b3127294caacf83c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\04-dose-2\\events.jsonl",
+      "records": 23,
+      "sha256": "3f6ba01c21e85f4f45e3fafb362f315a861b118f4a6073d6f28656d129c81cfb"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\05-dose-3\\events.jsonl",
+      "records": 25,
+      "sha256": "439bf2d6e387795b19efcf8c704492815d21816178e70c9754e79615ecc3c008"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\06-dose-4\\events.jsonl",
+      "records": 23,
+      "sha256": "d940be17f652d900dcc6294428e3863b722ab47389942ec05bd8f26e5b96785b"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\07-endpoint-1\\events.jsonl",
+      "records": 22,
+      "sha256": "06e69a2a89d918ba0bfa4a53dbe126a5aa61f379026dabad0d2f422d862c115d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\08-endpoint-2\\events.jsonl",
+      "records": 24,
+      "sha256": "028cd251081fe6216058f5501e75f0ec62a101f570500440742d8b1c91c3a0d7"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\09-recall\\events.jsonl",
+      "records": 97,
+      "sha256": "313c8348da48cf0f34f7fca157037bbcf4b28d7146e8c64845c8f835f3411c02"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\10-recovery\\events.jsonl",
+      "records": 397,
+      "sha256": "66cc4a30f83c4da65e30de803e5b9abee11513599398b32067e250d2aa0a44e1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\recovery-ledger\\events.jsonl",
+      "records": 6,
+      "sha256": "f34a4ba5f1f1ab406d3ce4b7bddf8e67aff118128d06d9a2e07736d07069b65b"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\b2-control\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "d6e6941521b9e38e052afe2b538474266cb6b5345c44018a0e38b69f9373b51c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\events.jsonl",
+      "records": 23,
+      "sha256": "be400d5eda85a01a2824501687746ce7f1f00ac33d4c0700aabd05343140b53c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323\\preflight\\events.jsonl",
+      "records": 1,
+      "sha256": "173375a374e64d583ac496cfa0f83038efce4a5bbb4432a583b46fd02f71f0eb"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a\\b1-control\\01-baseline-1\\events.jsonl",
+      "records": 24,
+      "sha256": "734ec2b2b49cb73cbc6cdd04fe6dff2bc04bb31b36d0844854306843164cde65"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a\\b1-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "df9e789e950c5bb9c132f654af91a7fa13505db421b694dea57fc56e04135fa7"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a\\b1-control\\03-dose-1\\events.jsonl",
+      "records": 5,
+      "sha256": "70dbf52b2eeae473b454d87451098fb3148284b1074135943d5937ea489f1509"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a\\b1-control\\events.jsonl",
+      "records": 1,
+      "sha256": "e45b6ed9a97c52c644f0e808e67a0c85e7048e1ecaf2102be4631ad5ffd8900f"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a\\events.jsonl",
+      "records": 3,
+      "sha256": "e43c09c4b2426315ded9cf13aebe6cfd930fb139533d55b03335642c1d40296f"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a\\preflight\\events.jsonl",
+      "records": 1,
+      "sha256": "225f3aac5061651840975fc6414e72583ab8d054bd5eb62253c8faba8c7ba834"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\01-baseline-1\\events.jsonl",
+      "records": 24,
+      "sha256": "734ec2b2b49cb73cbc6cdd04fe6dff2bc04bb31b36d0844854306843164cde65"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "df9e789e950c5bb9c132f654af91a7fa13505db421b694dea57fc56e04135fa7"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\03-dose-1\\events.jsonl",
+      "records": 3,
+      "sha256": "2437ffcb04c9f4a2a4f2ca90a20801cdb3d3ac2d3d90d2e9ed26a74321d283bc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\04-dose-2\\events.jsonl",
+      "records": 33,
+      "sha256": "447da40f5a85ba4f0177e06de25f8297ec4502ca4d3b43270f65fdf774a318bf"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\05-dose-3\\events.jsonl",
+      "records": 6,
+      "sha256": "02e42940e61445a030fc52ad924a40a449335adc592bbbf688f09e1618301d8d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\06-dose-3-retry-1\\events.jsonl",
+      "records": 21,
+      "sha256": "01b743340e5b71423f715b2d10be3ddc3e13712877702c926cf102057fabab8e"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\07-dose-4\\events.jsonl",
+      "records": 33,
+      "sha256": "b3275961e449cdf42037e9b6d3b4cc82681766ced01dc58738827ec1dd8850f4"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\08-endpoint-1\\events.jsonl",
+      "records": 33,
+      "sha256": "caa1ddd12b96a946e5a41a8591ac9b3d0dc1261d0345a6728e76db3929bd7d9d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\09-endpoint-2\\events.jsonl",
+      "records": 34,
+      "sha256": "d8d6707755c5edf143b01f00db475c7054213f406a8c339956ef78ee9bdda00a"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\10-recall\\events.jsonl",
+      "records": 175,
+      "sha256": "511f99290edf6159d6cc5acdfdcf7f123ea64fe8ed1a52b5e7a8196210d698a0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\11-recovery\\events.jsonl",
+      "records": 284,
+      "sha256": "1f5560ef95eedac997d32216432a9897f3ce4a21a35f0dc0e6dd477c58946508"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\events.jsonl",
+      "records": 1,
+      "sha256": "b381173a987715c8cfd606e99073f29c1301cc9e7b3f6bdf866a61a2fe4710ec"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-control\\recovery-ledger\\events.jsonl",
+      "records": 6,
+      "sha256": "6d5b6f1ee8cdf30ef9af850f67e3bb31e3332e41213a523137787469cb9b8cc6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\00-setup\\events.jsonl",
+      "records": 70,
+      "sha256": "95f13c0f5fbc060eb281136c0ac6acee69ca28f4fc9e56a2036fa79268c88382"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\01-baseline-1\\events.jsonl",
+      "records": 20,
+      "sha256": "2f2288e9cd95d6ea9c1a9f5c1b2697640e6edc13687afa13a9fa615d700fbce6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\02-baseline-2\\events.jsonl",
+      "records": 21,
+      "sha256": "b784e20abedcd38eb59c97f8a4b49dd2ef58f48114a943506a010b9710ca0338"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\03-dose-1\\events.jsonl",
+      "records": 21,
+      "sha256": "204bd3533bfdb66c9ec8aa1cfbcee1468eb9391980659da87e74fe207504f997"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\04-dose-2\\events.jsonl",
+      "records": 19,
+      "sha256": "a1ae01ae11bef482dc22378da0aa54a44a29bab8dec472e008c30c144e8000c1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\05-dose-3\\events.jsonl",
+      "records": 19,
+      "sha256": "7e7be96e6e5b92f9d9fb9f01a46cf33cd8fa013a236b2ad737f1f62d984f193a"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\06-dose-4\\events.jsonl",
+      "records": 19,
+      "sha256": "2a7a572378f8fc9627020884b307229b31c0011ca946bf301e6aa3042cc09a91"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\07-endpoint-1\\events.jsonl",
+      "records": 19,
+      "sha256": "ae4e3ee418120f51e7742234e8ce8950543681faebb14414fe2d0e2ca54972c1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\08-endpoint-2\\events.jsonl",
+      "records": 22,
+      "sha256": "92633f1cd6563df851f9bb3a8736b8380c5fc7c377c3a6acad3b958e42e041ac"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b1-pressure\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "595879f39ed5a5255aa0d6ce258c69af6c4a1e619ee9e34b22191d464a57abc1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\00-setup\\events.jsonl",
+      "records": 155,
+      "sha256": "af5f9ded43aff181febc8a434c34e53f775a7509994a4e097516944bc79f7030"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\01-baseline-1\\events.jsonl",
+      "records": 23,
+      "sha256": "de58123d8beb36cf8ca123784d107e6627d28fb719360dca65227949053c8ae0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "067bded2989d3dab07c06f672820db52bedcc03174d4c7cf5e1ea256b7be7171"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\03-dose-1\\events.jsonl",
+      "records": 23,
+      "sha256": "8f0e617ad7b1d25df515864363478893de08ad8f2275d814b3127294caacf83c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\04-dose-2\\events.jsonl",
+      "records": 23,
+      "sha256": "3f6ba01c21e85f4f45e3fafb362f315a861b118f4a6073d6f28656d129c81cfb"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\05-dose-3\\events.jsonl",
+      "records": 25,
+      "sha256": "439bf2d6e387795b19efcf8c704492815d21816178e70c9754e79615ecc3c008"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\06-dose-4\\events.jsonl",
+      "records": 23,
+      "sha256": "d940be17f652d900dcc6294428e3863b722ab47389942ec05bd8f26e5b96785b"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\07-endpoint-1\\events.jsonl",
+      "records": 22,
+      "sha256": "06e69a2a89d918ba0bfa4a53dbe126a5aa61f379026dabad0d2f422d862c115d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\08-endpoint-2\\events.jsonl",
+      "records": 24,
+      "sha256": "028cd251081fe6216058f5501e75f0ec62a101f570500440742d8b1c91c3a0d7"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\09-recall\\events.jsonl",
+      "records": 97,
+      "sha256": "313c8348da48cf0f34f7fca157037bbcf4b28d7146e8c64845c8f835f3411c02"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\10-recovery\\events.jsonl",
+      "records": 397,
+      "sha256": "66cc4a30f83c4da65e30de803e5b9abee11513599398b32067e250d2aa0a44e1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\recovery-ledger\\events.jsonl",
+      "records": 6,
+      "sha256": "f34a4ba5f1f1ab406d3ce4b7bddf8e67aff118128d06d9a2e07736d07069b65b"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-control\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "d6e6941521b9e38e052afe2b538474266cb6b5345c44018a0e38b69f9373b51c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\00-setup\\events.jsonl",
+      "records": 127,
+      "sha256": "8b86416c6164b97c772d9884ab1800319adbf173a323bb725e45f10c32fada92"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\01-baseline-1\\events.jsonl",
+      "records": 23,
+      "sha256": "d2d24136579442435a7648d14b1730b2fec70f3538e98b8ebc276a462004c470"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "a83fed2926fb8e65b21f86dc3b13d9cd0362413bbe09078414f1577b50786445"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\03-dose-1\\events.jsonl",
+      "records": 24,
+      "sha256": "1911e282a9fd66644e7e24310b02d4a091243e8de7f8321080cbf35bbecb9eaf"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\04-dose-2\\events.jsonl",
+      "records": 22,
+      "sha256": "bcc091461bc2fc22a7cefb3e96dfc15aeab284eb306a7f29cde8746b44739689"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\05-dose-3\\events.jsonl",
+      "records": 23,
+      "sha256": "d27272ae889b406b78bbccf2fae01a3acb8625163602a98c84eaf59672d72014"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\06-dose-4\\events.jsonl",
+      "records": 22,
+      "sha256": "b6b035f33c82720af083518de2d80f2174552c59ece94cd4db0f84bf04b24b37"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\07-endpoint-1\\events.jsonl",
+      "records": 22,
+      "sha256": "1cb3c09edf88967f78dc7f180ddc70239e75ad27457d143dc79db2a811469b4f"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\08-endpoint-2\\events.jsonl",
+      "records": 22,
+      "sha256": "f7a04949ba35db640911c0f7f97c28c6917028615a5e67a428a4eafbd0ae5494"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b2-pressure\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "74b00e817ecec5d1bfee5c88115868b6852687ce00a60d95042aea3127cddf92"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\00-setup\\events.jsonl",
+      "records": 116,
+      "sha256": "568a54686bd37cfb3f3381264dc203c541d0137f491d87cc7d84b429ef1b7c71"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\01-baseline-1\\events.jsonl",
+      "records": 23,
+      "sha256": "855d4bddddc3b8d3b1f5aad39e43422c163c4e64fbbdba023fe4004f3e313eac"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "78146cbb9fb21216f7a42ac19c92fc9884cb194655a4801b6006911d22285dd0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\03-dose-1\\events.jsonl",
+      "records": 23,
+      "sha256": "9196705cd79bac25a2ff15653a2b3452e05bae67abda18706ce2c6a0b5a39fc8"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\04-dose-2\\events.jsonl",
+      "records": 23,
+      "sha256": "367be9c1b3d24cf162eec7e2551c0b4b317ff6de70c21c6db497dc5629cccd02"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\05-dose-3\\events.jsonl",
+      "records": 22,
+      "sha256": "140327d872718dbaad2f336bac65f38057cb4d086782670c5cc522dd47fad93d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\06-dose-4\\events.jsonl",
+      "records": 22,
+      "sha256": "97ad4b81c15e983cbc3677b13fa48be99b8743c0c0dc4b988fa52787adac0bf6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\07-endpoint-1\\events.jsonl",
+      "records": 23,
+      "sha256": "32405a908f15828b836012ebcd58f1f5e89977ab5ec48b5c0c1dd785acf20cdc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\08-endpoint-2\\events.jsonl",
+      "records": 34,
+      "sha256": "0fbab81134f24300efee5e7ddb0509ac2577b05e5936deb301ee39cfa2c726e1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\09-recall\\events.jsonl",
+      "records": 95,
+      "sha256": "d6a09794ccdadb7270739eb7d833242398bb9941bd5b85a729550b5a0f40865c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\10-recovery\\events.jsonl",
+      "records": 346,
+      "sha256": "f60c0057495904c939f924b8d2dbd78f59d22719abcc40bb833351e71f4b8386"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\recovery-ledger\\events.jsonl",
+      "records": 7,
+      "sha256": "9dc6a09e6cab73f1db33fc9161b19f39480640c474496d34368ea10a477f38dc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\b3-control\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "cd2b371b694c21fbd4cbb650d4b3d6a83bdaae44513e3843ef9c1c9c32fad106"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\events.jsonl",
+      "records": 27,
+      "sha256": "8e7f4dbca0b4f0366408b466087ae95c7ee2566a38145f5c15ed13dd3b2329c1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf\\preflight\\events.jsonl",
+      "records": 3,
+      "sha256": "c93556d5b3d1e8dc6ea456061df2ebf34ac348cc7655a01b09c166dfedaf8cae"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\01-baseline-1\\events.jsonl",
+      "records": 24,
+      "sha256": "734ec2b2b49cb73cbc6cdd04fe6dff2bc04bb31b36d0844854306843164cde65"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "df9e789e950c5bb9c132f654af91a7fa13505db421b694dea57fc56e04135fa7"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\03-dose-1\\events.jsonl",
+      "records": 3,
+      "sha256": "2437ffcb04c9f4a2a4f2ca90a20801cdb3d3ac2d3d90d2e9ed26a74321d283bc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\04-dose-2\\events.jsonl",
+      "records": 33,
+      "sha256": "447da40f5a85ba4f0177e06de25f8297ec4502ca4d3b43270f65fdf774a318bf"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\05-dose-3\\events.jsonl",
+      "records": 6,
+      "sha256": "02e42940e61445a030fc52ad924a40a449335adc592bbbf688f09e1618301d8d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\06-dose-3-retry-1\\events.jsonl",
+      "records": 21,
+      "sha256": "01b743340e5b71423f715b2d10be3ddc3e13712877702c926cf102057fabab8e"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\07-dose-4\\events.jsonl",
+      "records": 33,
+      "sha256": "b3275961e449cdf42037e9b6d3b4cc82681766ced01dc58738827ec1dd8850f4"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\08-endpoint-1\\events.jsonl",
+      "records": 33,
+      "sha256": "caa1ddd12b96a946e5a41a8591ac9b3d0dc1261d0345a6728e76db3929bd7d9d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\09-endpoint-2\\events.jsonl",
+      "records": 34,
+      "sha256": "d8d6707755c5edf143b01f00db475c7054213f406a8c339956ef78ee9bdda00a"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\10-recall\\events.jsonl",
+      "records": 175,
+      "sha256": "511f99290edf6159d6cc5acdfdcf7f123ea64fe8ed1a52b5e7a8196210d698a0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\11-recovery\\events.jsonl",
+      "records": 284,
+      "sha256": "1f5560ef95eedac997d32216432a9897f3ce4a21a35f0dc0e6dd477c58946508"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\events.jsonl",
+      "records": 1,
+      "sha256": "b381173a987715c8cfd606e99073f29c1301cc9e7b3f6bdf866a61a2fe4710ec"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-control\\recovery-ledger\\events.jsonl",
+      "records": 6,
+      "sha256": "6d5b6f1ee8cdf30ef9af850f67e3bb31e3332e41213a523137787469cb9b8cc6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\00-setup\\events.jsonl",
+      "records": 70,
+      "sha256": "95f13c0f5fbc060eb281136c0ac6acee69ca28f4fc9e56a2036fa79268c88382"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\01-baseline-1\\events.jsonl",
+      "records": 20,
+      "sha256": "2f2288e9cd95d6ea9c1a9f5c1b2697640e6edc13687afa13a9fa615d700fbce6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\02-baseline-2\\events.jsonl",
+      "records": 21,
+      "sha256": "b784e20abedcd38eb59c97f8a4b49dd2ef58f48114a943506a010b9710ca0338"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\03-dose-1\\events.jsonl",
+      "records": 21,
+      "sha256": "204bd3533bfdb66c9ec8aa1cfbcee1468eb9391980659da87e74fe207504f997"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\04-dose-2\\events.jsonl",
+      "records": 19,
+      "sha256": "a1ae01ae11bef482dc22378da0aa54a44a29bab8dec472e008c30c144e8000c1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\05-dose-3\\events.jsonl",
+      "records": 19,
+      "sha256": "7e7be96e6e5b92f9d9fb9f01a46cf33cd8fa013a236b2ad737f1f62d984f193a"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\06-dose-4\\events.jsonl",
+      "records": 19,
+      "sha256": "2a7a572378f8fc9627020884b307229b31c0011ca946bf301e6aa3042cc09a91"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\07-endpoint-1\\events.jsonl",
+      "records": 19,
+      "sha256": "ae4e3ee418120f51e7742234e8ce8950543681faebb14414fe2d0e2ca54972c1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\08-endpoint-2\\events.jsonl",
+      "records": 22,
+      "sha256": "92633f1cd6563df851f9bb3a8736b8380c5fc7c377c3a6acad3b958e42e041ac"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b1-pressure\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "595879f39ed5a5255aa0d6ce258c69af6c4a1e619ee9e34b22191d464a57abc1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\00-setup\\events.jsonl",
+      "records": 155,
+      "sha256": "af5f9ded43aff181febc8a434c34e53f775a7509994a4e097516944bc79f7030"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\01-baseline-1\\events.jsonl",
+      "records": 23,
+      "sha256": "de58123d8beb36cf8ca123784d107e6627d28fb719360dca65227949053c8ae0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "067bded2989d3dab07c06f672820db52bedcc03174d4c7cf5e1ea256b7be7171"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\03-dose-1\\events.jsonl",
+      "records": 23,
+      "sha256": "8f0e617ad7b1d25df515864363478893de08ad8f2275d814b3127294caacf83c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\04-dose-2\\events.jsonl",
+      "records": 23,
+      "sha256": "3f6ba01c21e85f4f45e3fafb362f315a861b118f4a6073d6f28656d129c81cfb"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\05-dose-3\\events.jsonl",
+      "records": 25,
+      "sha256": "439bf2d6e387795b19efcf8c704492815d21816178e70c9754e79615ecc3c008"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\06-dose-4\\events.jsonl",
+      "records": 23,
+      "sha256": "d940be17f652d900dcc6294428e3863b722ab47389942ec05bd8f26e5b96785b"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\07-endpoint-1\\events.jsonl",
+      "records": 22,
+      "sha256": "06e69a2a89d918ba0bfa4a53dbe126a5aa61f379026dabad0d2f422d862c115d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\08-endpoint-2\\events.jsonl",
+      "records": 24,
+      "sha256": "028cd251081fe6216058f5501e75f0ec62a101f570500440742d8b1c91c3a0d7"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\09-recall\\events.jsonl",
+      "records": 97,
+      "sha256": "313c8348da48cf0f34f7fca157037bbcf4b28d7146e8c64845c8f835f3411c02"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\10-recovery\\events.jsonl",
+      "records": 397,
+      "sha256": "66cc4a30f83c4da65e30de803e5b9abee11513599398b32067e250d2aa0a44e1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\recovery-ledger\\events.jsonl",
+      "records": 6,
+      "sha256": "f34a4ba5f1f1ab406d3ce4b7bddf8e67aff118128d06d9a2e07736d07069b65b"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-control\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "d6e6941521b9e38e052afe2b538474266cb6b5345c44018a0e38b69f9373b51c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\00-setup\\events.jsonl",
+      "records": 127,
+      "sha256": "8b86416c6164b97c772d9884ab1800319adbf173a323bb725e45f10c32fada92"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\01-baseline-1\\events.jsonl",
+      "records": 23,
+      "sha256": "d2d24136579442435a7648d14b1730b2fec70f3538e98b8ebc276a462004c470"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "a83fed2926fb8e65b21f86dc3b13d9cd0362413bbe09078414f1577b50786445"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\03-dose-1\\events.jsonl",
+      "records": 24,
+      "sha256": "1911e282a9fd66644e7e24310b02d4a091243e8de7f8321080cbf35bbecb9eaf"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\04-dose-2\\events.jsonl",
+      "records": 22,
+      "sha256": "bcc091461bc2fc22a7cefb3e96dfc15aeab284eb306a7f29cde8746b44739689"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\05-dose-3\\events.jsonl",
+      "records": 23,
+      "sha256": "d27272ae889b406b78bbccf2fae01a3acb8625163602a98c84eaf59672d72014"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\06-dose-4\\events.jsonl",
+      "records": 22,
+      "sha256": "b6b035f33c82720af083518de2d80f2174552c59ece94cd4db0f84bf04b24b37"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\07-endpoint-1\\events.jsonl",
+      "records": 22,
+      "sha256": "1cb3c09edf88967f78dc7f180ddc70239e75ad27457d143dc79db2a811469b4f"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\08-endpoint-2\\events.jsonl",
+      "records": 22,
+      "sha256": "f7a04949ba35db640911c0f7f97c28c6917028615a5e67a428a4eafbd0ae5494"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b2-pressure\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "74b00e817ecec5d1bfee5c88115868b6852687ce00a60d95042aea3127cddf92"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\00-setup\\events.jsonl",
+      "records": 116,
+      "sha256": "568a54686bd37cfb3f3381264dc203c541d0137f491d87cc7d84b429ef1b7c71"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\01-baseline-1\\events.jsonl",
+      "records": 23,
+      "sha256": "855d4bddddc3b8d3b1f5aad39e43422c163c4e64fbbdba023fe4004f3e313eac"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\02-baseline-2\\events.jsonl",
+      "records": 23,
+      "sha256": "78146cbb9fb21216f7a42ac19c92fc9884cb194655a4801b6006911d22285dd0"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\03-dose-1\\events.jsonl",
+      "records": 23,
+      "sha256": "9196705cd79bac25a2ff15653a2b3452e05bae67abda18706ce2c6a0b5a39fc8"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\04-dose-2\\events.jsonl",
+      "records": 23,
+      "sha256": "367be9c1b3d24cf162eec7e2551c0b4b317ff6de70c21c6db497dc5629cccd02"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\05-dose-3\\events.jsonl",
+      "records": 22,
+      "sha256": "140327d872718dbaad2f336bac65f38057cb4d086782670c5cc522dd47fad93d"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\06-dose-4\\events.jsonl",
+      "records": 22,
+      "sha256": "97ad4b81c15e983cbc3677b13fa48be99b8743c0c0dc4b988fa52787adac0bf6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\07-endpoint-1\\events.jsonl",
+      "records": 23,
+      "sha256": "32405a908f15828b836012ebcd58f1f5e89977ab5ec48b5c0c1dd785acf20cdc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\08-endpoint-2\\events.jsonl",
+      "records": 34,
+      "sha256": "0fbab81134f24300efee5e7ddb0509ac2577b05e5936deb301ee39cfa2c726e1"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\09-recall\\events.jsonl",
+      "records": 95,
+      "sha256": "d6a09794ccdadb7270739eb7d833242398bb9941bd5b85a729550b5a0f40865c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\10-recovery\\events.jsonl",
+      "records": 346,
+      "sha256": "f60c0057495904c939f924b8d2dbd78f59d22719abcc40bb833351e71f4b8386"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\recovery-ledger\\events.jsonl",
+      "records": 7,
+      "sha256": "9dc6a09e6cab73f1db33fc9161b19f39480640c474496d34368ea10a477f38dc"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-control\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "cd2b371b694c21fbd4cbb650d4b3d6a83bdaae44513e3843ef9c1c9c32fad106"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\00-setup\\events.jsonl",
+      "records": 186,
+      "sha256": "a438c09d917cc48bd7eaae6cb4b5c38da715b001318cac2adb9a28ebe320874c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\01-baseline-1\\events.jsonl",
+      "records": 31,
+      "sha256": "66bc7f190bd668a9bf9ad0f0f1a2548c05aad0f19cdebf2b8b11ae66204010b5"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\02-baseline-2\\events.jsonl",
+      "records": 20,
+      "sha256": "5191cc88fcf1360f2d84cfc7c0657c5b07edea6fe9a8efb1a770b974b58de038"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\03-dose-1\\events.jsonl",
+      "records": 24,
+      "sha256": "66c00dc8a02324a387827f9c7d857075d31d94f90bc6b464b2cff98982bbc1af"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\04-dose-2\\events.jsonl",
+      "records": 20,
+      "sha256": "aea8b2413319c8bb6881d1eee94a99459fb1ea12571fe6b6af228e08f1193926"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\05-dose-3\\events.jsonl",
+      "records": 20,
+      "sha256": "23b5e873e37644a3f2a86c06b5834d128b629e6e7180c586deafa57323aefd56"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\06-dose-4\\events.jsonl",
+      "records": 35,
+      "sha256": "abfbd8417f5e8901d7b4ee114260861f76bbe9a5eb626ec8df36ecb41dad01a9"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\07-endpoint-1\\events.jsonl",
+      "records": 19,
+      "sha256": "31c641137ed1d9107488016dafc9e06c8a87a0a6a840136e4dba3e3d8b448e2f"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\08-endpoint-2\\events.jsonl",
+      "records": 19,
+      "sha256": "8e00cc30de694dc4b8fcd4e7209484e47d15a5742cac9fa9ab245775c21f5d0c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\b3-pressure\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "655985c4dade99b9cd2a61490b90d2438a0cd21da09204cb7531ed728ef21b6b"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\events.jsonl",
+      "records": 15,
+      "sha256": "f1078962fe1500cb543df930f5df04d6a4b4d116d5799c5f08e9c0b21f8a2867"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\preflight\\events.jsonl",
+      "records": 6,
+      "sha256": "cd5dc661db8294d0f21bd8ea62c6a65bfe1506f0523ced9fa09dc41468d4a746"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-59-22-533Z-context-observation-v10-transport-7a2a5709\\events.jsonl",
+      "records": 1,
+      "sha256": "997814d8d28a980dfaf1c4fe1099c0ca80da09fd349eb96fb0503dc768362062"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-59-22-533Z-context-observation-v10-transport-7a2a5709\\preflight\\events.jsonl",
+      "records": 1,
+      "sha256": "4787448b6fdc9f9168d7f12d77014c762b5e377c2603d99e8c9d5b3536fe6dc6"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db\\b1-control\\00-setup\\events.jsonl",
+      "records": 128,
+      "sha256": "55f5e93eb335b035aee3464e6842ea5654c4863fccff9e52bcd7b9632432f24c"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db\\b1-control\\01-baseline-1\\events.jsonl",
+      "records": 24,
+      "sha256": "734ec2b2b49cb73cbc6cdd04fe6dff2bc04bb31b36d0844854306843164cde65"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db\\b1-control\\events.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db\\b1-control\\setup-ledger\\events.jsonl",
+      "records": 2,
+      "sha256": "bb45faba3ed26b3865c67e5832574766b135b5449ca19c1c5c45be1bbf5b1ebb"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db\\calibration-continuation\\events.jsonl",
+      "records": 6,
+      "sha256": "2f7141242585e8c0c940e33bedfdd0de000fca17634a67966ae4be9760c63734"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db\\events.jsonl",
+      "records": 9,
+      "sha256": "2af587b097c9280b064650ef8b5938026449e133358716e50a8c29729c20c672"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db\\read-only-2026-09-11T13-45-19-163Z\\events.jsonl",
+      "records": 1,
+      "sha256": "ecec18edc9a78691714c05acd3b590b8b1ee312adcb6354e94ed8af2b1328e70"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e\\development\\events.jsonl",
+      "records": 19,
+      "sha256": "d6926fb1c27ed342ed2006c08334684af337b9ea069cf2534dfb22be7fe00f9b"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e\\events.jsonl",
+      "records": 56,
+      "sha256": "59230f712b3afd029808b81e884f2ad2e13d8c2334e7194ec3571cee7a5e4111"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e\\heldout-1\\events.jsonl",
+      "records": 19,
+      "sha256": "b5911b7a1b8fb64302ab9cd40a23ae51447a4fa67f5425b3632ece6ad4b62c72"
+    },
+    {
+      "path": "evidence\\runs\\2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e\\heldout-2\\events.jsonl",
+      "records": 14,
+      "sha256": "7783e7f6d335bf9088fb04efc7be30b983a80355c562c300e27b4d0e7e1946d7"
+    }
+  ],
+  "note": "Credential values are never included. Log counts include inherited copies, not unique API calls."
+}

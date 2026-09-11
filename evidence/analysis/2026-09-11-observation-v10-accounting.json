@@ -1,0 +1,213 @@
+{
+  "readOnly": true,
+  "createdAt": "2026-09-11T15:01:21.4048511Z",
+  "method": "Sum known original calibration responses and the final six unique managed sessions once. Conservative rates: input USD 0.50/million; output USD 1.80/million; cached input not discounted.",
+  "calibrationSource": "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e",
+  "calibrationContinuation": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "calibrationResponses": 58,
+  "calibrationInput": 273035,
+  "calibrationOutput": 3072,
+  "managedSource": "evidence\\runs\\2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae\\managed-reconciliation.json",
+  "sessions": [
+    {
+      "id": "b1-control",
+      "sessionId": "sess_0c0210e0042ab6d1006aa4053966708191b85d94c4ded61ad5",
+      "turnIds": [
+        "turn_0c0210e0042ab6d1006aa405427a248191b1bb98291d92f825",
+        "turn_0c0210e0042ab6d1006aa4056d4e4481918b3401bcc737e08d",
+        "turn_0c0210e0042ab6d1006aa40781d0788191bba8dff6238e0c56",
+        "turn_0c0210e0042ab6d1006aa407a0f0208191b83770f80fa89adf",
+        "turn_0c0210e0042ab6d1006aa40a8637ac81919b6f469c52d3c39b",
+        "turn_0c0210e0042ab6d1006aa40adf21f88191b1cc5bb49aefa730",
+        "turn_0c0210e0042ab6d1006aa40af9ce408191b844affcb5417f9c",
+        "turn_0c0210e0042ab6d1006aa40b507ea48191ad654ab8b6df18ab",
+        "turn_0c0210e0042ab6d1006aa40ba7ee608191be4b7ffbab2a23c6",
+        "turn_0c0210e0042ab6d1006aa40c0247208191b9fa4a796dd5d051",
+        "turn_0c0210e0042ab6d1006aa40c1e8f9881919935fc018ace9e79"
+      ],
+      "inputTokens": 186877.0,
+      "outputTokens": 3714.0,
+      "estimateUsd": 0.1001237,
+      "aggregateUsage": {
+        "input_tokens": 186877,
+        "input_tokens_details": {
+          "cached_tokens": 171375
+        },
+        "output_tokens": 3714,
+        "output_tokens_details": {
+          "reasoning_tokens": 287
+        },
+        "total_tokens": 190591
+      },
+      "status": "idle",
+      "requiredActions": 0
+    },
+    {
+      "id": "b1-pressure",
+      "sessionId": "sess_0d3c057865a3292b006aa40f1277108191b36fbbdcfef35296",
+      "turnIds": [
+        "turn_0d3c057865a3292b006aa40f1acd20819190129a0b786d3e21",
+        "turn_0d3c057865a3292b006aa40f44745c8191b70bf97b657a6d15",
+        "turn_0d3c057865a3292b006aa40f5b8b488191b74d1a4a83ef5caa",
+        "turn_0d3c057865a3292b006aa40f6db27881918498ceb76024867f",
+        "turn_0d3c057865a3292b006aa40f80ce18819190c903599f5aadd8",
+        "turn_0d3c057865a3292b006aa40f937ee081918f6c999a220f28cc",
+        "turn_0d3c057865a3292b006aa40fa56a3c8191abdb05c5e0dc3896",
+        "turn_0d3c057865a3292b006aa40fb72eec8191a867a8e00fb9d285",
+        "turn_0d3c057865a3292b006aa40fc816f88191a0e0370cfb63ab8b"
+      ],
+      "inputTokens": 764161.0,
+      "outputTokens": 286.0,
+      "estimateUsd": 0.38259529999999997,
+      "aggregateUsage": {
+        "input_tokens": 764161,
+        "input_tokens_details": {
+          "cached_tokens": 606976
+        },
+        "output_tokens": 286,
+        "output_tokens_details": {
+          "reasoning_tokens": 51
+        },
+        "total_tokens": 764447
+      },
+      "status": "idle",
+      "requiredActions": 0
+    },
+    {
+      "id": "b2-control",
+      "sessionId": "sess_08d2666fbe6774fc006aa40fd8e0988191a03b5c08dc2a3ee9",
+      "turnIds": [
+        "turn_08d2666fbe6774fc006aa40fe199ac8191868ca23ba400c3f9",
+        "turn_08d2666fbe6774fc006aa4100ed0b881919f52f111f7db8795",
+        "turn_08d2666fbe6774fc006aa4102b2134819185165eca7322472c",
+        "turn_08d2666fbe6774fc006aa410473e4081919636843264d38416",
+        "turn_08d2666fbe6774fc006aa41064495c8191aad4eea67428bc06",
+        "turn_08d2666fbe6774fc006aa4107f94048191bfee74175ab04a88",
+        "turn_08d2666fbe6774fc006aa4109d684481918481e1638effb832",
+        "turn_08d2666fbe6774fc006aa410b98c3c81919cc867ce93c5a50f",
+        "turn_08d2666fbe6774fc006aa410cfa9c88191b27066ccdf2893f8",
+        "turn_08d2666fbe6774fc006aa410e6a86081919153a1b325ce9eaf",
+        "turn_08d2666fbe6774fc006aa4110447f08191b993b407fa2ef592"
+      ],
+      "inputTokens": 200386.0,
+      "outputTokens": 4184.0,
+      "estimateUsd": 0.10772419999999999,
+      "aggregateUsage": {
+        "input_tokens": 200386,
+        "input_tokens_details": {
+          "cached_tokens": 184070
+        },
+        "output_tokens": 4184,
+        "output_tokens_details": {
+          "reasoning_tokens": 256
+        },
+        "total_tokens": 204570
+      },
+      "status": "idle",
+      "requiredActions": 0
+    },
+    {
+      "id": "b2-pressure",
+      "sessionId": "sess_08d6f06269d51194006aa4125df1948191964ff1511dca6047",
+      "turnIds": [
+        "turn_08d6f06269d51194006aa41267c2fc81919308bb6d298c021e",
+        "turn_08d6f06269d51194006aa4129626f08191a9dd3772e1ca654a",
+        "turn_08d6f06269d51194006aa412b716708191a0935679c38f84eb",
+        "turn_08d6f06269d51194006aa412d1fe788191aedfa2341a371001",
+        "turn_08d6f06269d51194006aa412eb5cfc819183140e02cbfc6f2e",
+        "turn_08d6f06269d51194006aa413022aa88191a2d8ba7e67ae6ab0",
+        "turn_08d6f06269d51194006aa4131e9ca88191bea85b79e06e3892",
+        "turn_08d6f06269d51194006aa41338fea48191a4e506beb8c9a75e",
+        "turn_08d6f06269d51194006aa41350dabc81919652f67599602152"
+      ],
+      "inputTokens": 765573.0,
+      "outputTokens": 248.0,
+      "estimateUsd": 0.38323290000000004,
+      "aggregateUsage": {
+        "input_tokens": 765573,
+        "input_tokens_details": {
+          "cached_tokens": 608065
+        },
+        "output_tokens": 248,
+        "output_tokens_details": {
+          "reasoning_tokens": 40
+        },
+        "total_tokens": 765821
+      },
+      "status": "idle",
+      "requiredActions": 0
+    },
+    {
+      "id": "b3-control",
+      "sessionId": "sess_0e0a51b977063e38006aa4136766a08191988ee15968fe55dd",
+      "turnIds": [
+        "turn_0e0a51b977063e38006aa4137016fc81918a10bc0423c2e6b5",
+        "turn_0e0a51b977063e38006aa413a194c48191a41f8777aaa959bf",
+        "turn_0e0a51b977063e38006aa413bf78408191b3c1b74ec048faef",
+        "turn_0e0a51b977063e38006aa413dbb59081919963fd060239a2b7",
+        "turn_0e0a51b977063e38006aa413f88b7081919af2e863ecad3a3a",
+        "turn_0e0a51b977063e38006aa414157c188191ba8ca4a0325c214c",
+        "turn_0e0a51b977063e38006aa4142c74e8819185d59069777d1a68",
+        "turn_0e0a51b977063e38006aa4144426e081919c91ccae4a73c7a6",
+        "turn_0e0a51b977063e38006aa41467d8948191bcf320b16bfc2d2b",
+        "turn_0e0a51b977063e38006aa414bdbd008191aa35dea34fa4d871",
+        "turn_0e0a51b977063e38006aa414d787c481918eb00e8d269b5624"
+      ],
+      "inputTokens": 193264.0,
+      "outputTokens": 1393.0,
+      "estimateUsd": 0.09913939999999999,
+      "aggregateUsage": {
+        "input_tokens": 193264,
+        "input_tokens_details": {
+          "cached_tokens": 179673
+        },
+        "output_tokens": 1393,
+        "output_tokens_details": {
+          "reasoning_tokens": 205
+        },
+        "total_tokens": 194657
+      },
+      "status": "idle",
+      "requiredActions": 0
+    },
+    {
+      "id": "b3-pressure",
+      "sessionId": "sess_0e96e0d5a34118f7006aa415e9e4d481918c042212ace7ca4b",
+      "turnIds": [
+        "turn_0e96e0d5a34118f7006aa415f2d6c081918284edd7a61929e9",
+        "turn_0e96e0d5a34118f7006aa4161e49988191946c51cb88d50d3f",
+        "turn_0e96e0d5a34118f7006aa416748cd08191a3388fa96c415adf",
+        "turn_0e96e0d5a34118f7006aa4168c57548191b3f471d82099474e",
+        "turn_0e96e0d5a34118f7006aa416a1271081919deee59ac536cc39",
+        "turn_0e96e0d5a34118f7006aa416b9dff081918eb692549eaeaf61",
+        "turn_0e96e0d5a34118f7006aa416d2f36881919d5510d693175288",
+        "turn_0e96e0d5a34118f7006aa41726ada481918cd86b5359f8bce1",
+        "turn_0e96e0d5a34118f7006aa417396cec8191b0ad22c484f3c8e5"
+      ],
+      "inputTokens": 767737.0,
+      "outputTokens": 341.0,
+      "estimateUsd": 0.3844823,
+      "aggregateUsage": {
+        "input_tokens": 767737,
+        "input_tokens_details": {
+          "cached_tokens": 609805
+        },
+        "output_tokens": 341,
+        "output_tokens_details": {
+          "reasoning_tokens": 71
+        },
+        "total_tokens": 768078
+      },
+      "status": "idle",
+      "requiredActions": 0
+    }
+  ],
+  "uniqueSessions": 6,
+  "uniqueManagedTurns": 60,
+  "knownEstimateUsd": 1.5993449,
+  "unresolvedReservationsUsd": 0.23,
+  "admissionEstimateUsd": 1.8293449,
+  "thresholdUsd": 2,
+  "newAllowance": false,
+  "invoice": false
+}

@@ -1,5 +1,7 @@
 # What the context detector found
 
+**Continuation:** We have now completed calibration and all six planned managed sessions. [Read the completed study](23-managed-observation-results.md). The original interrupted result below is preserved as recorded.
+
 **We built the detector and obtained promising calibration measurements. We did not reach managed Agents testing: the last calibration fixture was interrupted by a request failure. Survival across managed compaction is still inconclusive.**
 
 This study tests the measurement we need before making a survival claim. It does not change our [decision to keep exact state in application storage](../DECISIONS.md).

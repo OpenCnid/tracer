@@ -21,7 +21,8 @@ export function replayObservation(directory:string) {
   const all=files(directory),logs=all.filter(p=>p.endsWith('events.jsonl'));
   const logRecords=logs.map(path=>({path,records:verifyLog(path)}));
   const fixtures:unknown[]=[];
-  const lockPath=join(directory,'detector-lock.json'),locked:Rule|null=existsSync(lockPath)?read(lockPath).rule:null;
+  const lockPath=join(directory,'detector-lock.json'),carriedPath=join(directory,'calibration.json');
+  const locked:Rule|null=existsSync(lockPath)?read(lockPath).rule:existsSync(carriedPath)?read(carriedPath).rule:null;
   let paidResponses=0,inputTokens=0,outputTokens=0;
   for(const path of all.filter(p=>p.endsWith('-response.json'))) {
     const response=read<ModelResponse>(path);paidResponses++;

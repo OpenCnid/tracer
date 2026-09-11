@@ -1,6 +1,6 @@
 # Observing managed context changes from the client
 
-**Progress:** [The first implementation and calibration results](17-observation-results.md) are now available. The detector found known context reductions, recall proved ambiguous, and an unresolved request stopped calibration before managed testing. The design below remains the rationale; [v9](16-observation-protocol.md) is the frozen run protocol.
+**Progress:** [The completed observation study](23-managed-observation-results.md) passed calibration and ran all six managed sessions. Three pressure sessions reached roughly 157,000–158,000 measured input tokens without a detected transition, leaving survival inconclusive. The design below remains the rationale; [v9](16-observation-protocol.md) and its recorded continuation addenda define the executed study.
 
 **OpenCnid will build a client-side detector instead of waiting for a compaction event from OpenAI.** We can measure changes in input usage and access to earlier information, calibrate those observations against known alternatives, and test our workflow across the inferred transition.
 

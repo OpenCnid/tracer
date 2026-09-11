@@ -1,0 +1,1144 @@
+{
+  "readOnly": true,
+  "run": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323",
+  "calibration": {
+    "pass": true,
+    "rule": {
+      "fraction": 0.5,
+      "absolute": 2048,
+      "confirmations": 2
+    },
+    "bridge": {
+      "sample": {
+        "id": "bridge",
+        "at": "2026-09-11T13:42:01.568Z",
+        "input": 10043,
+        "cached": 10040,
+        "output": 17,
+        "valid": true,
+        "reasons": []
+      },
+      "originalInput": 10043,
+      "pass": true
+    },
+    "newResponses": 0,
+    "newInputTokens": 0,
+    "newOutputTokens": 0
+  },
+  "logs": 40,
+  "records": 1775,
+  "sourceMatches": [
+    {
+      "path": "src/observation-cohort.ts",
+      "workingTreeMatches": false,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/observation-managed.ts",
+      "workingTreeMatches": false,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/observation-transport.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/observation.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/observation-continuation.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/observation-resume-replay.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/collector.ts",
+      "workingTreeMatches": false,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/evidence.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/budget.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/protocol.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/checkpoint-store.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/checkpoint-ledger.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/checkpoint-protocol.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/state-store.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "b1-control",
+      "sessionId": "sess_0c0210e0042ab6d1006aa4053966708191b85d94c4ded61ad5",
+      "inputTokens": [
+        7848,
+        7874,
+        8106,
+        8340,
+        8568,
+        8818,
+        8844,
+        8870
+      ],
+      "cachedTokens": [
+        7820,
+        7845,
+        7871,
+        8103,
+        8337,
+        8565,
+        8815,
+        8841
+      ],
+      "measurementNames": [
+        "baseline-1",
+        "baseline-2",
+        "dose-1",
+        "dose-2",
+        "dose-3",
+        "dose-4",
+        "endpoint-1",
+        "endpoint-2"
+      ],
+      "validMeasurements": 8,
+      "onlineCandidate": null,
+      "reconciledCandidate": null,
+      "candidateStable": true,
+      "usageRevisions": [],
+      "sameSession": true,
+      "configurationStable": true,
+      "recovery": {
+        "challenged": true,
+        "pass": true,
+        "complete": true,
+        "sourceIntact": true,
+        "originalReceiptIntact": true,
+        "operations": 3,
+        "pendingExecuted": 2,
+        "duplicateCompletedRequest": false,
+        "rejectedCheckpointCalls": 0,
+        "checkpointReports": [
+          true
+        ],
+        "recordReports": [
+          true
+        ],
+        "firstCheckpointReportCorrect": true,
+        "firstRecordReportCorrect": true,
+        "selectedIndices": [
+          286,
+          167
+        ]
+      },
+      "error": null,
+      "finalStatus": "idle",
+      "requiredActions": 0
+    },
+    {
+      "id": "b1-pressure",
+      "sessionId": "sess_0d3c057865a3292b006aa40f1277108191b36fbbdcfef35296",
+      "inputTokens": [
+        7864,
+        7890,
+        45276,
+        82464,
+        119780,
+        157100,
+        157126,
+        157152
+      ],
+      "cachedTokens": [
+        7836,
+        7861,
+        7887,
+        45273,
+        82461,
+        119777,
+        157097,
+        157123
+      ],
+      "measurementNames": [
+        "baseline-1",
+        "baseline-2",
+        "dose-1",
+        "dose-2",
+        "dose-3",
+        "dose-4",
+        "endpoint-1",
+        "endpoint-2"
+      ],
+      "validMeasurements": 8,
+      "onlineCandidate": null,
+      "reconciledCandidate": null,
+      "candidateStable": true,
+      "usageRevisions": [],
+      "sameSession": true,
+      "configurationStable": true,
+      "recovery": {
+        "challenged": false,
+        "operations": 1,
+        "sourceIntact": true,
+        "originalReceiptIntact": true
+      },
+      "error": null,
+      "finalStatus": "idle",
+      "requiredActions": 0
+    },
+    {
+      "id": "b2-control",
+      "sessionId": "sess_08d2666fbe6774fc006aa40fd8e0988191a03b5c08dc2a3ee9",
+      "inputTokens": [
+        7790,
+        7816,
+        8034,
+        8267,
+        8479,
+        8714,
+        8740,
+        8766
+      ],
+      "cachedTokens": [
+        7762,
+        7787,
+        7813,
+        8031,
+        8264,
+        8476,
+        8711,
+        8737
+      ],
+      "measurementNames": [
+        "baseline-1",
+        "baseline-2",
+        "dose-1",
+        "dose-2",
+        "dose-3",
+        "dose-4",
+        "endpoint-1",
+        "endpoint-2"
+      ],
+      "validMeasurements": 8,
+      "onlineCandidate": null,
+      "reconciledCandidate": null,
+      "candidateStable": true,
+      "usageRevisions": [],
+      "sameSession": true,
+      "configurationStable": true,
+      "recovery": {
+        "challenged": true,
+        "pass": false,
+        "complete": false,
+        "sourceIntact": true,
+        "originalReceiptIntact": true,
+        "operations": 3,
+        "pendingExecuted": 2,
+        "duplicateCompletedRequest": false,
+        "rejectedCheckpointCalls": 0,
+        "checkpointReports": [
+          true
+        ],
+        "recordReports": [
+          true
+        ],
+        "firstCheckpointReportCorrect": true,
+        "firstRecordReportCorrect": true,
+        "selectedIndices": [
+          346,
+          76
+        ]
+      },
+      "error": "CURRENT_TURN_UNESTABLISHED",
+      "finalStatus": "idle",
+      "requiredActions": 0
+    }
+  ],
+  "pairs": [
+    {
+      "pair": 1,
+      "outcome": "inconclusive",
+      "reason": "NO_CONFIRMED_REDUCTION"
+    },
+    {
+      "pair": 2,
+      "outcome": "inconclusive",
+      "reason": "INCOMPLETE_COMPARISON"
+    },
+    {
+      "pair": 3,
+      "outcome": "inconclusive",
+      "reason": "INCOMPLETE_COMPARISON"
+    }
+  ],
+  "accounting": {
+    "admissionEstimateUsd": 0.9624903000000002,
+    "knownEstimateUsd": 0.7324903000000003,
+    "historicalUnresolvedReservationUsd": 0.23,
+    "additionalTransportReservationUsd": 0,
+    "newUnknownTurnCount": 0,
+    "thresholdUsd": 2,
+    "newAllowance": false
+  },
+  "sourceHashes": [
+    {
+      "path": "b1-control\\01-baseline-1\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\inherited.json",
+      "sha256": "5e2720c1b8058926d0d55114b94b93b77c849633f56e7db9d14b95386b43ada4"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\measurement.json",
+      "sha256": "c97eee4d04dc7f757701085dca6e5a1634ea69c37d601e4ebf5eefcdbab21ac2"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\request.json",
+      "sha256": "b15cb8b4e09b5e4881fb7a89275592a583da7c6c7df460562de517e56407ba28"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\settled.json",
+      "sha256": "e3816257c467cef3d600f4e45d31ca3887b1ecc10d2601aa1945c78caec8f9f0"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\inherited.json",
+      "sha256": "078eb3a5a1e4e05a52a4afe51e795185939749d7539d75c6194f9caa1f718a8c"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\measurement.json",
+      "sha256": "4b2955a09938562fc627641d2910c6734ad8b97598693aa343c5a3b6e30be80b"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\request.json",
+      "sha256": "b15cb8b4e09b5e4881fb7a89275592a583da7c6c7df460562de517e56407ba28"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\settled.json",
+      "sha256": "d556c1e5a3c5ee0c11ad23602d73443725927cc211a0f06fcf67475a587e1455"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\adopted-collection.json",
+      "sha256": "29313d8a99522388bddc7c4a2917c0df117e74a5e4211fbcc79391371af81269"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\collection.json",
+      "sha256": "417365c1addcb314da96036d0f40cb0afac5b5bff9c94876112ed7ab3c827312"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\inherited.json",
+      "sha256": "899df212cc9b5068e3d78e5a9e4f09adff6c13e1ecad4d12c0965d58ee8adf1d"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\measurement.json",
+      "sha256": "814b8741ba8f273776f81db379aed20b06430a621fd7a9b86d66be29a89d69d7"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\request.json",
+      "sha256": "8c2512fe9d626abf82e2087756bfd8de1c16af7a76f20b476a3242d4dba850b0"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\settled.json",
+      "sha256": "042d1c31a1341a5f31b174e647bf2155808b4a748c40e1e9c3797abda1c634e7"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\budget.json",
+      "sha256": "07c100be8eaafbab6d2af77f3b25c28ffb471d3f55b471cfd46a79a2abb4b20d"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\measurement.json",
+      "sha256": "45d0dfcc0111859ff941e7d96340bb464b0486616d0c123d0455bc3610c37155"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\request.json",
+      "sha256": "5db76d826206a104c97c6ea62b37546ce66050a4eae78e7d6c49f299832bced9"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\settled.json",
+      "sha256": "b111dc4e0dbd66652b43b6ec67ecfcef3f3949511efb244280347e253b95f63f"
+    },
+    {
+      "path": "b1-control\\05-dose-3\\budget.json",
+      "sha256": "167d01a255514919bc2643536b12e367462300dfe0463dde313788b50844eb20"
+    },
+    {
+      "path": "b1-control\\05-dose-3\\collection.json",
+      "sha256": "417365c1addcb314da96036d0f40cb0afac5b5bff9c94876112ed7ab3c827312"
+    },
+    {
+      "path": "b1-control\\05-dose-3\\request.json",
+      "sha256": "483d89a825e87c9e7428b631882ffecb77e09a7a888b7413863ec0d39797611d"
+    },
+    {
+      "path": "b1-control\\05-dose-3\\transport-retry.json",
+      "sha256": "869970bd76c076dd76a374c04cc5ca012c56d4f94e0b94c95c34bf6af8418f4b"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\budget.json",
+      "sha256": "6d9d4eb1a0e002d93896b5963d7f366cfe8a516b0aa910e37f5970bdf68c932c"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\measurement.json",
+      "sha256": "1528a1f928dff84e449651515f91d8c89bb2279574b20312c22a4944ac192a82"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\request.json",
+      "sha256": "483d89a825e87c9e7428b631882ffecb77e09a7a888b7413863ec0d39797611d"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\settled.json",
+      "sha256": "2704251ac94cd1883d78d488bf9d6cb676c5f33680b0cffec27fdb6de0383b30"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\budget.json",
+      "sha256": "2f2fe75b59e610ab041c542c7bf13e17d91a0dd20d50555958c7386794c44d6c"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\measurement.json",
+      "sha256": "a165d3e733349cce6c1e5e465e82697222dbf9a1058a6a44263e03381d99422e"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\request.json",
+      "sha256": "5ef2ea6e78161b9979511146345cd5ace070d5a8b59a6d91c690f91858af75ff"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\settled.json",
+      "sha256": "f2b3cbb5b1168809479ebff4292639029c0e5bb0fe76001d10fdb8d2f96145f5"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\budget.json",
+      "sha256": "9ae3a6be8c9848d753bf391103b84ad868c8ffc216a5028d32dbbfa1430cf7dc"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\measurement.json",
+      "sha256": "af4f13dca93b85c919253e51881c4680633b36c4800d5d13700199df7121d57c"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\request.json",
+      "sha256": "b15cb8b4e09b5e4881fb7a89275592a583da7c6c7df460562de517e56407ba28"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\settled.json",
+      "sha256": "4c88f1584f967db78c5329d34f8542d560840fa0d27ae206316bb6f203e98782"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\budget.json",
+      "sha256": "97ffe7f07ede25a1e700a3a1f73d803205fc269f3acba738c82a9a71bd418dc9"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\measurement.json",
+      "sha256": "c565822ebc353ed00a95657c8deef887d80b8ca5a4873de978f065ab46824b99"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\request.json",
+      "sha256": "b15cb8b4e09b5e4881fb7a89275592a583da7c6c7df460562de517e56407ba28"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\settled.json",
+      "sha256": "7421261350f4e9f5cea0b772e02134c59cb157c54664e684942664e197a762f6"
+    },
+    {
+      "path": "b1-control\\10-recall\\budget.json",
+      "sha256": "9451db941373fc10523db61d4621c48e3a0a9d71f9c7cfd9ed711de173ff8d7c"
+    },
+    {
+      "path": "b1-control\\10-recall\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\10-recall\\recall-score.json",
+      "sha256": "b0ee6b61ce703efdd29eaab986879c0af95e4eaf11e452441ac892075990f6d8"
+    },
+    {
+      "path": "b1-control\\10-recall\\request.json",
+      "sha256": "b9ae1170f583f37fd8a49103b0c7d4dc23de31e74ce18b6d45ea79071ae53bed"
+    },
+    {
+      "path": "b1-control\\10-recall\\settled.json",
+      "sha256": "e8a926ea1941e377bd69fff94e60e1b0836a1c84692e204c21d72971235f3fcf"
+    },
+    {
+      "path": "b1-control\\11-recovery\\budget.json",
+      "sha256": "bab65fa63f10f09655d67a2872c564b9c584a62b809a620d76fa0913c1a750f1"
+    },
+    {
+      "path": "b1-control\\11-recovery\\collection.json",
+      "sha256": "22a746aa44535419a210d1c1c0254420fe295a2b838263deed275afb5a37d6ae"
+    },
+    {
+      "path": "b1-control\\11-recovery\\request.json",
+      "sha256": "12081de69062104e0d86037adcf3f4bcf7707fc855c205dd6e2a48b81c4e41f2"
+    },
+    {
+      "path": "b1-control\\adopted-result.json",
+      "sha256": "c27638c820a4782c25398252c122c29740141e55d8167ed513084dfc82aeb15e"
+    },
+    {
+      "path": "b1-control\\block-2.json",
+      "sha256": "6ecb1c7be0930f02fb4a966afecef6dcda90fe765b8177bbae15738b764fbefb"
+    },
+    {
+      "path": "b1-control\\block-3.json",
+      "sha256": "06ab64238528e028115db9791919ad18918f8c823a06b67e5c17efd26afbbb80"
+    },
+    {
+      "path": "b1-control\\block-4.json",
+      "sha256": "e6fb20c752850d416125250c3677e097f18ed77c469f17fdcbff7d331d17770c"
+    },
+    {
+      "path": "b1-control\\challenge.json",
+      "sha256": "c741ffb8e5d00779f7cba95fd23bfe372a55e0dd81b50dd81878a064a875538d"
+    },
+    {
+      "path": "b1-control\\checkpoint.json",
+      "sha256": "c807f1b3e1045960cd4d61c7a569a838523a51a77b6371900a3e3bcf04b01a53"
+    },
+    {
+      "path": "b1-control\\configuration.json",
+      "sha256": "c2c6bd7718e7b336ec699c7a00f1b1c1fae84fa95b474b95fb7a9f6edb714dd6"
+    },
+    {
+      "path": "b1-control\\online-detection.json",
+      "sha256": "7cea33bf325fbfe68844d30d527d931a6a42003662d1b74d95e22b9280bdeae9"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\calls\\08453f3aee431a519c70ee8dfc9b97a4fd418ff289d578558f60b2534f0074f7.json",
+      "sha256": "68d8ec85d3c00e723e7e9dcf16298bf2e994aa21ff2f51edb6fc1f2c7fcc5b3f"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\calls\\169070492b96658ce09696d5f9d31bb74ea7315813468b6cf76911e9f2593795.json",
+      "sha256": "8ce797eb879c0a87c5ce184ebac063f2daa98f1749ab7a5fe5705618e30b2caf"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\calls\\a55df1512254da0896c946f95882b08c3d2ff67db3d96171f657659a9efc24ac.json",
+      "sha256": "09d8d154f921d7da0480682be52612aa22566536222eb474268256fac2f76dd5"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\calls\\ebada10d2791cfa803e097db46091720591b80bd30f5224385bd6ef5dbbafe7c.json",
+      "sha256": "d6407c91ab48fcb45e13a33bfe7f17588240c4283d3ddb5aa99f2a9641af451e"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\record-call-0.json",
+      "sha256": "d0ee55d5cd368ef1bb296d6e1e88c1d5793098c0cfbb6c2116f5817ebb85a85c"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\record-call-1.json",
+      "sha256": "de172bb388b60b07a14a639d182dd5f675f99450ad750d7af2466cb725c14d63"
+    },
+    {
+      "path": "b1-control\\result.json",
+      "sha256": "0e253ea8f02deca9ff6602fb5e94a3521b1911d8d8e42006fb9fa7a796f5918a"
+    },
+    {
+      "path": "b1-pressure\\00-setup\\budget.json",
+      "sha256": "1609ad9a599c5827d5cde9b99b8b6d41c58a3ae088c31c22c24e741bd2ee0b89"
+    },
+    {
+      "path": "b1-pressure\\00-setup\\collection.json",
+      "sha256": "f2aea30a68fd306365d1e7233bcb2756020bc831182504dcad790bfbc480c0f5"
+    },
+    {
+      "path": "b1-pressure\\00-setup\\request.json",
+      "sha256": "2d5f25e6f450bde9c560d7cf76b63b2cb838619324c79c9f4d76ee59d8694ede"
+    },
+    {
+      "path": "b1-pressure\\00-setup\\settled.json",
+      "sha256": "f5d707f17c2c8b7cb978d7f0648dfaea305db5275760989dca1ea9372c96a10f"
+    },
+    {
+      "path": "b1-pressure\\01-baseline-1\\budget.json",
+      "sha256": "e3fb6427a4763c9589941ca62d914280166e3ab56511e928d5d9ac87e027fe2c"
+    },
+    {
+      "path": "b1-pressure\\01-baseline-1\\collection.json",
+      "sha256": "5a304e4298ccacf205b3ace0a54f7c11eab6e2f96592da208cd02a19623bbf0c"
+    },
+    {
+      "path": "b1-pressure\\01-baseline-1\\measurement.json",
+      "sha256": "2997a1034dc79e1d8003420435de586cdc359da65a61f88367e262b4316ee42c"
+    },
+    {
+      "path": "b1-pressure\\01-baseline-1\\request.json",
+      "sha256": "61b344fa620e5493d6b209ef012c0de598ed697da998d77b85478e21f78dba98"
+    },
+    {
+      "path": "b1-pressure\\01-baseline-1\\settled.json",
+      "sha256": "572ae07a103a4df12e4e3eef727bb69003193342cdd42df00244a9b291b963c8"
+    },
+    {
+      "path": "b1-pressure\\02-baseline-2\\budget.json",
+      "sha256": "70287c3d87c3566c9eac5417b796afbb6eeb105fded5c7d059d63a3dd87fbb1b"
+    },
+    {
+      "path": "b1-pressure\\02-baseline-2\\collection.json",
+      "sha256": "5a304e4298ccacf205b3ace0a54f7c11eab6e2f96592da208cd02a19623bbf0c"
+    },
+    {
+      "path": "b1-pressure\\02-baseline-2\\measurement.json",
+      "sha256": "f4e5f937bcce7037d5beb1856c993082f4eb491502120d3f90ed1e0ef845acf9"
+    },
+    {
+      "path": "b1-pressure\\02-baseline-2\\request.json",
+      "sha256": "61b344fa620e5493d6b209ef012c0de598ed697da998d77b85478e21f78dba98"
+    },
+    {
+      "path": "b1-pressure\\02-baseline-2\\settled.json",
+      "sha256": "918bb840a381e8b5cf7f09ead19e80bbb4c402ea7edcfc3383282565f446b57d"
+    },
+    {
+      "path": "b1-pressure\\03-dose-1\\budget.json",
+      "sha256": "8e3478dc9a06bdb47291a46d7682e9a9210f365febd2ab6a3d804ed6979db808"
+    },
+    {
+      "path": "b1-pressure\\03-dose-1\\collection.json",
+      "sha256": "5a304e4298ccacf205b3ace0a54f7c11eab6e2f96592da208cd02a19623bbf0c"
+    },
+    {
+      "path": "b1-pressure\\03-dose-1\\measurement.json",
+      "sha256": "ac2782a2b6a6a58760b760362f2f830d9b3b4e0c850b553a7d8d8fe3751384ab"
+    },
+    {
+      "path": "b1-pressure\\03-dose-1\\request.json",
+      "sha256": "c9e94f8e15e775ce287a1abe235ca8d9241d258c33bcc812ac71d89df52d3536"
+    },
+    {
+      "path": "b1-pressure\\03-dose-1\\settled.json",
+      "sha256": "aab9925093a85c8e78f44e699a75989c75ada3dc52a395ea0d77dcd58a472d99"
+    },
+    {
+      "path": "b1-pressure\\04-dose-2\\budget.json",
+      "sha256": "9ef31081758fc9b4085f96057693526a0802be95dde25de833833a568b226412"
+    },
+    {
+      "path": "b1-pressure\\04-dose-2\\collection.json",
+      "sha256": "5a304e4298ccacf205b3ace0a54f7c11eab6e2f96592da208cd02a19623bbf0c"
+    },
+    {
+      "path": "b1-pressure\\04-dose-2\\measurement.json",
+      "sha256": "b64aef39b099390ba78fcfd89761af0b27082a21d518cc9cea832a0d8f1ce326"
+    },
+    {
+      "path": "b1-pressure\\04-dose-2\\request.json",
+      "sha256": "b6df7fbc5f90ad30c2e64ba3a5515d099e712a39b4777f6db4e73d16e66611af"
+    },
+    {
+      "path": "b1-pressure\\04-dose-2\\settled.json",
+      "sha256": "0dea7ea3ac84d9b6a358ecdd5038001d50642bf4a42f47619fd4b1db92ca8bf9"
+    },
+    {
+      "path": "b1-pressure\\05-dose-3\\budget.json",
+      "sha256": "3b435553fc1070853e71d4f8f466fda2ce928f0b76e34e991d32044c91e068a9"
+    },
+    {
+      "path": "b1-pressure\\05-dose-3\\collection.json",
+      "sha256": "5a304e4298ccacf205b3ace0a54f7c11eab6e2f96592da208cd02a19623bbf0c"
+    },
+    {
+      "path": "b1-pressure\\05-dose-3\\measurement.json",
+      "sha256": "9349a0f7e73e439ae3669ae1d929ca843c7d790b5381aaebd2f2cffa6e06557c"
+    },
+    {
+      "path": "b1-pressure\\05-dose-3\\request.json",
+      "sha256": "5929b7dfe4b1d21fced18e5faf1bafb439aed509712739f1330d3e54a4ae30f1"
+    },
+    {
+      "path": "b1-pressure\\05-dose-3\\settled.json",
+      "sha256": "30974f628c796cb364eb7db55939a4d7d3e1d85f899915a6452386770d9ddde1"
+    },
+    {
+      "path": "b1-pressure\\06-dose-4\\budget.json",
+      "sha256": "f4f45868ef43f824c36a2172f37814be96ff6574f700776339b84d972f0dc666"
+    },
+    {
+      "path": "b1-pressure\\06-dose-4\\collection.json",
+      "sha256": "5a304e4298ccacf205b3ace0a54f7c11eab6e2f96592da208cd02a19623bbf0c"
+    },
+    {
+      "path": "b1-pressure\\06-dose-4\\measurement.json",
+      "sha256": "2317ff57291aa2518ed3862ea2e188da7d498fdc6379f2e580e9ca6c7df563e0"
+    },
+    {
+      "path": "b1-pressure\\06-dose-4\\request.json",
+      "sha256": "c1463900858e0abbe5ff1d3f306e131cc91c1afc6dc15a1a0c4a6a3c86e9ab71"
+    },
+    {
+      "path": "b1-pressure\\06-dose-4\\settled.json",
+      "sha256": "3bc55d770db68a5bdd8c9462435306f2a2170296435b24fcca0029f74e345cea"
+    },
+    {
+      "path": "b1-pressure\\07-endpoint-1\\budget.json",
+      "sha256": "33032d939a179bfcf7012a99cbe49d26f61c8fa84071ef4d5b3a1b52f603e42d"
+    },
+    {
+      "path": "b1-pressure\\07-endpoint-1\\collection.json",
+      "sha256": "5a304e4298ccacf205b3ace0a54f7c11eab6e2f96592da208cd02a19623bbf0c"
+    },
+    {
+      "path": "b1-pressure\\07-endpoint-1\\measurement.json",
+      "sha256": "e95ecd34364287aef590dd18df2829bf2a7845f72c2f688d3fb8505b36085e7c"
+    },
+    {
+      "path": "b1-pressure\\07-endpoint-1\\request.json",
+      "sha256": "61b344fa620e5493d6b209ef012c0de598ed697da998d77b85478e21f78dba98"
+    },
+    {
+      "path": "b1-pressure\\07-endpoint-1\\settled.json",
+      "sha256": "3d0cd530262fa05d98eac3e501f3dcb7fa71f5ef81ff598abd712f328c518f37"
+    },
+    {
+      "path": "b1-pressure\\08-endpoint-2\\budget.json",
+      "sha256": "43c1188d85e2c48ed43f91d505fc83caf63648f34a9d5f697b00cd54c7ab07cf"
+    },
+    {
+      "path": "b1-pressure\\08-endpoint-2\\collection.json",
+      "sha256": "5a304e4298ccacf205b3ace0a54f7c11eab6e2f96592da208cd02a19623bbf0c"
+    },
+    {
+      "path": "b1-pressure\\08-endpoint-2\\measurement.json",
+      "sha256": "9e88beb67ed8d4e5645a982911af130b3f5b8bb4bde1f5ae1f32253664622355"
+    },
+    {
+      "path": "b1-pressure\\08-endpoint-2\\request.json",
+      "sha256": "61b344fa620e5493d6b209ef012c0de598ed697da998d77b85478e21f78dba98"
+    },
+    {
+      "path": "b1-pressure\\08-endpoint-2\\settled.json",
+      "sha256": "5592c8c8103c5948f9f2f9d8eb24570657722fa645398a3ff21766e11e252078"
+    },
+    {
+      "path": "b1-pressure\\block-1.json",
+      "sha256": "e1a5d2d2787c7b10842b2541ba811ba4498ecf717465e2a010868af0999e0027"
+    },
+    {
+      "path": "b1-pressure\\block-2.json",
+      "sha256": "75a4ce974b319e8c0cf9641c77732d8232aa4da790a5143ed909473b76bbb69c"
+    },
+    {
+      "path": "b1-pressure\\block-3.json",
+      "sha256": "16de629f3d716a40fdde3cf82262530251ef2c30fa359ab5befe4ab935f8915b"
+    },
+    {
+      "path": "b1-pressure\\block-4.json",
+      "sha256": "e7c1e22aa8ef826a505e8479a21408425198f96f2a9f6c09a50f37b0b096cf83"
+    },
+    {
+      "path": "b1-pressure\\checkpoint.json",
+      "sha256": "129cb8ee28a8d42d1d874675a693493a1728c7bb529c5515ed6364687130e43c"
+    },
+    {
+      "path": "b1-pressure\\configuration.json",
+      "sha256": "2d5f25e6f450bde9c560d7cf76b63b2cb838619324c79c9f4d76ee59d8694ede"
+    },
+    {
+      "path": "b1-pressure\\online-detection.json",
+      "sha256": "c5984906edc72d900c1031e22b1cfee6fb23bd1c41a9cbcc793d4a7029aae734"
+    },
+    {
+      "path": "b1-pressure\\result.json",
+      "sha256": "4788c172d4889553f8c86a70282e26baf1169bb96e01766bca0fd2f19e7bb059"
+    },
+    {
+      "path": "b1-pressure\\setup-ledger\\calls\\2212185d1d7095eb17635b0210ad1cd07db057750e864880419ee4309a138849.json",
+      "sha256": "52b584240a641c8d3d18749e14468120a716845ea77a661bd67a4f5fb027f5d9"
+    },
+    {
+      "path": "b1-pressure\\setup-ledger\\calls\\6845a51d1040784f27d73ba5787b36f91b55f8bacc5bc0695555901c30413f8c.json",
+      "sha256": "a30c0c04954f10095267ff2e45bbe2a42f933edd183d2aeb2d476303bca0f3a8"
+    },
+    {
+      "path": "b1-pressure\\state\\checkpoint.json",
+      "sha256": "48405314ec23bb260ed5958048b3ca4238742174ef107144ab6f0661bef5e2c5"
+    },
+    {
+      "path": "b1-pressure\\state\\external-state.json",
+      "sha256": "42a364ce11c41ccde4c09c42820c229b3434d1340ef423ad6dd7d73153a4e9ff"
+    },
+    {
+      "path": "b1-pressure\\state\\operations\\job_09720e86714bcce799fab0c7.json",
+      "sha256": "c0269574f6f5c23e13a1c7272f4ebdcaf7e129ec23f468cff63d3d6e999b8f91"
+    },
+    {
+      "path": "b1-pressure\\state\\task.json",
+      "sha256": "2967a31b59112a25adc8f5e21c1ed1451fc3d8bf3f1b75cd34ec9f733db53e38"
+    },
+    {
+      "path": "b2-control\\00-setup\\budget.json",
+      "sha256": "32cc37ac496a148b3dce97c8bd18724e5c83b37b919d27e6712384ee8d97faa3"
+    },
+    {
+      "path": "b2-control\\00-setup\\collection.json",
+      "sha256": "cc07d7ff8f7318621dbd1f4d6082b82bca45d39f65656c4b96606bf0c445cde7"
+    },
+    {
+      "path": "b2-control\\00-setup\\request.json",
+      "sha256": "1698329983a196a15e7d46ce9d196cadbc23148e1c94a887ed8cf17370b53390"
+    },
+    {
+      "path": "b2-control\\00-setup\\settled.json",
+      "sha256": "66d1d14ee446917b28dd6ea711ea02bbcec9213878caaf844ebba2a356d22772"
+    },
+    {
+      "path": "b2-control\\01-baseline-1\\budget.json",
+      "sha256": "f432315757bc564844a62fb26e4c2288efe988d7a3f1e6e58724f5670ffae57a"
+    },
+    {
+      "path": "b2-control\\01-baseline-1\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\01-baseline-1\\measurement.json",
+      "sha256": "098d3b8f4bafdc75c13c48c6807416c75a6997eaaaf12e27f77fd499e4df720e"
+    },
+    {
+      "path": "b2-control\\01-baseline-1\\request.json",
+      "sha256": "fe2e44a57823069246f5d1d28395317554a5a49dec3a1e062e81bb5990018995"
+    },
+    {
+      "path": "b2-control\\01-baseline-1\\settled.json",
+      "sha256": "dee4fca1a599f1288481ea3d08359427a3a3f855e8c6c1a4aae36e4e12a974d3"
+    },
+    {
+      "path": "b2-control\\02-baseline-2\\budget.json",
+      "sha256": "b198935fac0cc45b8f3221e17f74d0f725ca462b64f012a57b0ae3c5f0c7b4b1"
+    },
+    {
+      "path": "b2-control\\02-baseline-2\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\02-baseline-2\\measurement.json",
+      "sha256": "beaec8617b60a952d763c4ff8261155b08d16ec32a3bb274d449c1fdef9e621a"
+    },
+    {
+      "path": "b2-control\\02-baseline-2\\request.json",
+      "sha256": "fe2e44a57823069246f5d1d28395317554a5a49dec3a1e062e81bb5990018995"
+    },
+    {
+      "path": "b2-control\\02-baseline-2\\settled.json",
+      "sha256": "0ced3e33ef9e746ef5b7a04355edb404453a88ea96acd7457c978a1fc7683b40"
+    },
+    {
+      "path": "b2-control\\03-dose-1\\budget.json",
+      "sha256": "9f27815c55b11caf76c2cff8204635d1ddcea8762e254ab3dd956241cb6360e4"
+    },
+    {
+      "path": "b2-control\\03-dose-1\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\03-dose-1\\measurement.json",
+      "sha256": "176388d7b7532f8dc47151651c3b79fe634477c84c552bfa220af0611b8512a6"
+    },
+    {
+      "path": "b2-control\\03-dose-1\\request.json",
+      "sha256": "b6dcc51397ed6c914accb3cbb398a51966ab25320da667aabb8d551f169b874a"
+    },
+    {
+      "path": "b2-control\\03-dose-1\\settled.json",
+      "sha256": "d326b2fd868528a34ae87d7a619c3d833e4ce7b6bac8b459413f364fa4f7e722"
+    },
+    {
+      "path": "b2-control\\04-dose-2\\budget.json",
+      "sha256": "438ab46943a5225120bab91c85df2e202538db3df31ea38140c92509fbea1fe3"
+    },
+    {
+      "path": "b2-control\\04-dose-2\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\04-dose-2\\measurement.json",
+      "sha256": "f46c739b66656ad714897f55e0e444107c186502c64b28589c0efca462112ad1"
+    },
+    {
+      "path": "b2-control\\04-dose-2\\request.json",
+      "sha256": "848688af6118b7f167a0453004afd9cf32ca068485614e343531179a9c71dd13"
+    },
+    {
+      "path": "b2-control\\04-dose-2\\settled.json",
+      "sha256": "448bc7b6afa08b089da5b9565dd26bda1a25994238a0d5a9b9235895d7dfa914"
+    },
+    {
+      "path": "b2-control\\05-dose-3\\budget.json",
+      "sha256": "f4eea3627087009331ea7f31194ef7a5ce1e2eeb1b113c59ddbc51b74984ff42"
+    },
+    {
+      "path": "b2-control\\05-dose-3\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\05-dose-3\\measurement.json",
+      "sha256": "7d0445de10b7fb844ca0696d3f60d6937c4933700d0eedb38af03d4ff6f9ae55"
+    },
+    {
+      "path": "b2-control\\05-dose-3\\request.json",
+      "sha256": "a98f915d127991f62e0398a9ec472f2fc69d692e257eed9baeeb067b2e5c9110"
+    },
+    {
+      "path": "b2-control\\05-dose-3\\settled.json",
+      "sha256": "c140012c1a167e1413346983695f9ea06a43b0df1d5e384d744e1a5b268d39b6"
+    },
+    {
+      "path": "b2-control\\06-dose-4\\budget.json",
+      "sha256": "5f6f3679911ef8795f10547f3009a3f53eedd3baa6e6fff25a8b0df25ebb7367"
+    },
+    {
+      "path": "b2-control\\06-dose-4\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\06-dose-4\\measurement.json",
+      "sha256": "7f095fa78623ef58fd3a084c443055e2a97e5f9e9de2ceaebc29eb7bd6558a84"
+    },
+    {
+      "path": "b2-control\\06-dose-4\\request.json",
+      "sha256": "c3c41503f8324d95b5b316d8958e19f96d720e56cf37cd6a81867a0c07164355"
+    },
+    {
+      "path": "b2-control\\06-dose-4\\settled.json",
+      "sha256": "a8ec4954bd0471c12ed1d699b9fc0e286bb3b412b9fc9be3c9dcd71b046e5dc4"
+    },
+    {
+      "path": "b2-control\\07-endpoint-1\\budget.json",
+      "sha256": "78d86087d75e496d3725823bf773110ae1df31415104bba2e0d126291e742e00"
+    },
+    {
+      "path": "b2-control\\07-endpoint-1\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\07-endpoint-1\\measurement.json",
+      "sha256": "154c055727500b1ee3648885f7eda3b3550fe6b2902a9f8290f9f445a8711042"
+    },
+    {
+      "path": "b2-control\\07-endpoint-1\\request.json",
+      "sha256": "fe2e44a57823069246f5d1d28395317554a5a49dec3a1e062e81bb5990018995"
+    },
+    {
+      "path": "b2-control\\07-endpoint-1\\settled.json",
+      "sha256": "1ceb905f220a8b92ab037aea4ee9b44bf0b68af1c54d39dcabafbd9904991c43"
+    },
+    {
+      "path": "b2-control\\08-endpoint-2\\budget.json",
+      "sha256": "725e5700856c371cfee8e7729088783398f01b08866035c03e86218aa27a69aa"
+    },
+    {
+      "path": "b2-control\\08-endpoint-2\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\08-endpoint-2\\measurement.json",
+      "sha256": "0b9d98daeb6bf2f2e7c36edde7e02089794dd3c7718f625c04a24a44389dcf4f"
+    },
+    {
+      "path": "b2-control\\08-endpoint-2\\request.json",
+      "sha256": "fe2e44a57823069246f5d1d28395317554a5a49dec3a1e062e81bb5990018995"
+    },
+    {
+      "path": "b2-control\\08-endpoint-2\\settled.json",
+      "sha256": "0ffdfaadb892add4d9ab310f452840498809f56f46c37685b2a6aaf2908d37a2"
+    },
+    {
+      "path": "b2-control\\09-recall\\budget.json",
+      "sha256": "d0bc979300763af42ce8ca54761924a600b9a23c1839b7abc61e05fa167d7e09"
+    },
+    {
+      "path": "b2-control\\09-recall\\collection.json",
+      "sha256": "3aebe4f9e0aa117977e8d9a1a04aafc8d3b3696d952df67fca36b029f6a06455"
+    },
+    {
+      "path": "b2-control\\09-recall\\recall-score.json",
+      "sha256": "78ac1d7f433354c1becd87252a837d32f878fde15069f6fcb0734dd64e16ca31"
+    },
+    {
+      "path": "b2-control\\09-recall\\request.json",
+      "sha256": "65d9f85242920d2a1977f040119081efadb778e1a0ee50d60817ea358c9b87f5"
+    },
+    {
+      "path": "b2-control\\09-recall\\settled.json",
+      "sha256": "a0d6286e2835352068ddfcde3c59b146b7a363973ee27c1d65ee35e7dbc15277"
+    },
+    {
+      "path": "b2-control\\10-recovery\\budget.json",
+      "sha256": "55be6f44f5287d2830e58f3793fd12b9715a96773f12421ad6513dcd301ce799"
+    },
+    {
+      "path": "b2-control\\10-recovery\\collection.json",
+      "sha256": "d667341eeeb06ece50d274d0b1b4aee47604305e96fc092b8ead79bece501202"
+    },
+    {
+      "path": "b2-control\\10-recovery\\request.json",
+      "sha256": "5d7272ba122e3529f402d8a4cd7d9ab9d893326f1ffb76709a5cc7137f07ec0e"
+    },
+    {
+      "path": "b2-control\\block-1.json",
+      "sha256": "79ae06733a7b8041ef0bd0d825e21e15903a0b0a4ded5d6799096a2cd0a018bc"
+    },
+    {
+      "path": "b2-control\\block-2.json",
+      "sha256": "09d2d2c2d7c4b4959ce2a2cfec8a3ed11d56bb07b7d203f733c59b20605db42a"
+    },
+    {
+      "path": "b2-control\\block-3.json",
+      "sha256": "461f799a94086814ef367959247bff8df5e2b9f14c63c7a38e1c36241ee19bb3"
+    },
+    {
+      "path": "b2-control\\block-4.json",
+      "sha256": "71dfcbb31eb70823a7cd3407d7dfe757e5a647ead50866aaffa44fd2f8315022"
+    },
+    {
+      "path": "b2-control\\challenge.json",
+      "sha256": "dcd0f93726467404a5c5d2da3264b19bbbbb989c0d4da5e67c7016738e14fbb5"
+    },
+    {
+      "path": "b2-control\\checkpoint.json",
+      "sha256": "c71dda5828d094581dda3f4a310a6ea9f8da5c474be3e40d1e8915933a018a5e"
+    },
+    {
+      "path": "b2-control\\configuration.json",
+      "sha256": "1698329983a196a15e7d46ce9d196cadbc23148e1c94a887ed8cf17370b53390"
+    },
+    {
+      "path": "b2-control\\online-detection.json",
+      "sha256": "85a1c1d3ce3dddf57863197ff0c0891771ef29f91bb5e2701d4d5a65384788ca"
+    },
+    {
+      "path": "b2-control\\recovery-ledger\\calls\\0b01a8451554a29eb32ab42dc7ef2261dc195a7b473b0755369c63e64c92aca6.json",
+      "sha256": "e5381c96c5c64ca2673a29ebb8d4033e9802e6ccc73319fec53ee8fa12dfc038"
+    },
+    {
+      "path": "b2-control\\recovery-ledger\\calls\\4819ba033b7d4ed44d2d6378e4fe2d9c0f6559cf78993f4279ca132303d6a239.json",
+      "sha256": "decd44c368faa54562081cba24556151e6a98bd0e3a4416ed0360d2ca087a285"
+    },
+    {
+      "path": "b2-control\\recovery-ledger\\calls\\6dbe90d457b1b1fd37acd6b30d93dbeb2b086affd93ec9fdf943ffa79c2709ec.json",
+      "sha256": "9450b6954804519ffadf819a72b05a3f4229c2bd537ae40754e2b484a2d23cb4"
+    },
+    {
+      "path": "b2-control\\recovery-ledger\\calls\\b46fde4cc5ea904f16cf659c51d458a870c451881ed6c508cba0521990ffff83.json",
+      "sha256": "7565adac2f3fab8ff35bc5d349bc696318bf7c96f3cb75191fb36e379759420c"
+    },
+    {
+      "path": "b2-control\\recovery-ledger\\record-call-0.json",
+      "sha256": "38fc939ac9c4e7014a07969fb961a5ff47437965c53d791f9b5b598af7944fd9"
+    },
+    {
+      "path": "b2-control\\recovery-ledger\\record-call-1.json",
+      "sha256": "2167c24a69553be489e0dac2f631dcb8d4c0f0503207d8f8ebebb8772054883b"
+    },
+    {
+      "path": "b2-control\\result.json",
+      "sha256": "fce3651619a1dbbf162ee731715cb899bc4e921bd1cafd3d533c326d633ea2af"
+    },
+    {
+      "path": "b2-control\\setup-ledger\\calls\\0b3cb3a88c4057ee26bc951514a135f563fba562e9d761ebf1417d346ac0513d.json",
+      "sha256": "a3b794052ed80e785eddf3ad1486daead0ae000050d44469e24b3ff546abe516"
+    },
+    {
+      "path": "b2-control\\setup-ledger\\calls\\66554577ad738622556306720ead354ee66aa25eaaa195015d9e0a03f7e56204.json",
+      "sha256": "ab3e0483f33f7639fdb19b0de8ad4e32e16aceb02a237304e1e76acfca7be0aa"
+    },
+    {
+      "path": "b2-control\\state\\checkpoint.json",
+      "sha256": "709b48b55495d496d7a910f96476c8a261bc4f94293ac5940f8bc18efc5e79c0"
+    },
+    {
+      "path": "b2-control\\state\\external-state.json",
+      "sha256": "f8fa12367656ee96f8c0bb6f12cb882b5960f40f3504ad1a15a74e857db89265"
+    },
+    {
+      "path": "b2-control\\state\\operations\\job_4edae30b8d5de30e58d85f05.json",
+      "sha256": "76e195a36bc0ad46e05f38875bf9bcaadcef6c8ac6303b0ddd217f696de1e31b"
+    },
+    {
+      "path": "b2-control\\state\\operations\\job_5d140d5048ae0494fdcf90d4.json",
+      "sha256": "98af76fada23b8fa2c950b1f3a09b737ef77b53752a90e91c1e9adffc4892ec1"
+    },
+    {
+      "path": "b2-control\\state\\operations\\job_7e4099764aadb2b3a89cd6b7.json",
+      "sha256": "b064836875e5d8f464a2d446f63c0c3b64e80229e3452f66926d8330ccee2cda"
+    },
+    {
+      "path": "b2-control\\state\\task.json",
+      "sha256": "8f752251f138ef02520ed61410fcede82c56f46bd9542daf7b9cc124b04d09a0"
+    },
+    {
+      "path": "calibration.json",
+      "sha256": "70898a1964b9aa97e2263e0470c61a03ad0f0b03d59e5525f588fa1b67a61e7f"
+    },
+    {
+      "path": "managed-reconciliation.json",
+      "sha256": "b4ccb4ea06ede5a6c2c34605ddd1f5e862a47f380f2f09155cb46cb7a8392db7"
+    },
+    {
+      "path": "managed.json",
+      "sha256": "3d81110803f97ef44319e057eba226b2835003db2efa34a51b06ec0b88898218"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "ffc032c6b8cf7300f218a60f225b250871d9c23762afa15d87d81b4db6a452ec"
+    },
+    {
+      "path": "preflight\\result.json",
+      "sha256": "f938ac401e95038cbd348bbca55d35274b7edc3f6f345be9bc23955c25928256"
+    },
+    {
+      "path": "result.json",
+      "sha256": "97e9dce0f03c77d35c317f9137cf67d982b5fdb8eb46505ebe1adea63a8a2110"
+    }
+  ]
+}

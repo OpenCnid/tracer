@@ -1,0 +1,501 @@
+{
+  "readOnly": true,
+  "run": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b",
+  "calibration": {
+    "pass": true,
+    "rule": {
+      "fraction": 0.5,
+      "absolute": 2048,
+      "confirmations": 2
+    },
+    "bridge": {
+      "sample": {
+        "id": "bridge",
+        "at": "2026-09-11T13:42:01.568Z",
+        "input": 10043,
+        "cached": 10040,
+        "output": 17,
+        "valid": true,
+        "reasons": []
+      },
+      "originalInput": 10043,
+      "pass": true
+    },
+    "newResponses": 0,
+    "newInputTokens": 0,
+    "newOutputTokens": 0
+  },
+  "logs": 16,
+  "records": 690,
+  "sourceMatches": [
+    {
+      "path": "src/observation-managed-completion.ts",
+      "workingTreeMatches": false,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/observation-managed.ts",
+      "workingTreeMatches": false,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/observation.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/observation-continuation.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/collector.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/evidence.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/budget.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/protocol.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/checkpoint-store.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/checkpoint-ledger.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/checkpoint-protocol.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    },
+    {
+      "path": "src/state-store.ts",
+      "workingTreeMatches": true,
+      "recordedCommitMatches": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "b1-control",
+      "sessionId": "sess_0c0210e0042ab6d1006aa4053966708191b85d94c4ded61ad5",
+      "inputTokens": [
+        7848,
+        7874,
+        8106,
+        8340,
+        8568,
+        8818,
+        8844,
+        8870
+      ],
+      "cachedTokens": [
+        7820,
+        7845,
+        7871,
+        8103,
+        8337,
+        8565,
+        8815,
+        8841
+      ],
+      "measurementNames": [
+        "baseline-1",
+        "baseline-2",
+        "dose-1",
+        "dose-2",
+        "dose-3",
+        "dose-4",
+        "endpoint-1",
+        "endpoint-2"
+      ],
+      "validMeasurements": 8,
+      "onlineCandidate": null,
+      "reconciledCandidate": null,
+      "candidateStable": true,
+      "usageRevisions": [],
+      "sameSession": true,
+      "configurationStable": true,
+      "recovery": {
+        "challenged": true,
+        "pass": true,
+        "complete": true,
+        "sourceIntact": true,
+        "originalReceiptIntact": true,
+        "operations": 3,
+        "pendingExecuted": 2,
+        "duplicateCompletedRequest": false,
+        "rejectedCheckpointCalls": 0,
+        "checkpointReports": [
+          true
+        ],
+        "recordReports": [
+          true
+        ],
+        "firstCheckpointReportCorrect": true,
+        "firstRecordReportCorrect": true,
+        "selectedIndices": [
+          286,
+          167
+        ]
+      },
+      "error": "Connection error.",
+      "finalStatus": "idle",
+      "requiredActions": 0
+    }
+  ],
+  "pairs": [
+    {
+      "pair": 1,
+      "outcome": "inconclusive",
+      "reason": "INCOMPLETE_COMPARISON"
+    },
+    {
+      "pair": 2,
+      "outcome": "inconclusive",
+      "reason": "INCOMPLETE_COMPARISON"
+    },
+    {
+      "pair": 3,
+      "outcome": "inconclusive",
+      "reason": "INCOMPLETE_COMPARISON"
+    }
+  ],
+  "accounting": {
+    "admissionEstimateUsd": 0.4721708,
+    "knownEstimateUsd": 0.24217079999999996,
+    "historicalUnresolvedReservationUsd": 0.03,
+    "additionalTransportReservationUsd": 0.2,
+    "newUnknownTurnCount": 0,
+    "thresholdUsd": 2,
+    "newAllowance": false
+  },
+  "sourceHashes": [
+    {
+      "path": "adopted-dose-1\\adopted-collection.json",
+      "sha256": "29313d8a99522388bddc7c4a2917c0df117e74a5e4211fbcc79391371af81269"
+    },
+    {
+      "path": "adopted-dose-1\\collection.json",
+      "sha256": "417365c1addcb314da96036d0f40cb0afac5b5bff9c94876112ed7ab3c827312"
+    },
+    {
+      "path": "adopted-dose-1\\measurement.json",
+      "sha256": "1a65397f360ac7bad3cf2ff79192701e8b5580ceb917567e9a5d417bf8395362"
+    },
+    {
+      "path": "adopted-dose-1\\request.json",
+      "sha256": "8c2512fe9d626abf82e2087756bfd8de1c16af7a76f20b476a3242d4dba850b0"
+    },
+    {
+      "path": "adopted-dose-1\\settled.json",
+      "sha256": "b85a8239339333efb9c8fe889e5e6bad362933f3265019da1e8f6ce2b948fdf9"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\inherited.json",
+      "sha256": "5e2720c1b8058926d0d55114b94b93b77c849633f56e7db9d14b95386b43ada4"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\measurement.json",
+      "sha256": "c97eee4d04dc7f757701085dca6e5a1634ea69c37d601e4ebf5eefcdbab21ac2"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\request.json",
+      "sha256": "b15cb8b4e09b5e4881fb7a89275592a583da7c6c7df460562de517e56407ba28"
+    },
+    {
+      "path": "b1-control\\01-baseline-1\\settled.json",
+      "sha256": "e3816257c467cef3d600f4e45d31ca3887b1ecc10d2601aa1945c78caec8f9f0"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\inherited.json",
+      "sha256": "078eb3a5a1e4e05a52a4afe51e795185939749d7539d75c6194f9caa1f718a8c"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\measurement.json",
+      "sha256": "4b2955a09938562fc627641d2910c6734ad8b97598693aa343c5a3b6e30be80b"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\request.json",
+      "sha256": "b15cb8b4e09b5e4881fb7a89275592a583da7c6c7df460562de517e56407ba28"
+    },
+    {
+      "path": "b1-control\\02-baseline-2\\settled.json",
+      "sha256": "d556c1e5a3c5ee0c11ad23602d73443725927cc211a0f06fcf67475a587e1455"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\adopted-collection.json",
+      "sha256": "29313d8a99522388bddc7c4a2917c0df117e74a5e4211fbcc79391371af81269"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\collection.json",
+      "sha256": "417365c1addcb314da96036d0f40cb0afac5b5bff9c94876112ed7ab3c827312"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\inherited.json",
+      "sha256": "899df212cc9b5068e3d78e5a9e4f09adff6c13e1ecad4d12c0965d58ee8adf1d"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\measurement.json",
+      "sha256": "814b8741ba8f273776f81db379aed20b06430a621fd7a9b86d66be29a89d69d7"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\request.json",
+      "sha256": "8c2512fe9d626abf82e2087756bfd8de1c16af7a76f20b476a3242d4dba850b0"
+    },
+    {
+      "path": "b1-control\\03-dose-1\\settled.json",
+      "sha256": "042d1c31a1341a5f31b174e647bf2155808b4a748c40e1e9c3797abda1c634e7"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\budget.json",
+      "sha256": "07c100be8eaafbab6d2af77f3b25c28ffb471d3f55b471cfd46a79a2abb4b20d"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\measurement.json",
+      "sha256": "45d0dfcc0111859ff941e7d96340bb464b0486616d0c123d0455bc3610c37155"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\request.json",
+      "sha256": "5db76d826206a104c97c6ea62b37546ce66050a4eae78e7d6c49f299832bced9"
+    },
+    {
+      "path": "b1-control\\04-dose-2\\settled.json",
+      "sha256": "b111dc4e0dbd66652b43b6ec67ecfcef3f3949511efb244280347e253b95f63f"
+    },
+    {
+      "path": "b1-control\\05-dose-3\\budget.json",
+      "sha256": "167d01a255514919bc2643536b12e367462300dfe0463dde313788b50844eb20"
+    },
+    {
+      "path": "b1-control\\05-dose-3\\collection.json",
+      "sha256": "417365c1addcb314da96036d0f40cb0afac5b5bff9c94876112ed7ab3c827312"
+    },
+    {
+      "path": "b1-control\\05-dose-3\\request.json",
+      "sha256": "483d89a825e87c9e7428b631882ffecb77e09a7a888b7413863ec0d39797611d"
+    },
+    {
+      "path": "b1-control\\05-dose-3\\transport-retry.json",
+      "sha256": "869970bd76c076dd76a374c04cc5ca012c56d4f94e0b94c95c34bf6af8418f4b"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\budget.json",
+      "sha256": "6d9d4eb1a0e002d93896b5963d7f366cfe8a516b0aa910e37f5970bdf68c932c"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\measurement.json",
+      "sha256": "1528a1f928dff84e449651515f91d8c89bb2279574b20312c22a4944ac192a82"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\request.json",
+      "sha256": "483d89a825e87c9e7428b631882ffecb77e09a7a888b7413863ec0d39797611d"
+    },
+    {
+      "path": "b1-control\\06-dose-3-retry-1\\settled.json",
+      "sha256": "2704251ac94cd1883d78d488bf9d6cb676c5f33680b0cffec27fdb6de0383b30"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\budget.json",
+      "sha256": "2f2fe75b59e610ab041c542c7bf13e17d91a0dd20d50555958c7386794c44d6c"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\measurement.json",
+      "sha256": "a165d3e733349cce6c1e5e465e82697222dbf9a1058a6a44263e03381d99422e"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\request.json",
+      "sha256": "5ef2ea6e78161b9979511146345cd5ace070d5a8b59a6d91c690f91858af75ff"
+    },
+    {
+      "path": "b1-control\\07-dose-4\\settled.json",
+      "sha256": "f2b3cbb5b1168809479ebff4292639029c0e5bb0fe76001d10fdb8d2f96145f5"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\budget.json",
+      "sha256": "9ae3a6be8c9848d753bf391103b84ad868c8ffc216a5028d32dbbfa1430cf7dc"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\measurement.json",
+      "sha256": "af4f13dca93b85c919253e51881c4680633b36c4800d5d13700199df7121d57c"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\request.json",
+      "sha256": "b15cb8b4e09b5e4881fb7a89275592a583da7c6c7df460562de517e56407ba28"
+    },
+    {
+      "path": "b1-control\\08-endpoint-1\\settled.json",
+      "sha256": "4c88f1584f967db78c5329d34f8542d560840fa0d27ae206316bb6f203e98782"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\budget.json",
+      "sha256": "97ffe7f07ede25a1e700a3a1f73d803205fc269f3acba738c82a9a71bd418dc9"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\measurement.json",
+      "sha256": "c565822ebc353ed00a95657c8deef887d80b8ca5a4873de978f065ab46824b99"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\request.json",
+      "sha256": "b15cb8b4e09b5e4881fb7a89275592a583da7c6c7df460562de517e56407ba28"
+    },
+    {
+      "path": "b1-control\\09-endpoint-2\\settled.json",
+      "sha256": "7421261350f4e9f5cea0b772e02134c59cb157c54664e684942664e197a762f6"
+    },
+    {
+      "path": "b1-control\\10-recall\\budget.json",
+      "sha256": "9451db941373fc10523db61d4621c48e3a0a9d71f9c7cfd9ed711de173ff8d7c"
+    },
+    {
+      "path": "b1-control\\10-recall\\collection.json",
+      "sha256": "c9b72f6e2ff16219f7c192c1fa6b5fcda15c57a2109df66ead6b0f4f9f1c3ede"
+    },
+    {
+      "path": "b1-control\\10-recall\\recall-score.json",
+      "sha256": "b0ee6b61ce703efdd29eaab986879c0af95e4eaf11e452441ac892075990f6d8"
+    },
+    {
+      "path": "b1-control\\10-recall\\request.json",
+      "sha256": "b9ae1170f583f37fd8a49103b0c7d4dc23de31e74ce18b6d45ea79071ae53bed"
+    },
+    {
+      "path": "b1-control\\10-recall\\settled.json",
+      "sha256": "e8a926ea1941e377bd69fff94e60e1b0836a1c84692e204c21d72971235f3fcf"
+    },
+    {
+      "path": "b1-control\\11-recovery\\budget.json",
+      "sha256": "bab65fa63f10f09655d67a2872c564b9c584a62b809a620d76fa0913c1a750f1"
+    },
+    {
+      "path": "b1-control\\11-recovery\\collection.json",
+      "sha256": "22a746aa44535419a210d1c1c0254420fe295a2b838263deed275afb5a37d6ae"
+    },
+    {
+      "path": "b1-control\\11-recovery\\request.json",
+      "sha256": "12081de69062104e0d86037adcf3f4bcf7707fc855c205dd6e2a48b81c4e41f2"
+    },
+    {
+      "path": "b1-control\\block-2.json",
+      "sha256": "6ecb1c7be0930f02fb4a966afecef6dcda90fe765b8177bbae15738b764fbefb"
+    },
+    {
+      "path": "b1-control\\block-3.json",
+      "sha256": "06ab64238528e028115db9791919ad18918f8c823a06b67e5c17efd26afbbb80"
+    },
+    {
+      "path": "b1-control\\block-4.json",
+      "sha256": "e6fb20c752850d416125250c3677e097f18ed77c469f17fdcbff7d331d17770c"
+    },
+    {
+      "path": "b1-control\\challenge.json",
+      "sha256": "c741ffb8e5d00779f7cba95fd23bfe372a55e0dd81b50dd81878a064a875538d"
+    },
+    {
+      "path": "b1-control\\checkpoint.json",
+      "sha256": "c807f1b3e1045960cd4d61c7a569a838523a51a77b6371900a3e3bcf04b01a53"
+    },
+    {
+      "path": "b1-control\\configuration.json",
+      "sha256": "c2c6bd7718e7b336ec699c7a00f1b1c1fae84fa95b474b95fb7a9f6edb714dd6"
+    },
+    {
+      "path": "b1-control\\online-detection.json",
+      "sha256": "7cea33bf325fbfe68844d30d527d931a6a42003662d1b74d95e22b9280bdeae9"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\calls\\08453f3aee431a519c70ee8dfc9b97a4fd418ff289d578558f60b2534f0074f7.json",
+      "sha256": "68d8ec85d3c00e723e7e9dcf16298bf2e994aa21ff2f51edb6fc1f2c7fcc5b3f"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\calls\\169070492b96658ce09696d5f9d31bb74ea7315813468b6cf76911e9f2593795.json",
+      "sha256": "8ce797eb879c0a87c5ce184ebac063f2daa98f1749ab7a5fe5705618e30b2caf"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\calls\\a55df1512254da0896c946f95882b08c3d2ff67db3d96171f657659a9efc24ac.json",
+      "sha256": "09d8d154f921d7da0480682be52612aa22566536222eb474268256fac2f76dd5"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\calls\\ebada10d2791cfa803e097db46091720591b80bd30f5224385bd6ef5dbbafe7c.json",
+      "sha256": "d6407c91ab48fcb45e13a33bfe7f17588240c4283d3ddb5aa99f2a9641af451e"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\record-call-0.json",
+      "sha256": "d0ee55d5cd368ef1bb296d6e1e88c1d5793098c0cfbb6c2116f5817ebb85a85c"
+    },
+    {
+      "path": "b1-control\\recovery-ledger\\record-call-1.json",
+      "sha256": "de172bb388b60b07a14a639d182dd5f675f99450ad750d7af2466cb725c14d63"
+    },
+    {
+      "path": "b1-control\\result.json",
+      "sha256": "0e253ea8f02deca9ff6602fb5e94a3521b1911d8d8e42006fb9fa7a796f5918a"
+    },
+    {
+      "path": "calibration.json",
+      "sha256": "70898a1964b9aa97e2263e0470c61a03ad0f0b03d59e5525f588fa1b67a61e7f"
+    },
+    {
+      "path": "managed-reconciliation.json",
+      "sha256": "c8785fe6b2df3efe966938e3ac7bee53aed9e44134ffb7ce36e3443d4759eaa4"
+    },
+    {
+      "path": "managed.json",
+      "sha256": "d7caa0b8fd8d664bf495c8a643e37b0f2d2b2f29b25f2d92abea77260344a990"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "5aebddb205eb329264f7df2dddfad7f233515eac59676620971d912dfa4e6315"
+    },
+    {
+      "path": "preflight\\result.json",
+      "sha256": "b4b68df968247b697566010c751a4b5f9d383f69aab91c23b6c217fc67ad50fd"
+    },
+    {
+      "path": "result.json",
+      "sha256": "5b559dec84ebdf0529529c9df0804983c3ef44072d6c69f7dca3bc4f30d6befc"
+    }
+  ]
+}

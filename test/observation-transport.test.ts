@@ -6,6 +6,7 @@ import {readOnlyRetryFetch} from '../src/observation-transport.js';
 import {Evidence,verifyLog} from '../src/evidence.js';
 import {boundedFetch,UsageGuard} from '../src/budget.js';
 import {auditedRecovery} from '../src/observation-resume-replay.js';
+import {replayObservation} from '../src/observation-replay.js';
 
 it('retries read-only connection and HTTP failures twice; never retries POST or local caps',async()=>{
   const directory=mkdtempSync(join(tmpdir(),'tracer-read-only-'));
@@ -50,4 +51,11 @@ it('verifies the third control independently and carries all five sessions into 
   expect(guard.snapshot().admissionEstimateUsd).toBeCloseTo(1.4448626,10);
   expect(guard.snapshot().sessions.reduce((n,s)=>n+s.turns.length,0)).toBe(51);
   expect(auditedRecovery(join(reg.parent,'b3-control'))).toMatchObject({pass:true,complete:true,pendingExecuted:2,checkpointReports:[true],recordReports:[true]});
+});
+
+it('replays a carried detector even when the continuation has no new detector-lock file',()=>{
+  const reg=JSON.parse(readFileSync('evidence/preregistration-v10-finish.json','utf8'));
+  const replay=replayObservation(reg.parent);
+  expect(replay.calibration.rule).toEqual({fraction:.5,absolute:2048,confirmations:2});
+  expect(replay.sourceMatches.every((s:{recordedCommitMatches:boolean})=>s.recordedCommitMatches)).toBe(true);
 });
