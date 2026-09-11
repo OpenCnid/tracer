@@ -133,7 +133,6 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
       for (const item of items) if (item.type === 'create_subagent_call') budget?.observeModel(item.model);
       const turns = await allPages(client.beta.agents.sessions.turns.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'session.turns');
       for (const turn of turns) budget?.observeTurn(id, turn);
-      let finalUsageMissing = turns.some(turn => turn.usage == null);
       const children = await allPages(client.beta.agents.sessions.subagents.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'children');
       if (children.length > 2) throw new Error('EXCESS_CHILDREN_OBSERVED');
       for (const child of children) {
@@ -142,7 +141,6 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
         const childTurns = await allPages(client.beta.agents.sessions.subagents.turns.list(child.id,
           { session_id: id, limit: 100, order: 'asc' }, opts), evidence, `child.turns:${child.id}`);
         for (const turn of childTurns) budget?.observeTurn(id, turn);
-        finalUsageMissing ||= childTurns.some(turn => turn.usage == null);
         if (childTurns.length === 1 && childTurns[0]?.status === 'completed') result.completedChildren++;
       }
       evidence.record('usage.snapshot', turns.map(turn => ({ id: turn.id, subagent_id: turn.subagent_id, usage: turn.usage })));
@@ -150,8 +148,7 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
       evidence.record('session.snapshot', current);
       budget?.observeSession(id, current.usage);
       result.historyComplete = true;
-      if (budget && finalUsageMissing) throw new Error('FINAL_USAGE_INCOMPLETE');
-      budget?.requireComplete(id);
+      budget?.check(id);
     }
   } catch (error) {
     error = stopped ?? error;

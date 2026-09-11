@@ -56,18 +56,23 @@ export class UsageGuard {
     const sessions = [...this.sessions].map(([id, value]) => {
       const turns = [...value.turns].map(([turnId, usage]) => ({ turnId, usage, estimateUsd: usage ? price(usage) : null }));
       const known = value.aggregate !== null || turns.some(t => t.usage !== null);
-      return { id, aggregate: value.aggregate, turns,
-        estimateUsd: known ? Math.max(price(value.aggregate), turns.reduce((sum, t) => sum + (t.estimateUsd ?? 0), 0)) : null };
+      const estimateUsd = known ? Math.max(price(value.aggregate), turns.reduce((sum, t) => sum + (t.estimateUsd ?? 0), 0)) : null;
+      const usagePending = !turns.length || turns.some(t => t.usage === null);
+      return { id, aggregate: value.aggregate, turns, estimateUsd, usagePending,
+        admissionEstimateUsd: Math.max(estimateUsd ?? 0, usagePending ? this.trialUsd : 0) };
     });
     return { policy: 'reported-usage-stop', thresholdUsd: this.studyUsd, trialThresholdUsd: this.trialUsd,
       priorEstimateUsd: this.priorEstimateUsd,
+      allObservedTurnsHaveUsage: sessions.length > 0 && sessions.every(s => s.turns.length > 0 && s.turns.every(t => t.usage !== null)),
+      unknownTurnCount: sessions.reduce((sum, s) => sum + s.turns.filter(t => t.usage === null).length, 0),
+      admissionEstimateUsd: this.priorEstimateUsd + sessions.reduce((sum, s) => sum + s.admissionEstimateUsd, 0),
       estimateUsd: this.priorEstimateUsd > 0 || sessions.some(s => s.estimateUsd !== null) ?
         this.priorEstimateUsd + sessions.reduce((sum, s) => sum + (s.estimateUsd ?? 0), 0) : null,
       sessions, rates: GUARD_RATES, invoice: false, overshootPossible: true };
   }
   check(sessionId: string) {
     const snapshot = this.snapshot();
-    if ((snapshot.estimateUsd ?? 0) >= this.studyUsd) throw new Error('STUDY_SPEND_THRESHOLD');
+    if (snapshot.admissionEstimateUsd >= this.studyUsd) throw new Error('STUDY_SPEND_THRESHOLD');
     if ((snapshot.sessions.find(s => s.id === sessionId)?.estimateUsd ?? 0) >= this.trialUsd)
       throw new Error('TRIAL_SPEND_THRESHOLD');
   }

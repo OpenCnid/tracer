@@ -74,7 +74,7 @@ const budget = new UsageGuard(DEFAULT_MODEL, LIMITS.studyUsd, LIMITS.reservation
 if (mode === 'run' && reasons.length === 0) {
   console.log(JSON.stringify({event: 'study-started', evidence: directory, model, thresholdUsd: LIMITS.studyUsd}));
   for (const trial of trials) {
-    if (paidInferenceRequests >= LIMITS.sessions || reservedUsd + LIMITS.reservationUsd > LIMITS.studyUsd)
+    if (paidInferenceRequests >= LIMITS.sessions || budget.snapshot().admissionEstimateUsd + LIMITS.reservationUsd > LIMITS.studyUsd)
       throw new Error('STUDY_ADMISSION_CAP');
     reservedUsd = Math.round((reservedUsd + LIMITS.reservationUsd) * 100) / 100; paidInferenceRequests++;
     evidence.record('trial.reserved', { trial: trial.id, reservedUsd });

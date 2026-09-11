@@ -39,6 +39,7 @@ describe('protocol and budget', () => {
     expect(trials.filter(t => t.arm === 'programmatic-native').map(t => t.block)).toEqual([1, 2, 3]);
     for (const t of trials) for (const task of fixture(t).tasks)
       expect(JSON.stringify(requestFor(t))).not.toContain(task.nonce);
+    expect(requestFor(trials[0]!).agent?.multi_agent?.max_concurrent_subagents).toBe(2);
   });
   it('refuses inference even when a credential could exist', () => {
     const dispatch = vi.fn();
@@ -104,6 +105,7 @@ describe('reported usage stopping guard', () => {
     guard.observeTurn('b', {id: 'root', usage: usage(20_000)});
     expect(() => guard.check('b')).toThrow('STUDY_SPEND_THRESHOLD');
     guard.observeTurn('c', {id: 'child', usage: null});
+    expect(guard.snapshot()).toMatchObject({allObservedTurnsHaveUsage: false, unknownTurnCount: 1});
     expect(() => guard.requireComplete('c')).toThrow('FINAL_USAGE_INCOMPLETE');
     expect(() => guard.observeSession('d', usage(-1))).toThrow('INVALID_USAGE_COUNTS');
     expect(() => guard.observeModel('different-model')).toThrow('UNEXPECTED_BILLED_MODEL');
@@ -113,6 +115,13 @@ describe('reported usage stopping guard', () => {
     expect(guard.hasUsage('new')).toBe(false);
     guard.observeTurn('new', {id: 'root', usage: usage(20_000)});
     expect(() => guard.check('new')).toThrow('STUDY_SPEND_THRESHOLD');
+  });
+  it('reserves missing usage rather than pricing it as zero and releases only to observed cost', () => {
+    const guard = new UsageGuard(DEFAULT_MODEL);
+    guard.observeTurn('s', {id: 'root', usage: null});
+    expect(guard.snapshot()).toMatchObject({estimateUsd: null, admissionEstimateUsd: 0.2, allObservedTurnsHaveUsage: false});
+    guard.observeTurn('s', {id: 'root', usage: usage(1000)});
+    expect(guard.snapshot()).toMatchObject({estimateUsd: 0.0005, admissionEstimateUsd: 0.0005, allObservedTurnsHaveUsage: true});
   });
 });
 

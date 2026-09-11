@@ -1,10 +1,10 @@
 import { createHash } from 'node:crypto';
 import type { SessionCreateParamsStreaming } from 'openai/resources/beta/agents/sessions/sessions';
 
-export const PROTOCOL = 'native-seam-v3';
+export const PROTOCOL = 'native-seam-v4';
 export const DEFAULT_MODEL = 'gpt-5.6-luna';
-export const PREREGISTRATION = 'evidence/preregistration-v3.json';
-export const PRIOR_ESTIMATE_USD = 0.0248406;
+export const PREREGISTRATION = 'evidence/preregistration-v4.json';
+export const PRIOR_ESTIMATE_USD = 0.054622;
 export const SDK_VERSION = '7.15.0';
 export const LIMITS = Object.freeze({
   sessions: 9, toolExecutions: 2, toolOutputBytes: 16_384,
@@ -53,7 +53,7 @@ export function requestFor(trial: Trial): SessionCreateParamsStreaming {
       model: trial.model, service_tier: 'default', reasoning: { effort: 'low' },
       instructions: 'This is a bounded integration probe. Follow the specified route. Use no web, shell, or external services. Stop after one fixture call and one submission. For a native-delegation arm create exactly two children, use the same model as this session, instruct each child to perform only its assigned string transformation without delegation, and wait for both. Do not retry tasks. A failure is useful evidence; report it truthfully. Finish with a short explanation of what executed.',
       multi_agent: trial.arm === 'programmatic-local' ? { enabled: false } :
-        { enabled: true, max_concurrent_subagents: 1 },
+        { enabled: true, max_concurrent_subagents: 2 },
       tools: [
         { type: 'programmatic_tool_calling', enabled: trial.arm !== 'direct-native' },
         { type: 'function', name: 'tracer_fixture', description: 'Return JSON with trial and tasks: two objects with key, nonce, instruction. No arguments.',
