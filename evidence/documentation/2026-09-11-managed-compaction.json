@@ -1,0 +1,206 @@
+{
+  "reviewedAt": "2026-09-11T12:42:53.201Z",
+  "sdk": "7.15.0",
+  "searchPattern": "compact|context_window|context_management|truncat",
+  "files": [
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\agents.ts",
+      "sha256": "a0f84ae76469692535046dfc89949fce62129742ea17982c943e3866ec3e2e97",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\environments.ts",
+      "sha256": "51bc49a515c811cd2f6335f8d058cec130160cb037c5bfe7eac7dc086d420334",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\index.ts",
+      "sha256": "1abdb6e10246a26fefdfe42bc419536ff7ece819a615de6333f03d62f902bb78",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions.ts",
+      "sha256": "9d525ae0c098086a4900b19569f15d210d1b271e0507c09b888f8bbc9fd3ba16",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\vaults.ts",
+      "sha256": "a48caf8b016715f72bcc489e62fd92e7da7a9bbc8c5424b684a7795513b2d41e",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\environments\\environments.ts",
+      "sha256": "2bb31966d5b806e2373d1fdcee86b2b1667b2562336b1411fa8b802bee73b9c2",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\environments\\files.ts",
+      "sha256": "5579c7e809b70a631b92e35d900bddd7a0996f837041dc0529f5c5853a8c5bbd",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\environments\\index.ts",
+      "sha256": "c70fffec98e445b4c07c24cba965eb61743fb51742f7f55866585b24d29256a9",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\environments\\templates.ts",
+      "sha256": "4c583af6fda34eb81e7ef94ed8046ea9a90e744331ed75265eff387c6cb39bf5",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\artifacts.ts",
+      "sha256": "bc20a3d7e0436ad1cc1e9b99cbbc9cd4d5cc5066b9353c2bd203ee0f944b0fe6",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\events.ts",
+      "sha256": "e0a08bef615fbab2e328c8829be5b76a9e252c370f3d55b8792533692f642746",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\index.ts",
+      "sha256": "2ead6e542d1d7f0665a81d080bbe9ce22db436035256b95a529e7bca627943b7",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\items.ts",
+      "sha256": "ff87d7fb4a9a38e362384c6855674d5fb8ca42cff4c7ea9cf5627f675e711739",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\sessions.ts",
+      "sha256": "17e4045d7d5826635fe07d93af4d4bfe6e0c310238c826c1658257c2a57c50ae",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\subagents.ts",
+      "sha256": "537626e1bccc0891d35d5cb9fae65a4e5f46a03345c3ed6e50e8f1641fb70f32",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\turns.ts",
+      "sha256": "9cc6e19f851f37f97b2b8eb71737b1e40c39d3eb8e008d1ed7fcd81442358983",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\vaults\\credentials.ts",
+      "sha256": "6a8cd4c8678484bf23d6da0958bf8530381acf9516dd8c32bd00fe29a5601564",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\vaults\\index.ts",
+      "sha256": "40ffb7c98d55e54f26696f244fd94255e500ff7b9657ef139192b4da46bc000b",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\vaults\\vaults.ts",
+      "sha256": "dfa436b5ebc3c76b7024d8c8b9a23a2b762644a192983d1b2df6f3b688cd6226",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\subagents\\index.ts",
+      "sha256": "869ada2d4e5109b6beec2d9cc2c2b9e86bf9f74204c6540603a7e73678b830c0",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\subagents\\items.ts",
+      "sha256": "769f228dc535fc7626c6d7bd2a9580096a21f4ef50adcf69ca93e4835b3bc61e",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\subagents\\subagents.ts",
+      "sha256": "794fab4e1bfffc46e6ecd3e92c425090259a74b8d5c3aa97a5f4905d7a0805c9",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\subagents\\turns.ts",
+      "sha256": "202061a72a0e6752704a580336e75f0b50de928615774b13e723bc896b08bb4c",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\subagents\\turns\\index.ts",
+      "sha256": "3bb005a52398ecb27ca81556892d75d3bfb62ee6ddde54ab00585651c0d9d519",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\subagents\\turns\\items.ts",
+      "sha256": "36b46d6fbd67cda3bd1fd788e6360badbbaadb9e1c2bbdd7f4ef350c978f2346",
+      "matches": []
+    },
+    {
+      "path": "node_modules\\openai\\src\\resources\\beta\\agents\\sessions\\subagents\\turns\\turns.ts",
+      "sha256": "42dccbbf626396dd8edca3dc36d03cb5ea09c60547656240b3f873e2979435ea",
+      "matches": []
+    }
+  ],
+  "unions": {
+    "AgentSessionEvent": "| AgentSessionErrorEvent\n  | AgentSessionEnvironmentReadyEvent\n  | AgentOutputCommandExecutionOutputDeltaEvent\n  | AgentSessionCreatedEvent\n  | AgentSessionTurnCreatedEvent\n  | AgentSessionTurnInProgressEvent\n  | AgentSessionTurnCompletedEvent\n  | AgentSessionTurnFailedEvent\n  | AgentSessionTurnCancelledEvent\n  | AgentSessionTurnItemAddedEvent\n  | AgentSessionIdleEvent\n  | AgentSessionInProgressEvent\n  | AgentSessionRequiresActionEvent\n  | AgentSessionFailedEvent\n  | AgentSessionEnvironmentPendingEvent\n  | AgentSessionEnvironmentConnectedEvent\n  | AgentSessionEnvironmentDisconnectedEvent\n  | AgentSessionEnvironmentFailedEvent\n  | AgentSessionSubagentCreatedEvent\n  | AgentSessionSubagentActiveEvent\n  | AgentSessionSubagentClosedEvent\n  | AgentSessionTurnItemDoneEvent\n  | AgentSessionTurnContentPartAddedEvent\n  | AgentSessionTurnContentPartDoneEvent\n  | AgentSessionTurnOutputTextDeltaEvent\n  | AgentSessionTurnOutputTextDoneEvent\n  | AgentSessionTurnReasoningSummaryPartAddedEvent\n  | AgentSessionTurnReasoningSummaryPartDoneEvent\n  | AgentSessionTurnReasoningSummaryTextDeltaEvent\n  | AgentSessionTurnReasoningSummaryTextDoneEvent",
+    "AgentSessionInputParam": "| AgentSessionInputParam.SessionInputParamAgentSessionInputMessage\n  | AgentSessionInputParam.SessionInputParamAgentSessionInputCancel\n  | AgentSessionInputParam.SessionInputParamAgentSessionInputToolResult",
+    "AgentSessionItem": "| AgentSessionMessage\n  | AgentReasoningItem\n  | AgentFunctionCallItem\n  | AgentSessionItem.FunctionCallOutputItemResource\n  | AgentSessionItem.AgentMessageItemResource\n  | AgentMcpCallItem\n  | AgentWebSearchCallItem\n  | AgentCommandExecutionItem\n  | AgentCreateSubagentCallItem\n  | AgentSendSubagentInputCallItem\n  | AgentResumeSubagentCallItem\n  | AgentWaitForSubagentsCallItem\n  | AgentInterruptSubagentCallItem\n  | AgentCloseSubagentCallItem"
+  },
+  "sources": [
+    {
+      "id": "architecture",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/architecture",
+      "retrievedUrl": "https://developers.openai.com/api/docs/guides/agents-api/architecture.md",
+      "retrievedAt": "2026-09-11T12:42:51.766Z",
+      "contentType": "text/markdown; charset=utf-8",
+      "sha256": "755df9fa1c04a492876c914dab97e88a358ef069a96c2acc39f88d189bdfc2e3",
+      "cache": "research/cache/compaction-review-2026-09-11-architecture.md",
+      "lines": 111
+    },
+    {
+      "id": "tracing",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/tracing",
+      "retrievedUrl": "https://developers.openai.com/api/docs/guides/agents-api/tracing.md",
+      "retrievedAt": "2026-09-11T12:42:51.876Z",
+      "contentType": "text/markdown; charset=utf-8",
+      "sha256": "2c60c09ba908a4940b5a8a723324945286c8474cd730617bfc915599a8632446",
+      "cache": "research/cache/compaction-review-2026-09-11-tracing.md",
+      "lines": 159
+    },
+    {
+      "id": "observability",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/observability",
+      "retrievedUrl": "https://developers.openai.com/api/docs/guides/agents-api/observability.md",
+      "retrievedAt": "2026-09-11T12:42:51.778Z",
+      "contentType": "text/markdown; charset=utf-8",
+      "sha256": "5e7124efac18233bed82159b40391b4ec6136a45114af466b759cd6b1f4e628b",
+      "cache": "research/cache/compaction-review-2026-09-11-observability.md",
+      "lines": 459
+    },
+    {
+      "id": "events",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/sessions/events",
+      "retrievedUrl": "https://developers.openai.com/api/docs/guides/agents-api/sessions/events.md",
+      "retrievedAt": "2026-09-11T12:42:51.854Z",
+      "contentType": "text/markdown; charset=utf-8",
+      "sha256": "92789647f624dc0a7a9736d2c84583021f2ed7d886022e13ac10f61bd13de600",
+      "cache": "research/cache/compaction-review-2026-09-11-events.md",
+      "lines": 436
+    },
+    {
+      "id": "session-create",
+      "url": "https://developers.openai.com/api/reference/typescript/resources/beta/subresources/agents/subresources/sessions/methods/create",
+      "retrievedUrl": "https://developers.openai.com/api/reference/typescript/resources/beta/subresources/agents/subresources/sessions/methods/create.md",
+      "retrievedAt": "2026-09-11T12:42:53.201Z",
+      "contentType": "text/markdown; charset=utf-8",
+      "sha256": "7f822d6b6d7f9f55cc11b686db9bd45a1f6bea3decf6ae8ed46fdc2e3b1cb76e",
+      "cache": "research/cache/compaction-review-2026-09-11-session-create.md",
+      "lines": 1422
+    },
+    {
+      "id": "overview",
+      "url": "https://developers.openai.com/api/docs/guides/agents-api/overview",
+      "retrievedUrl": "https://developers.openai.com/api/docs/guides/agents-api/overview.md",
+      "retrievedAt": "2026-09-11T12:42:52.019Z",
+      "contentType": "text/markdown; charset=utf-8",
+      "sha256": "203f4190c1aec39699df57c092204cc37de4f32e62fdba99327e35f4a5493aae",
+      "cache": "research/cache/compaction-review-2026-09-11-overview.md",
+      "lines": 355
+    }
+  ],
+  "conclusion": "No matching terms in the pinned public Agents SDK subtree. No claim about undocumented server behavior.",
+  "paidInferenceRequests": 0
+}

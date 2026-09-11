@@ -36,7 +36,9 @@ Two recoveries initially omitted the old job's result from their reports; the th
 | Responses: explicit compaction, with paired controls | All 3 compacted branches and all 3 controls passed | Explicit Responses compaction only |
 | Managed Agents: fresh sessions with saved checkpoints | All 3 tasks eventually recovered; all 3 needed error correction | No; these were deliberate session resets |
 
-Our inference is that application storage can hold exact data, completion status and the task locator while OpenAI runs the agent loop. The fresh session can discover that state without remembering the old locator. These small tests support that design, but they do not prove recovery after actual managed compaction or a faithful RLM port.
+Our working decision is **we own exact state; OpenAI owns the agent loop**. Application storage holds the source data, completion status and task locator, and the session can rediscover that state through a tool. [The decision record](DECISIONS.md) preserves the evidence and limits: this is demonstrated for the checkpoint fixture, with error correction, and is not a full RLM migration decision.
+
+To establish survival across actual managed compaction, we first need a service-generated boundary tied to the tested root session and generation. We can then challenge that same session after the boundary and check its exact work. [The next evidence plan](research/15-managed-compaction-evidence-plan.md) defines what would count as a pass, failure or inconclusive result.
 
 The revised delegation test also improved collection: two of three trials requesting delegation from code submitted both assigned children's answers. Other failures involved omitted task inputs and incorrect reversals. The inspected traces still do not expose the executing JavaScript, so a faithful native RLM port remains unverified.
 
