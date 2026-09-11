@@ -178,6 +178,7 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
     result.error = { ...safeError(error), localReason: error instanceof Error &&
       /^[A-Z_]+(?::[a-z.]+)?$/.test(error.message) ? error.message : null };
     evidence.tryRecord('collector.error', result.error);
+    evidence.tryRecord('collector.diagnostic',error instanceof Error?{message:error.message.slice(0,512),stack:error.stack?.split('\n').slice(0,6).join('\n').slice(0,2048)??null}:{type:typeof error});
   } finally {
     finalizing = true; clearTimeout(deadline); if (poll) clearInterval(poll);
     abort.abort(); stream?.controller.abort(); await polling;

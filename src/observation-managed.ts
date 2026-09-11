@@ -106,7 +106,7 @@ export function matchesCompletedAck(input:string,turn:Turn,items:AgentSessionIte
   const sample=ackObservation('adoption',turn,items,true,true);
   return user===input&&sample.reasons.every(r=>r==='UNSETTLED_USAGE');
 }
-export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string;restore?:ManagedRestore;settlementPolls?:number;settlementDelayMs?:number;transportRetries?:number;readOnlyRetries?:boolean;completedControl?:{directory:string;row:ManagedCase}}={}) {
+export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string;restore?:ManagedRestore;settlementPolls?:number;settlementDelayMs?:number;transportRetries?:number;readOnlyRetries?:boolean;completedControl?:{directory:string;row:ManagedCase};inheritedCases?:{directory:string;row:ManagedCase;session:AgentSession;turns:Turn[]}[]}={}) {
   const guard=new TransportUsageGuard(DEFAULT_MODEL,2,.5,priorUsd),cases:ManagedCase[]=[];
   const bindings=new ObservationBindings(join(options.restore?.parent??root.directory,'bindings'));
   let turnsDispatched=options.restore?.turns.length??0;
@@ -123,13 +123,22 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
     if(!options.restore||c.row.id!=='b1-control'||c.row.sessionId!==options.restore.session.id||c.row.error) throw new Error('INVALID_COMPLETED_CONTROL');
     const destination=join(root.directory,c.row.id);if(existsSync(destination)) throw new Error('COMPLETED_CONTROL_EXISTS');
     cpSync(c.directory,destination,{recursive:true,errorOnExist:true,force:false});
-    save(join(destination,'adopted-result.json'),{...c.row,sourceDirectory:relative(destination,c.directory),originalResultHash:sha256(readFileSync(join(c.directory,'result.json'))),readOnlySource:options.restore.readOnlySource});
+    save(join(destination,existsSync(join(destination,'adopted-result.json'))?'cohort-continuation.json':'adopted-result.json'),{...c.row,sourceDirectory:relative(destination,c.directory),originalResultHash:sha256(readFileSync(join(c.directory,'result.json'))),readOnlySource:options.restore.readOnlySource});
     cases.push(c.row);root.record('managed.inherited-control',c.row);
+  }
+  for(const c of options.inheritedCases??[]) {
+    if(seenSessions.has(c.session.id)||c.row.sessionId!==c.session.id||cases.some(r=>r.id===c.row.id)) throw new Error('INVALID_INHERITED_CASE');
+    guard.observeSession(c.session.id,c.session.usage);for(const t of c.turns)guard.observeTurn(c.session.id,t);guard.requireComplete(c.session.id);
+    seenSessions.add(c.session.id);turnsDispatched+=c.turns.length;
+    const destination=join(root.directory,c.row.id);if(existsSync(destination))throw new Error('INHERITED_CASE_EXISTS');
+    cpSync(c.directory,destination,{recursive:true,errorOnExist:true,force:false});
+    save(join(destination,'cohort-continuation.json'),{sourceDirectory:relative(destination,c.directory),originalResultHash:sha256(readFileSync(join(c.directory,'result.json'))),originalError:c.row.error});
+    cases.push(c.row);root.record('managed.inherited-case',c.row);
   }
   let fatal:string|null=null;
   try {
     for(let pair=1;pair<=3;pair++) for(const arm of ['control','pressure'] as const) {
-      if(pair===1&&arm==='control'&&options.completedControl) continue;
+      if(cases.some(c=>c.id===`b${pair}-${arm}`)) continue;
       const id=`b${pair}-${arm}`,log=new Evidence(join(root.directory,id),[key]);
       const restore=pair===1&&arm==='control'?options.restore:undefined;
       const store=restore?bindings.lookup(restore.session.id)!:CheckpointStore.create(join(log.directory,'state'));

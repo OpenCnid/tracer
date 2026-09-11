@@ -32,3 +32,13 @@ it('adopts the completed first control without paying for its eleven turns twice
   guard.requireComplete(prior.session.id);expect(guard.snapshot().admissionEstimateUsd).toBeCloseTo(.4721708,10);
   expect(guard.snapshot().sessions[0]!.turns).toHaveLength(11);
 });
+
+it('carries all three sessions and retains the second control collection failure',()=>{
+  const read=(p:string)=>JSON.parse(readFileSync(p,'utf8')),reg=read('evidence/preregistration-v10-finish.json');
+  const saved=read(join(reg.parent,'managed-reconciliation.json')),guard=new UsageGuard('gpt-5.6-luna',2,.5,reg.priorAdmissionUsd);
+  for(const s of saved.reconciliation) {guard.observeSession(s.session.id,s.session.usage);for(const t of s.turns)guard.observeTurn(s.session.id,t);guard.requireComplete(s.session.id);}
+  expect(guard.snapshot().admissionEstimateUsd).toBeCloseTo(.9624903,10);
+  expect(guard.snapshot().sessions.reduce((n,s)=>n+s.turns.length,0)).toBe(31);
+  expect(auditedRecovery(join(reg.parent,'b2-control'))).toMatchObject({pass:false,complete:false,pendingExecuted:2,checkpointReports:[true],recordReports:[true]});
+  expect(read(join(reg.parent,'b2-control/result.json')).error).toBe('CURRENT_TURN_UNESTABLISHED');
+});
