@@ -1,25 +1,43 @@
 # tracer
 
-tracer is OpenCnid's investigation into RLM-style inference on OpenAI's managed Agents API. We maintain [deepseek-rlm](https://github.com/OpenCnid/deepseek-rlm), where we own the agent loop, and want to understand which capabilities and guarantees we would retain on a managed harness.
+OpenCnid's investigation into a practical question: **Can we run Recursive Language Model (RLM) workflows on OpenAI's managed Agents API?**
 
-This repository contains our source review, preregistered experiment, probe implementation, and evidence. We separate what the documentation specifies, what we observe, and what we infer.
+## What is the managed Agents API?
 
-**Our current assessment:** RLM's externalized dataflow and managed compaction are compatible in principle. A faithful port using native managed children remains unproven. The first unresolved interface is whether generated code can invoke native children on constructed inputs and consume their returned values inside the program.
+An agent needs software that coordinates model calls, tools, and ongoing work. That software is called a **harness**.
 
-**Empirical status: inconclusive.** Our initial attempt created no real managed sessions and sent no paid inference requests. No API credential was configured, and we found no verified spending bound in the reviewed API/SDK that satisfies our frozen protocol. These are execution gates, not evidence that native recursion fails. Repeated real runs remain outstanding.
+The [OpenAI Agents API](https://developers.openai.com/api/docs/guides/agents-api/overview) gives applications access to a managed Codex harness. OpenAI runs the agent loop, saves sessions, coordinates subtasks, and handles recovery. It also summarizes earlier work to fit the model's limited working memory, a process called **context compaction**. We supply tools and choose where code runs.
 
-Our investigation is organized in this order:
+For OpenCnid, this could mean less infrastructure to maintain. Our [deepseek-rlm](https://github.com/OpenCnid/deepseek-rlm) project currently relies on a harness whose agent loop we control. Moving to a managed service means giving up some of that control. We want to know whether our workflows still work before making that move.
 
-1. [Reading, additional sources and interpretation](research/01-reading.md)
-2. [Chosen unknown, alternatives, falsification and near misses](research/02-preregistered-probe.md)
-3. [Small probe implementation and evidence review](research/03-implementation.md)
-4. [Observed results, limitations and decision](research/04-results.md)
+## Where RLM fits
 
-We designed three experimental arms, including two controls, across three rotated blocks. Correct answers alone cannot establish the execution route. Our scorer requires independently reviewed runtime traces, and preserves supported, refuted and inconclusive outcomes separately. It does not infer a compaction boundary from token counts or model self-report.
+[Recursive Language Models](https://arxiv.org/html/2512.24601v3) use model-written code to inspect large inputs, call other models on selected parts, and combine their results. The full input and intermediate results can stay outside the model's prompt.
 
-## Reproduce the local evidence
+Our reading is that RLM and managed compaction can work together. The unresolved part is whether the managed service exposes the operations this workflow needs.
 
-Use Node `^22.19.0 || >=24.0.0` and pnpm **11.7.0**. The official OpenAI SDK is pinned to **7.15.0**, with a committed dependency lockfile.
+## What we're testing
+
+**Can code written by an agent launch built-in child agents, read their results, and continue computing with those results?**
+
+Our probe compares ordinary delegation, code running without delegation, and code that delegates. We plan three trials of each. We check both the answers and execution records: a correct answer alone cannot show how the work happened.
+
+## Current status
+
+**Inconclusive. No live API experiments have run.**
+
+The research and probe are in place, and 22 local tests passed. Our first attempt stopped because no API key was configured and we could not verify a hard spending limit that meets our experiment's budget rules. Local tests do not establish that the managed workflow works.
+
+## Read the study
+
+1. [Our reading and sources](research/01-reading.md)
+2. [The experiment and what would disprove our hypothesis](research/02-preregistered-probe.md)
+3. [How the probe works](research/03-implementation.md)
+4. [Results and what remains unknown](research/04-results.md)
+
+## Run locally
+
+Use Node `^22.19.0 || >=24.0.0` and pnpm **11.7.0**. The official OpenAI SDK is pinned to **7.15.0**.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -28,8 +46,6 @@ pnpm probe plan
 pnpm probe run
 ```
 
-The probe's `run` command currently exits **2**, writes structured inconclusive evidence, and dispatches no inference; a package-manager wrapper may return **1** while reporting the underlying code 2. This is deliberate enforcement of the budget contract. A new documented spending bound, or an explicitly revised spending contract, requires a new protocol; there is no bypass flag. `pnpm replay <evidence-directory>` checks log integrity and recomputes the conservative classification.
+`probe run` currently records why the experiment is blocked and exits with an error without making paid requests. Adding an API key alone does not remove the spending-limit block.
 
-Copy `.env.example` to `.env` and configure an API credential locally. `.env` is ignored by Git. An optional `pnpm probe preflight --online` performs at most one read-only access check when a credential is present.
-
-See [evidence provenance](evidence/README.md) and the [source manifest](research/sources.json). Hashes establish artifact integrity, not the truth of model statements or reviewer annotations. No external source cache, private trace, credential or dependency directory is published.
+See [setup and budget details](research/03-implementation.md) and [how to inspect the evidence](evidence/README.md) before running a live experiment.
