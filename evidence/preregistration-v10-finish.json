@@ -1,0 +1,16 @@
+{
+  "protocol": "context-observation-v10-finish",
+  "parent": "evidence\\runs\\2026-09-11T14-24-14-025Z-context-observation-v10-cohort-af613323",
+  "bindingParent": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "calibrationRun": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "registeredAt": "2026-09-11T14:36:24.246Z",
+  "protocolHash": "4d51c8b8e42b0142ec44a122d77cf537b1dedd7e1d98d961b73e9ce2409903b6",
+  "parentResultHash": "97e9dce0f03c77d35c317f9137cf67d982b5fdb8eb46505ebe1adea63a8a2110",
+  "detectorHash": "cc8d7542c1fbcd1b096041f82a76bfd97bf15b6be7ea02d7b2f176d6df0d35a4",
+  "priorHttpAttempts": 515,
+  "priorAdmissionUsd": 0.3720471,
+  "carriedUnresolvedUsd": 0.23,
+  "totalThresholdUsd": 2,
+  "newPaidCalls": 0,
+  "protocolPath": "research/24-complete-remaining-pairs-addendum.md"
+}

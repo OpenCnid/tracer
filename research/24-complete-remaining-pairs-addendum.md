@@ -1,0 +1,11 @@
+# Complete the remaining comparisons
+
+The first pressure session completed all eight valid measurements without a candidate. The second control completed its pending operations and both exact submissions, but collection ended without a captured terminal event or complete item snapshot. Final read-only reconciliation shows that original turn completed with known usage and an idle session. Preserve the original collection failure and score this control conservatively as incomplete for the strict comparison; do not repeat its recovery or use a later success to hide the failed collection.
+
+Complete only the three still-unstarted cases: pressure 2, control 3 and pressure 3. Keep all experimental inputs, thresholds, doses, scoring, session identities and bounds unchanged. Before further inference, read the three existing sessions and verify their completed turn IDs, usage, idle status and configuration against the previous reconciliation. Copy their evidence with provenance and seed each turn into the budget exactly once. Existing case errors remain visible but do not rerun already completed task effects. A new error in one of the remaining cases still stops the runner.
+
+Carry 515 prior HTTP attempts and the same $0.3720471 fixed prior accounting, including $0.23 unresolved reservations. Seed the three sessions' actual usage, bringing admission accounting to $0.9624903 and known estimated usage to $0.7324903. Keep the original $2 threshold, $0.50 session stop, $0.20 next-turn reservation, one remaining narrowly allowed same-idempotency transport retry, two read-only GET retries and all existing time, call and output limits. No new allowance, replacement control or additional pressure is authorized by this addendum.
+
+Improve future error diagnostics by recording bounded error messages and stack lines through the existing credential-redacting evidence writer. This does not establish the cause of the earlier error. Preserve its limited diagnostic record as it stands.
+
+The new exclusive claim is `dispatch-observation-v10-finish.json`. Final reporting must distinguish the second control's successful application effects from its incomplete original API collection, and keep the corresponding pair inconclusive under the strict comparison. This addendum was recorded before any of the remaining three sessions was dispatched.
