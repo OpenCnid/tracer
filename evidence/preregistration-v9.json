@@ -3,6 +3,8 @@
   "model": "gpt-5.6-luna",
   "sdk": "7.15.0",
   "registeredAt": "2026-09-11T13:03:10.465Z",
-  "protocolHash": "723302436a5ef866702281f61f10ee8598893a4d9324122fc0c825dbeda0999f",
-  "paidCallsAtRegistration": 0
+  "protocolHash": "86045cb012647fee55fddc53214be973eae410be34c4237bf1792b88299fa857",
+  "paidCallsAtRegistration": 0,
+  "preInferenceClarificationAt": "2026-09-11T13:12:46.285Z",
+  "clarification": "Final tick supplies recent recall controls after rolling eviction; zero paid calls."
 }
