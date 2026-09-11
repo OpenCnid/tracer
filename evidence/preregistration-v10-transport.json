@@ -1,0 +1,18 @@
+{
+  "protocol": "context-observation-v10-transport",
+  "parent": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a",
+  "bindingParent": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "calibrationRun": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "registeredAt": "2026-09-11T13:56:30.588Z",
+  "protocolPath": "research/20-managed-transport-addendum.md",
+  "protocolHash": "9afe4259df9750077c2be731af22b657f4d0e1ea5629d2b40e95f78f05091a5d",
+  "parentResultHash": "b4c5c8ad50078212a9c62846b2cd654fbd0b653fb7a8d8a658a81c2fcb47e472",
+  "calibrationHash": "70898a1964b9aa97e2263e0470c61a03ad0f0b03d59e5525f588fa1b67a61e7f",
+  "detectorHash": "cc8d7542c1fbcd1b096041f82a76bfd97bf15b6be7ea02d7b2f176d6df0d35a4",
+  "resolvedSnapshot": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a/managed-reconciliation.json",
+  "priorHttpAttempts": 114,
+  "totalThresholdUsd": 2,
+  "transportReservationUsd": 0.2,
+  "existingTurns": 3,
+  "paidCallsSincePause": 0
+}
