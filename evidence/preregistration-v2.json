@@ -1,0 +1,16 @@
+{
+  "protocol": "native-seam-v2",
+  "frozenAt": "2026-09-11T00:18:03.310Z",
+  "documents": [
+    {
+      "path": "research/02-preregistered-probe.md",
+      "sha256": "21e6608516e0e341e0d1779d1dc3ba464f5bf6fb68b1500f2af2cefc12d22c49"
+    },
+    {
+      "path": "research/05-luna-two-dollar-protocol.md",
+      "sha256": "b74b078dcb83f27ac4b418833e202f3dfd7af23c00efc9f2bf1624e0521fc26a"
+    }
+  ],
+  "sha256": "9923eff0fa12d5ff451b198d60b703dde9236cf8c2f01ca65a876fda65dd1d88",
+  "inferenceStarted": false
+}
