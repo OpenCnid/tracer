@@ -1,0 +1,26 @@
+{
+  "id": "span_f801ac75eac72557",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_296260fdeae5b5e2",
+  "status": "completed",
+  "started_at_ms": 1789087007213,
+  "ended_at_ms": 1789087010896,
+  "error": null,
+  "span_data": {
+    "type": "tool",
+    "call": {
+      "type": "wait_for_agents_call",
+      "id": "exec-43cc14a9-b4c3-4e79-b23b-721a239c46b5",
+      "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+      "status": "completed",
+      "sender_agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+      "recipient_agent_ids": [
+        "subagent_674a90c31f87136deb2b274b5341ab65"
+      ],
+      "agent_ids": [
+        "subagent_674a90c31f87136deb2b274b5341ab65"
+      ]
+    },
+    "result": null
+  }
+}

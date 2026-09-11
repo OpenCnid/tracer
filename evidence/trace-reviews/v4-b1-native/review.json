@@ -1,0 +1,60 @@
+{
+  "reviewedAt": "2026-09-11T01:37:36.361Z",
+  "sessionId": "sess_0f330bfa19403895006aa34d0552e08191b050d56264ec07d6",
+  "source": "OpenAI Platform visible Raw span JSON panels",
+  "reviewer": "OpenCnid / Codex",
+  "spans": [
+    {
+      "file": "span_1631d05796d050bd.json",
+      "sha256": "72a79a691924e963e98a9febdec2d17cc03af69f1cc8ed11df221cb517481a16",
+      "spanId": "span_1631d05796d050bd",
+      "type": "generation",
+      "parentId": "span_296260fdeae5b5e2"
+    },
+    {
+      "file": "span_2aeee901fbfef2fa.json",
+      "sha256": "de86b0e7d90f16ca85545e962d539152b28eab90c355570edb30c7ddb0f71426",
+      "spanId": "span_2aeee901fbfef2fa",
+      "type": "generation",
+      "parentId": "span_296260fdeae5b5e2"
+    },
+    {
+      "file": "span_7b26115310ca7112.json",
+      "sha256": "fc13101b2b8d5a3d50e72dba2545d2b55a0e389ae8058b0333cbc6bb5be65eda",
+      "spanId": "span_7b26115310ca7112",
+      "type": "generation",
+      "parentId": "span_163d0e56e45520d2"
+    },
+    {
+      "file": "span_7bdc795204b63b87.json",
+      "sha256": "b2cf250ea194b985ef07325907c240889ab97e68ef14bcb152b425521d051c09",
+      "spanId": "span_7bdc795204b63b87",
+      "type": "generation",
+      "parentId": "span_4b4e5249333b01ec"
+    },
+    {
+      "file": "span_c96c4e5b0d6ac4f8.json",
+      "sha256": "e557a1a8f36a983eeba9c69db81d1be5e89b28e01fb8ffaac4337f7f9292aafb",
+      "spanId": "span_c96c4e5b0d6ac4f8",
+      "type": "generation",
+      "parentId": "span_296260fdeae5b5e2"
+    },
+    {
+      "file": "span_d147ade42c7a31d6.json",
+      "sha256": "9684256bb0ff256662b40a9c6f4fc7b7a191eb69a5d34ddca2682a620f4605fd",
+      "spanId": "span_d147ade42c7a31d6",
+      "type": "generation",
+      "parentId": "span_296260fdeae5b5e2"
+    },
+    {
+      "file": "span_f801ac75eac72557.json",
+      "sha256": "b71c4b9d05b590458258b9cc5f577bef20306dc38f5fdbc3c83182c2937ba263",
+      "spanId": "span_f801ac75eac72557",
+      "type": "tool",
+      "parentId": "span_296260fdeae5b5e2"
+    }
+  ],
+  "observed": "All six generation spans and the native wait span retained. No executed JavaScript or program-to-native caller edge in these artifacts. Wait result is null.",
+  "route": "unestablished",
+  "compactionBoundary": "unestablished"
+}

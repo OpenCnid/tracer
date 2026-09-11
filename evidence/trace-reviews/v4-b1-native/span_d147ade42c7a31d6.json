@@ -1,0 +1,52 @@
+{
+  "id": "span_d147ade42c7a31d6",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_296260fdeae5b5e2",
+  "status": "completed",
+  "started_at_ms": 1789087010896,
+  "ended_at_ms": 1789087010898,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "id": "amsg_4aaf85117bcbb72580dca729acb5aa9de2a5309c9178cfbbc7",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "type": "agent_message",
+        "sender_agent_id": "subagent_674a90c31f87136deb2b274b5341ab65",
+        "author": "subagent_674a90c31f87136deb2b274b5341ab65",
+        "recipient_agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "recipient": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "3971412548f068a998cc86fd8c4cfafb"
+          }
+        ]
+      }
+    ],
+    "output": [
+      {
+        "type": "function_call",
+        "id": "exec-14091643-e0bd-4608-86ad-017a0a76e7f5",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "call_id": "exec-14091643-e0bd-4608-86ad-017a0a76e7f5",
+        "name": "tracer_submit",
+        "arguments": {
+          "results": [
+            {
+              "key": "task-0",
+              "value": "undefined"
+            },
+            {
+              "key": "task-1",
+              "value": "3971412548f068a998cc86fd8c4cfafb"
+            }
+          ]
+        },
+        "status": "completed"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "protocol": "collect-all-v5",
+  "stateProtocol": "external-state-v6",
+  "frozenAt": "2026-09-11T01:37:36.368Z",
+  "documents": [
+    {
+      "path": "research/09-followup-protocol.md",
+      "sha256": "86711a090ce375d1e680343a0cb7c963030c58fbd17ca6420e6b02326de2de51"
+    },
+    {
+      "path": "evidence/trace-reviews/v4-b1-native/review.json",
+      "sha256": "f8df3ce93fc1f25f59d0a07258f22643b96d4b6f88b61ad517c5cc3e0398cd0f"
+    }
+  ],
+  "sha256": "9f955b81b6046035e593ee38f1e53c9662c4ba06fa107de7cd6e4ae854a7a973",
+  "inferenceStarted": false
+}

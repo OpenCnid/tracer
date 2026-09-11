@@ -1,0 +1,75 @@
+{
+  "id": "span_2aeee901fbfef2fa",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_296260fdeae5b5e2",
+  "status": "completed",
+  "started_at_ms": 1789087005946,
+  "ended_at_ms": 1789087007213,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "id": "fco_exec-3747cd03-1795-4acc-846d-8a802cec4fc1",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "type": "function_call_output",
+        "call_id": "exec-3747cd03-1795-4acc-846d-8a802cec4fc1",
+        "status": "completed",
+        "output": "{\"trial\":\"b1-programmatic-native\",\"tasks\":[{\"key\":\"task-0\",\"nonce\":\"cfc006049c882957eef95487a483a233\",\"instruction\":\"Reverse the nonce exactly. Preserve case. Return only the reversed string.\"},{\"key\":\"task-1\",\"nonce\":\"bfafc4c8df68cc899a860f8452141793\",\"instruction\":\"Reverse the nonce exactly. Preserve case. Return only the reversed string.\"}]}",
+        "error": null
+      }
+    ],
+    "output": [
+      {
+        "type": "spawn_agent_call",
+        "id": "exec-0b6304d2-a966-4955-8b2d-3f80705e2086",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "status": "completed",
+        "agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "sender_agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "spawned_agent_id": "subagent_708b75d008523591a6b519b85593df51",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "Perform only this assigned string transformation, exactly as instructed. Do not delegate, call tools, or do any other work.\nInstruction: Reverse the nonce exactly. Preserve case. Return only the reversed string.\nNonce: cfc006049c882957eef95487a483a233"
+          }
+        ],
+        "prompt": "Perform only this assigned string transformation, exactly as instructed. Do not delegate, call tools, or do any other work.\nInstruction: Reverse the nonce exactly. Preserve case. Return only the reversed string.\nNonce: cfc006049c882957eef95487a483a233",
+        "model": "gpt-5.6-luna",
+        "reasoning_effort": "low"
+      },
+      {
+        "type": "spawn_agent_call",
+        "id": "exec-6d0adaa2-cb81-4465-a16f-596c2848acdb",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "status": "completed",
+        "agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "sender_agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "spawned_agent_id": "subagent_674a90c31f87136deb2b274b5341ab65",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "Perform only this assigned string transformation, exactly as instructed. Do not delegate, call tools, or do any other work.\nInstruction: Reverse the nonce exactly. Preserve case. Return only the reversed string.\nNonce: bfafc4c8df68cc899a860f8452141793"
+          }
+        ],
+        "prompt": "Perform only this assigned string transformation, exactly as instructed. Do not delegate, call tools, or do any other work.\nInstruction: Reverse the nonce exactly. Preserve case. Return only the reversed string.\nNonce: bfafc4c8df68cc899a860f8452141793",
+        "model": "gpt-5.6-luna",
+        "reasoning_effort": "low"
+      },
+      {
+        "type": "wait_for_agents_call",
+        "id": "exec-43cc14a9-b4c3-4e79-b23b-721a239c46b5",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "status": "completed",
+        "sender_agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "recipient_agent_ids": [
+          "subagent_674a90c31f87136deb2b274b5341ab65"
+        ],
+        "agent_ids": [
+          "subagent_674a90c31f87136deb2b274b5341ab65"
+        ]
+      }
+    ]
+  }
+}

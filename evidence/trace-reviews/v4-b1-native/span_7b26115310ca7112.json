@@ -1,0 +1,53 @@
+{
+  "id": "span_7b26115310ca7112",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_163d0e56e45520d2",
+  "status": "completed",
+  "started_at_ms": 1789087007000,
+  "ended_at_ms": 1789087010381,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "id": "amsg_21046778abb0b6dfc9f6f5ba02e0df51c5d5d9edf582ae3adc",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "type": "agent_message",
+        "sender_agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "author": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+        "recipient_agent_id": "subagent_674a90c31f87136deb2b274b5341ab65",
+        "recipient": "subagent_674a90c31f87136deb2b274b5341ab65",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "Perform only this assigned string transformation, exactly as instructed. Do not delegate, call tools, or do any other work.\nInstruction: Reverse the nonce exactly. Preserve case. Return only the reversed string.\nNonce: bfafc4c8df68cc899a860f8452141793"
+          }
+        ]
+      }
+    ],
+    "output": [
+      {
+        "type": "reasoning",
+        "id": "rs_0b0e20ad44f1862b016aa34d2063a887d1ad1a61f1558b79a4",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "summary": [],
+        "status": "completed"
+      },
+      {
+        "type": "message",
+        "id": "msg_0b0e20ad44f1862b016aa34d224d6487d1a3ce5a0e9b164578",
+        "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+        "role": "assistant",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "3971412548f068a998cc86fd8c4cfafb"
+          }
+        ],
+        "phase": "final_answer"
+      }
+    ]
+  }
+}
