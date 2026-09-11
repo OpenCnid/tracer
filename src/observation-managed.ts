@@ -86,7 +86,7 @@ export function ackObservation(id:string,turn:Turn,items:AgentSessionItem[],stab
     cached:turn.usage?.input_tokens_details.cached_tokens??null,output:turn.usage?.output_tokens??null,valid:reasons.length===0,reasons};
 }
 export interface ManagedCase {id:string;sessionId:string|null;samples:Sample[];candidate:ReturnType<typeof detect>;recovery:unknown;error:string|null}
-export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch) {
+export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string}={}) {
   const guard=new UsageGuard(DEFAULT_MODEL,2,.5,priorUsd),cases:ManagedCase[]=[];
   const bindings=new ObservationBindings(join(root.directory,'bindings'));
   let turnsDispatched=0;
@@ -98,7 +98,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
       const id=`b${pair}-${arm}`,log=new Evidence(join(root.directory,id),[key]);
       const store=CheckpointStore.create(join(log.directory,'state'));
       const trial:Trial={id,block:pair,arm:'programmatic-local',seed:sha256(id),model:DEFAULT_MODEL};
-      const body=request(trial);log.write('configuration.json',body);
+      const body=request(trial);if(options.protocol) body.metadata={...body.metadata,protocol:options.protocol};log.write('configuration.json',body);
       const row:ManagedCase={id,sessionId:null,samples:[],candidate:null,recovery:null,error:null};cases.push(row);
       const seenTurns=new Set<string>();
       const facts:Fact[]=[];

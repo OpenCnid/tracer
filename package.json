@@ -22,7 +22,8 @@
     "checkpoint-probe": "tsx src/checkpoint-probe.ts",
     "checkpoint-replay": "tsx src/checkpoint-replay.ts",
     "observation-probe": "tsx src/observation-probe.ts",
-    "observation-replay": "tsx src/observation-replay.ts"
+    "observation-replay": "tsx src/observation-replay.ts",
+    "observation-resume": "tsx src/observation-resume.ts"
   },
   "dependencies": { "openai": "7.15.0" },
   "devDependencies": {
