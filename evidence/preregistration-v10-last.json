@@ -1,0 +1,16 @@
+{
+  "protocol": "context-observation-v10-last",
+  "parent": "evidence\\runs\\2026-09-11T14-38-11-332Z-context-observation-v10-finish-b7b8fbaf",
+  "bindingParent": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "calibrationRun": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "registeredAt": "2026-09-11T14:52:08.710Z",
+  "protocolHash": "a962d8573a17a6ae78f73c56091f8cebcbb11958825a80d765a355634e35442f",
+  "parentResultHash": "4e30db7815678da8287befc6c1385cf59a333efd8d4cebba69c4e914572b5220",
+  "detectorHash": "cc8d7542c1fbcd1b096041f82a76bfd97bf15b6be7ea02d7b2f176d6df0d35a4",
+  "priorHttpAttempts": 799,
+  "priorAdmissionUsd": 0.3720471,
+  "carriedUnresolvedUsd": 0.23,
+  "totalThresholdUsd": 2,
+  "newPaidCalls": 0,
+  "protocolPath": "research/25-final-pressure-addendum.md"
+}
