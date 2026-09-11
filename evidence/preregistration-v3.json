@@ -1,0 +1,24 @@
+{
+  "protocol": "native-seam-v3",
+  "frozenAt": "2026-09-11T00:27:32.366Z",
+  "documents": [
+    {
+      "path": "research/02-preregistered-probe.md",
+      "sha256": "21e6608516e0e341e0d1779d1dc3ba464f5bf6fb68b1500f2af2cefc12d22c49"
+    },
+    {
+      "path": "research/05-luna-two-dollar-protocol.md",
+      "sha256": "b74b078dcb83f27ac4b418833e202f3dfd7af23c00efc9f2bf1624e0521fc26a"
+    },
+    {
+      "path": "research/06-usage-lag-amendment.md",
+      "sha256": "f92a4d547a76ef8660cf4fcf2e6432a6a58cab6d7dc480a7e4a7f40d99ed514c"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T00-23-15-958Z-run-2424a128/reconcile-2026-09-11T00-25-28-815Z/result.json",
+      "sha256": "7b9d3cf418c6207f9cf6a31bffc6fe7753a93c6b22942cb2717fa42010d3757a"
+    }
+  ],
+  "sha256": "930763b71d583ac014d0922fbc11c06ebca27ff97d76466226a77c1714eebd29",
+  "inferenceStarted": false
+}
