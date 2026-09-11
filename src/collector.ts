@@ -1,6 +1,7 @@
 // Transport implementation with explicit cancellation and reported-usage guards.
 import type OpenAI from 'openai';
 import type { AgentSessionEvent, AgentSession } from 'openai/resources/beta/agents/agents';
+import type { SessionCreateParamsStreaming } from 'openai/resources/beta/agents/sessions/sessions';
 import { AdmissionCounter, type UsageGuard } from './budget.js';
 import { Evidence, safeError } from './evidence.js';
 import { checkResults, fixture, LIMITS, requestFor, type Trial } from './protocol.js';
@@ -55,11 +56,19 @@ export interface Collected {
   completedChildren: number; historyComplete: boolean; route: 'unestablished'; error: unknown;
 }
 
-export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evidence, budget?: UsageGuard): Promise<Collected> {
+export interface CollectionOptions {
+  request?: SessionCreateParamsStreaming;
+  ledger?: Pick<FunctionLedger, 'handle' | 'correct'>;
+  continuation?: {sessionId: string; input: string};
+}
+
+export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evidence, budget?: UsageGuard,
+  options: CollectionOptions = {}): Promise<Collected> {
   const result: Collected = { sessionId: null, terminal: null, taskCorrect: null,
     completedChildren: 0, historyComplete: false, route: 'unestablished', error: null };
-  const ledger = new FunctionLedger(trial, evidence);
-  const request = requestFor(trial); evidence.write('request.json', request);
+  const ledger = options.ledger ?? new FunctionLedger(trial, evidence);
+  const request = options.request ?? requestFor(trial);
+  evidence.write('request.json', options.continuation ?? request);
   const abort = new AbortController();
   let stopped: Error | undefined;
   const stop = (error: Error) => { stopped ??= error; abort.abort(error); };
@@ -80,11 +89,19 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
       .finally(() => { polling = undefined; });
   }, 10_000) : undefined;
   const seen = new Set<string>(); const childrenSeen = new Set<string>(); let eventCount = 0;
-  let stream: Awaited<ReturnType<typeof client.beta.agents.sessions.events.stream>> | undefined;
+  let stream: (AsyncIterable<AgentSessionEvent> & {controller: AbortController}) | undefined;
   try {
-    const created = await client.beta.agents.sessions.create(request, { signal: abort.signal }).withResponse();
-    stream = created.data;
-    evidence.record('http.create', { status: created.response.status, request_id: created.request_id });
+    if (options.continuation) {
+      result.sessionId = options.continuation.sessionId;
+      stream = client.beta.agents.sessions.stream(result.sessionId, {
+        input: options.continuation.input, idempotencyKey: trial.id,
+      }, {signal: abort.signal});
+      evidence.record('http.continuation-planned', {sessionId: result.sessionId, idempotencyKey: trial.id});
+    } else {
+      const created = await client.beta.agents.sessions.create(request, { signal: abort.signal }).withResponse();
+      stream = created.data;
+      evidence.record('http.create', { status: created.response.status, request_id: created.request_id });
+    }
     for await (const event of stream) {
       if ('session_id' in event) result.sessionId = event.session_id;
       if (event.type === 'agent.session.created') result.sessionId = event.session.id;
