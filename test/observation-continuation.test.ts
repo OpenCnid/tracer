@@ -7,7 +7,7 @@ import {CarriedCalibrationBudget,missingCalibrationRequests,continuationRegistra
   claimContinuation,completeCalibration,FIXED_RULE} from '../src/observation-continuation.js';
 import {Evidence} from '../src/evidence.js';
 import {UsageGuard} from '../src/budget.js';
-import {ackObservation,ObservationBindings,TransportUsageGuard,canRetryUnestablished} from '../src/observation-managed.js';
+import {ackObservation,ObservationBindings,TransportUsageGuard,canRetryUnestablished,matchesCompletedAck} from '../src/observation-managed.js';
 import type {Response as ModelResponse} from 'openai/resources/responses/responses';
 
 const parent='evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e';
@@ -17,6 +17,18 @@ function cleanup(path:string) {
   rmSync(path,{recursive:true,force:true});
 }
 describe('carried observation continuation',()=>{
+  it('adopts only a completed ACK with the exact originally requested input',()=>{
+    const turn={id:'late',status:'completed',created_at:1,completed_at:2,usage:{input_tokens:8106,input_tokens_details:{cached_tokens:7800},output_tokens:5}} as any;
+    const items=[{type:'message',turn_id:'late',role:'user',content:[{type:'input_text',text:'exact dose'}]},
+      {type:'message',turn_id:'late',role:'assistant',content:[{type:'output_text',text:'ACK'}]}] as any;
+    expect(matchesCompletedAck('exact dose',turn,items)).toBe(true);
+    expect(matchesCompletedAck('different dose',turn,items)).toBe(false);
+    expect(matchesCompletedAck('exact dose',{...turn,status:'failed'},items)).toBe(false);
+    expect(matchesCompletedAck('exact dose',turn,[...items,{type:'function_call',turn_id:'late'}])).toBe(false);
+    expect(matchesCompletedAck('exact dose',turn,[items[0],{...items[1],content:[{type:'output_text',text:'wrong'}]}])).toBe(false);
+    expect(matchesCompletedAck('exact dose',{...turn,usage:null},items)).toBe(true);
+    expect(ackObservation('dose', {...turn,usage:null},items,false,true).valid).toBe(false);
+  });
   it('retains transport reservations and refuses retries when a new or active turn exists',()=>{
     const guard=new TransportUsageGuard('gpt-5.6-luna',2,.5,.37);guard.reserveUnestablished();
     expect(guard.snapshot().admissionEstimateUsd).toBeCloseTo(.57,10);
