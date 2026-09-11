@@ -1,0 +1,8 @@
+{
+  "protocol": "context-observation-v9",
+  "model": "gpt-5.6-luna",
+  "sdk": "7.15.0",
+  "registeredAt": "2026-09-11T13:03:10.465Z",
+  "protocolHash": "723302436a5ef866702281f61f10ee8598893a4d9324122fc0c825dbeda0999f",
+  "paidCallsAtRegistration": 0
+}
