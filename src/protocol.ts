@@ -1,9 +1,10 @@
 import { createHash } from 'node:crypto';
 import type { SessionCreateParamsStreaming } from 'openai/resources/beta/agents/sessions/sessions';
 
-export const PROTOCOL = 'native-seam-v2';
+export const PROTOCOL = 'native-seam-v3';
 export const DEFAULT_MODEL = 'gpt-5.6-luna';
-export const PREREGISTRATION = 'evidence/preregistration-v2.json';
+export const PREREGISTRATION = 'evidence/preregistration-v3.json';
+export const PRIOR_ESTIMATE_USD = 0.0248406;
 export const SDK_VERSION = '7.15.0';
 export const LIMITS = Object.freeze({
   sessions: 9, toolExecutions: 2, toolOutputBytes: 16_384,

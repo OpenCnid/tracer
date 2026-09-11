@@ -20,7 +20,7 @@ const trial = matrix('test-only-seed', 'test-model')[0]!;
 const answers = (t = trial) => ({ results: fixture(t).tasks.map(task => ({ key: task.key, value: [...task.nonce].reverse().join('') })) });
 
 describe('protocol and budget', () => {
-  it('binds the USD 2 Luna cohort to both frozen documents', () => {
+  it('binds the USD 2 Luna cohort to its frozen documents and prior accounting', () => {
     const frozen = JSON.parse(readFileSync(PREREGISTRATION, 'utf8')) as {
       protocol: string; sha256: string; documents: Array<{path: string; sha256: string}>;
     };
@@ -107,6 +107,12 @@ describe('reported usage stopping guard', () => {
     expect(() => guard.requireComplete('c')).toThrow('FINAL_USAGE_INCOMPLETE');
     expect(() => guard.observeSession('d', usage(-1))).toThrow('INVALID_USAGE_COUNTS');
     expect(() => guard.observeModel('different-model')).toThrow('UNEXPECTED_BILLED_MODEL');
+  });
+  it('includes the previous attempt without treating its usage as current-session telemetry', () => {
+    const guard = new UsageGuard(DEFAULT_MODEL, 2, 0.2, 1.99);
+    expect(guard.hasUsage('new')).toBe(false);
+    guard.observeTurn('new', {id: 'root', usage: usage(20_000)});
+    expect(() => guard.check('new')).toThrow('STUDY_SPEND_THRESHOLD');
   });
 });
 
@@ -215,7 +221,7 @@ describe('official SDK transport, synthetic HTTP only', () => {
     expect(cancelled).toBe(true);
     expect(result.error).toMatchObject({localReason: 'TRIAL_SPEND_THRESHOLD'});
   });
-  it('polls and cancels a live stream when current-session usage remains unknown', async () => {
+  it('allows delayed usage until the trial deadline and then cancels a silent live stream', async () => {
     vi.useFakeTimers(); let cancelled = false; let usageReads = 0;
     const current = {...session, agent: {model: DEFAULT_MODEL}};
     const mock = vi.fn<typeof fetch>(async (input, init) => {
@@ -233,9 +239,11 @@ describe('official SDK transport, synthetic HTTP only', () => {
     const collecting = collectTrial(new OpenAI({apiKey: 'fake-test-secret', maxRetries: 0, fetch: mock}),
       trial, evidence(), new UsageGuard(DEFAULT_MODEL));
     await vi.advanceTimersByTimeAsync(30_001);
+    expect(cancelled).toBe(false);
+    await vi.advanceTimersByTimeAsync(LIMITS.deadlineMs - 30_000);
     const result = await collecting;
-    expect(usageReads).toBe(3); expect(cancelled).toBe(true);
-    expect(result.error).toMatchObject({localReason: 'USAGE_UNAVAILABLE_AFTER_GRACE'});
+    expect(usageReads).toBeGreaterThanOrEqual(11); expect(cancelled).toBe(true);
+    expect(result.error).toMatchObject({localReason: 'TRIAL_DEADLINE'});
   });
   it('still cancels if the evidence log reaches its cap', async () => {
     const log = evidence(); const original = log.record.bind(log); let cancelled = false;

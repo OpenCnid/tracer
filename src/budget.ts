@@ -34,7 +34,8 @@ const price = (value: Counts | null) => value ?
 
 export class UsageGuard {
   private readonly sessions = new Map<string, SessionUsage>();
-  constructor(readonly model: string, readonly studyUsd: number = LIMITS.studyUsd, readonly trialUsd: number = LIMITS.reservationUsd) {}
+  constructor(readonly model: string, readonly studyUsd: number = LIMITS.studyUsd, readonly trialUsd: number = LIMITS.reservationUsd,
+    readonly priorEstimateUsd = 0) {}
   private session(id: string) {
     let value = this.sessions.get(id);
     if (!value) { value = { aggregate: null, turns: new Map() }; this.sessions.set(id, value); }
@@ -59,7 +60,9 @@ export class UsageGuard {
         estimateUsd: known ? Math.max(price(value.aggregate), turns.reduce((sum, t) => sum + (t.estimateUsd ?? 0), 0)) : null };
     });
     return { policy: 'reported-usage-stop', thresholdUsd: this.studyUsd, trialThresholdUsd: this.trialUsd,
-      estimateUsd: sessions.some(s => s.estimateUsd !== null) ? sessions.reduce((sum, s) => sum + (s.estimateUsd ?? 0), 0) : null,
+      priorEstimateUsd: this.priorEstimateUsd,
+      estimateUsd: this.priorEstimateUsd > 0 || sessions.some(s => s.estimateUsd !== null) ?
+        this.priorEstimateUsd + sessions.reduce((sum, s) => sum + (s.estimateUsd ?? 0), 0) : null,
       sessions, rates: GUARD_RATES, invoice: false, overshootPossible: true };
   }
   check(sessionId: string) {

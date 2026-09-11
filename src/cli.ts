@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { authorizePaidInference, boundedFetch, GUARD_RATES, HardCapUnavailable, UsageGuard } from './budget.js';
 import { Evidence, safeError } from './evidence.js';
-import { DEFAULT_MODEL, LIMITS, matrix, PREREGISTRATION, PROTOCOL, requestFor, SDK_VERSION, sha256 } from './protocol.js';
+import { DEFAULT_MODEL, LIMITS, matrix, PREREGISTRATION, PRIOR_ESTIMATE_USD, PROTOCOL, requestFor, SDK_VERSION, sha256 } from './protocol.js';
 import { auditSdk } from './sdk-audit.js';
 import { collectTrial } from './collector.js';
 
@@ -40,7 +40,7 @@ evidence.write('manifest.json', {
     path: `src/${f}`, sha256: sha256(readFileSync(join('src', f))),
   })),
   lockfileSha256: sha256(readFileSync('pnpm-lock.yaml')), limits: LIMITS,
-  budgetPolicy: 'reported-usage-stop', overshootAccepted: true, guardRates: GUARD_RATES,
+  budgetPolicy: 'reported-usage-stop', overshootAccepted: true, guardRates: GUARD_RATES, priorEstimateUsd: PRIOR_ESTIMATE_USD,
   credentialPresent: !!apiKey, projectBindingPresent: !!process.env.OPENAI_PROJECT_ID,
   sourceManifestSha256: existsSync('research/sources.json') ? sha256(readFileSync('research/sources.json')) : null,
   trials,
@@ -70,7 +70,7 @@ if (mode === 'preflight' && args.includes('--online') && apiKey && audit.version
   } catch (e) { reasons.push('READ_ONLY_ACCESS_FAILED'); evidence.record('preflight.error', safeError(e)); }
 }
 let paidInferenceRequests = 0; let sessionsCreated = 0; let completedTrials = 0; let reservedUsd = 0;
-const budget = new UsageGuard(DEFAULT_MODEL);
+const budget = new UsageGuard(DEFAULT_MODEL, LIMITS.studyUsd, LIMITS.reservationUsd, PRIOR_ESTIMATE_USD);
 if (mode === 'run' && reasons.length === 0) {
   console.log(JSON.stringify({event: 'study-started', evidence: directory, model, thresholdUsd: LIMITS.studyUsd}));
   for (const trial of trials) {

@@ -61,7 +61,7 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
   const ledger = new FunctionLedger(trial, evidence);
   const request = requestFor(trial); evidence.write('request.json', request);
   const abort = new AbortController();
-  const started = Date.now(); let stopped: Error | undefined;
+  let stopped: Error | undefined;
   const stop = (error: Error) => { stopped ??= error; abort.abort(error); };
   const deadline = setTimeout(() => stop(new Error('TRIAL_DEADLINE')), LIMITS.deadlineMs);
   let polling: Promise<void> | undefined; let finalizing = false;
@@ -76,7 +76,6 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
         {signal: abort.signal}), evidence, 'budget.turns');
       for (const turn of turns) budget.observeTurn(id, turn);
       evidence.record('budget.snapshot', budget.snapshot()); budget.check(id);
-      if (Date.now() - started >= 30_000 && !budget.hasUsage(id)) throw new Error('USAGE_UNAVAILABLE_AFTER_GRACE');
     })().catch(error => { if (!finalizing) stop(error instanceof Error ? error : new Error('BUDGET_TELEMETRY_FAILED')); })
       .finally(() => { polling = undefined; });
   }, 10_000) : undefined;
