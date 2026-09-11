@@ -1,0 +1,19 @@
+{
+  "protocol": "context-observation-v10-adoption",
+  "parent": "evidence\\runs\\2026-09-11T13-59-22-533Z-context-observation-v10-transport-7a2a5709",
+  "bindingParent": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "calibrationRun": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "registeredAt": "2026-09-11T14:03:00.015Z",
+  "protocolPath": "research/21-adopt-completed-turn-addendum.md",
+  "protocolHash": "5123d88c2c67e38f117e6c6db7908593d7f408864d51023a469eb5cd465f0438",
+  "parentResultHash": "69c1b40db30979a757c488a9c4a3b36b8b0d67b3352c040f5025ab9148b9674f",
+  "calibrationHash": "70898a1964b9aa97e2263e0470c61a03ad0f0b03d59e5525f588fa1b67a61e7f",
+  "detectorHash": "cc8d7542c1fbcd1b096041f82a76bfd97bf15b6be7ea02d7b2f176d6df0d35a4",
+  "resolvedSnapshot": "evidence\\runs\\2026-09-11T13-59-22-533Z-context-observation-v10-transport-7a2a5709/preflight/events.jsonl",
+  "priorHttpAttempts": 117,
+  "totalThresholdUsd": 2,
+  "transportReservationUsd": 0,
+  "existingTurns": 4,
+  "paidCallsSincePause": 0,
+  "previousCompletion": "evidence\\runs\\2026-09-11T13-51-52-748Z-context-observation-v10-completion-b4ddb56a"
+}
