@@ -1,0 +1,16 @@
+{
+  "protocol": "context-observation-v10",
+  "model": "gpt-5.6-luna",
+  "sdk": "7.15.0",
+  "registeredAt": "2026-09-11T13:36:56.444Z",
+  "protocolHash": "bf83298522f5c4b86011052b0f12eae6a8e2cb0c894c082036ae0d05baae4be0",
+  "parent": "evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e",
+  "parentResultHash": "65ebbae1b72143fb7fd5bff8cf0737c82ae60643e643387d173a6ce5e5612121",
+  "parentLockHash": "8af98c0e83fdfc2d7312ea129eacfa5f4f11e5c87c596dfb7432941cfb2543a0",
+  "fixtureHash": "bcd7e650b112e0f2ba781d1cfda0baa1a545e63e4777a94b2d658fc5576ed178",
+  "detectorSourceHash": "cc8d7542c1fbcd1b096041f82a76bfd97bf15b6be7ea02d7b2f176d6df0d35a4",
+  "carriedKnownUsd": 0.1328787,
+  "carriedUnresolvedUsd": 0.03,
+  "totalThresholdUsd": 2,
+  "newPaidCallsAtRegistration": 0
+}
