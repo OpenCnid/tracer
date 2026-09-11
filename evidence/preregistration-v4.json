@@ -1,0 +1,32 @@
+{
+  "protocol": "native-seam-v4",
+  "frozenAt": "2026-09-11T00:34:08.519Z",
+  "documents": [
+    {
+      "path": "research/02-preregistered-probe.md",
+      "sha256": "21e6608516e0e341e0d1779d1dc3ba464f5bf6fb68b1500f2af2cefc12d22c49"
+    },
+    {
+      "path": "research/05-luna-two-dollar-protocol.md",
+      "sha256": "b74b078dcb83f27ac4b418833e202f3dfd7af23c00efc9f2bf1624e0521fc26a"
+    },
+    {
+      "path": "research/06-usage-lag-amendment.md",
+      "sha256": "f92a4d547a76ef8660cf4fcf2e6432a6a58cab6d7dc480a7e4a7f40d99ed514c"
+    },
+    {
+      "path": "research/07-control-and-accounting-amendment.md",
+      "sha256": "63bdde30507224edb684d30fb002ab4cdcf107ecda9528e9b1d2ffa10eb657df"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T00-23-15-958Z-run-2424a128/reconcile-2026-09-11T00-25-28-815Z/result.json",
+      "sha256": "7b9d3cf418c6207f9cf6a31bffc6fe7753a93c6b22942cb2717fa42010d3757a"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T00-27-58-269Z-run-ba7c9a60/reconcile-2026-09-11T00-31-43-493Z/result.json",
+      "sha256": "335bc6db11b1959b655a468ea8129dd8f723a63cb9c744b8e1c5ff0e7ae4b4c7"
+    }
+  ],
+  "sha256": "bcff46cf371fa26dc6223b55730eaa5513c01bdb6e1226b97535a6d0175353f8",
+  "inferenceStarted": false
+}
