@@ -123,7 +123,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
     if(!options.restore||c.row.id!=='b1-control'||c.row.sessionId!==options.restore.session.id||c.row.error) throw new Error('INVALID_COMPLETED_CONTROL');
     const destination=join(root.directory,c.row.id);if(existsSync(destination)) throw new Error('COMPLETED_CONTROL_EXISTS');
     cpSync(c.directory,destination,{recursive:true,errorOnExist:true,force:false});
-    save(join(destination,existsSync(join(destination,'adopted-result.json'))?'cohort-continuation.json':'adopted-result.json'),{...c.row,sourceDirectory:relative(destination,c.directory),originalResultHash:sha256(readFileSync(join(c.directory,'result.json'))),readOnlySource:options.restore.readOnlySource});
+    save(join(destination,`inheritance-${sha256(root.directory).slice(0,8)}.json`),{...c.row,sourceDirectory:relative(destination,c.directory),originalResultHash:sha256(readFileSync(join(c.directory,'result.json'))),readOnlySource:options.restore.readOnlySource});
     cases.push(c.row);root.record('managed.inherited-control',c.row);
   }
   for(const c of options.inheritedCases??[]) {
@@ -132,7 +132,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
     seenSessions.add(c.session.id);turnsDispatched+=c.turns.length;
     const destination=join(root.directory,c.row.id);if(existsSync(destination))throw new Error('INHERITED_CASE_EXISTS');
     cpSync(c.directory,destination,{recursive:true,errorOnExist:true,force:false});
-    save(join(destination,'cohort-continuation.json'),{sourceDirectory:relative(destination,c.directory),originalResultHash:sha256(readFileSync(join(c.directory,'result.json'))),originalError:c.row.error});
+    save(join(destination,`inheritance-${sha256(root.directory).slice(0,8)}.json`),{sourceDirectory:relative(destination,c.directory),originalResultHash:sha256(readFileSync(join(c.directory,'result.json'))),originalError:read<ManagedCase>(join(c.directory,'result.json')).error,effectiveRow:c.row});
     cases.push(c.row);root.record('managed.inherited-case',c.row);
   }
   let fatal:string|null=null;
@@ -266,7 +266,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
           row.recovery={pass,checkpoint:obs,recordsCorrect:records.correct,recordReports:records.reports,duplicateCompletedRequest:duplicate,
             sourceIntact:true,originalReceiptIntact:true,operationCount:restored.results().length,firstCheckpointReportCorrect:obs.reports[0]?.accepted??null};
         }
-      } catch(error) {row.error=error instanceof Error?error.message:'CASE_FAILED';}
+      } catch(error) {row.error=error instanceof Error?error.message:'CASE_FAILED';log.tryRecord('managed.diagnostic',error instanceof Error?{name:error.name,message:error.message.slice(0,512),stack:error.stack?.split('\n').slice(0,6).join('\n').slice(0,2048)??null}:{type:typeof error});}
       log.write('result.json',row);root.record('managed.case',row);
       console.log(JSON.stringify({event:'managed-case-completed',id,candidate:row.candidate,recovery:row.recovery,error:row.error,estimateUsd:guard.snapshot().estimateUsd}));
       // Missing usage, cancellation, or an invalid measurement stops paid work, rather than attempting a replacement case.

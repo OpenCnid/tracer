@@ -42,3 +42,12 @@ it('carries all three sessions and retains the second control collection failure
   expect(auditedRecovery(join(reg.parent,'b2-control'))).toMatchObject({pass:false,complete:false,pendingExecuted:2,checkpointReports:[true],recordReports:[true]});
   expect(read(join(reg.parent,'b2-control/result.json')).error).toBe('CURRENT_TURN_UNESTABLISHED');
 });
+
+it('verifies the third control independently and carries all five sessions into the last case',()=>{
+  const read=(p:string)=>JSON.parse(readFileSync(p,'utf8')),reg=read('evidence/preregistration-v10-last.json');
+  const saved=read(join(reg.parent,'managed-reconciliation.json')),guard=new UsageGuard('gpt-5.6-luna',2,.5,reg.priorAdmissionUsd);
+  for(const s of saved.reconciliation) {guard.observeSession(s.session.id,s.session.usage);for(const t of s.turns)guard.observeTurn(s.session.id,t);guard.requireComplete(s.session.id);}
+  expect(guard.snapshot().admissionEstimateUsd).toBeCloseTo(1.4448626,10);
+  expect(guard.snapshot().sessions.reduce((n,s)=>n+s.turns.length,0)).toBe(51);
+  expect(auditedRecovery(join(reg.parent,'b3-control'))).toMatchObject({pass:true,complete:true,pendingExecuted:2,checkpointReports:[true],recordReports:[true]});
+});
