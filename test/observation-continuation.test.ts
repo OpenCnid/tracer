@@ -7,7 +7,7 @@ import {CarriedCalibrationBudget,missingCalibrationRequests,continuationRegistra
   claimContinuation,completeCalibration,FIXED_RULE} from '../src/observation-continuation.js';
 import {Evidence} from '../src/evidence.js';
 import {UsageGuard} from '../src/budget.js';
-import {ackObservation,ObservationBindings} from '../src/observation-managed.js';
+import {ackObservation,ObservationBindings,TransportUsageGuard,canRetryUnestablished} from '../src/observation-managed.js';
 import type {Response as ModelResponse} from 'openai/resources/responses/responses';
 
 const parent='evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e';
@@ -17,6 +17,16 @@ function cleanup(path:string) {
   rmSync(path,{recursive:true,force:true});
 }
 describe('carried observation continuation',()=>{
+  it('retains transport reservations and refuses retries when a new or active turn exists',()=>{
+    const guard=new TransportUsageGuard('gpt-5.6-luna',2,.5,.37);guard.reserveUnestablished();
+    expect(guard.snapshot().admissionEstimateUsd).toBeCloseTo(.57,10);
+    const status={status:'idle',required_actions:[]} as any,turn={id:'old',status:'completed',usage:{input_tokens:10,output_tokens:1}} as any;
+    expect(canRetryUnestablished(status,[turn],new Set(['old']),false)).toBe(true);
+    expect(canRetryUnestablished(status,[],new Set(['old']),false)).toBe(false);
+    expect(canRetryUnestablished(status,[turn,{...turn,id:'new'}],new Set(['old']),false)).toBe(false);
+    expect(canRetryUnestablished({...status,status:'in_progress'},[turn],new Set(['old']),false)).toBe(false);
+    expect(canRetryUnestablished(status,[{...turn,usage:null}],new Set(['old']),false)).toBe(false);
+  });
   it('restores delayed usage into the same guard once, preserving the original binding',()=>{
     const reg=read('evidence/preregistration-v10-completion.json');
     const rows=readFileSync(reg.resolvedSnapshot,'utf8').trim().split('\n').map(l=>JSON.parse(l));

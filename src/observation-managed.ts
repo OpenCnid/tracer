@@ -86,13 +86,27 @@ export function ackObservation(id:string,turn:Turn,items:AgentSessionItem[],stab
     cached:turn.usage?.input_tokens_details.cached_tokens??null,output:turn.usage?.output_tokens??null,valid:reasons.length===0,reasons};
 }
 export interface ManagedCase {id:string;sessionId:string|null;samples:Sample[];candidate:ReturnType<typeof detect>;recovery:unknown;error:string|null}
-export interface ManagedRestore {parent:string;session:AgentSession;turns:Turn[];items:AgentSessionItem[];readOnlySource:string}
-export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string;restore?:ManagedRestore;settlementPolls?:number;settlementDelayMs?:number}={}) {
-  const guard=new UsageGuard(DEFAULT_MODEL,2,.5,priorUsd),cases:ManagedCase[]=[];
+export interface ManagedRestore {parent:string;session:AgentSession;turns:Turn[];items:AgentSessionItem[];readOnlySource:string;measurementDirectories?:string[];pendingDose?:{fact:Fact;input:string;source:string}}
+export class TransportUsageGuard extends UsageGuard {
+  transportReservationUsd=0;
+  reserveUnestablished() {this.transportReservationUsd+=.2;}
+  override snapshot() {
+    const s=super.snapshot();return {...s,transportReservationUsd:this.transportReservationUsd,
+      priorEstimateUsd:s.priorEstimateUsd+this.transportReservationUsd,admissionEstimateUsd:s.admissionEstimateUsd+this.transportReservationUsd,
+      estimateUsd:s.estimateUsd===null?null:s.estimateUsd+this.transportReservationUsd};
+  }
+}
+export function canRetryUnestablished(status:AgentSession,turns:Turn[],seen:Set<string>,more:boolean) {
+  return status.status==='idle'&&!status.required_actions.length&&!more&&turns.length===seen.size&&
+    turns.every(t=>seen.has(t.id)&&t.status==='completed'&&!!t.usage);
+}
+export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string;restore?:ManagedRestore;settlementPolls?:number;settlementDelayMs?:number;transportRetries?:number}={}) {
+  const guard=new TransportUsageGuard(DEFAULT_MODEL,2,.5,priorUsd),cases:ManagedCase[]=[];
   const bindings=new ObservationBindings(join(options.restore?.parent??root.directory,'bindings'));
   let turnsDispatched=options.restore?.turns.length??0;
   const client=()=>new OpenAI({apiKey:key,maxRetries:0,timeout:120000,fetch:boundedFetch(fetcher),...(process.env.OPENAI_PROJECT_ID?{project:process.env.OPENAI_PROJECT_ID}:{})});
   const seenSessions=new Set<string>();
+  let transportRetries=0;
   if(options.restore) {
     guard.observeSession(options.restore.session.id,options.restore.session.usage);
     for(const t of options.restore.turns) guard.observeTurn(options.restore.session.id,t);
@@ -113,22 +127,25 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
       const measurements:{sample:Sample;turnId:string;items:AgentSessionItem[];complete:boolean}[]=[];
       let sequence=restore?.turns.length??0;
       if(restore) {
-        const from=join(restore.parent,id,'01-baseline-1'),to=join(log.directory,'01-baseline-1');mkdirSync(to,{recursive:true});
-        for(const name of ['events.jsonl','request.json','collection.json']) copyFileSync(join(from,name),join(to,name),constants.COPYFILE_EXCL);
-        const current=restore.turns.at(-1)!;
-        const sample=ackObservation('baseline-1',current,restore.items,true,true);
-        if(!sample.valid) throw new Error('RESTORED_ACK_INVALID');
-        save(join(to,'settled.json'),{turn:current,stable:true,readOnlySource:restore.readOnlySource,inherited:true});
-        save(join(to,'measurement.json'),{sample,hiddenGenerationCount:null,inherited:true,sourceDirectory:relative(to,from),readOnlySource:restore.readOnlySource});
-        save(join(to,'inherited.json'),{sourceDirectory:relative(to,from),files:['events.jsonl','request.json','collection.json'].map(name=>({name,sha256:sha256(readFileSync(join(from,name)))}))});
-        row.samples.push(sample);
+        const dirs=restore.measurementDirectories??[join(restore.parent,id,'01-baseline-1')];
+        for(let index=0;index<dirs.length;index++) {
+          const from=dirs[index]!,name=`baseline-${index+1}`,to=join(log.directory,`${String(index+1).padStart(2,'0')}-${name}`);mkdirSync(to,{recursive:true});
+          for(const file of ['events.jsonl','request.json','collection.json']) copyFileSync(join(from,file),join(to,file),constants.COPYFILE_EXCL);
+          const current=restore.turns[index+1]!,sample=ackObservation(name,current,restore.items,true,true);
+          if(!sample.valid) throw new Error('RESTORED_ACK_INVALID');
+          save(join(to,'settled.json'),{turn:current,stable:true,readOnlySource:restore.readOnlySource,inherited:true});
+          save(join(to,'measurement.json'),{sample,hiddenGenerationCount:null,inherited:true,sourceDirectory:relative(to,from),readOnlySource:restore.readOnlySource});
+          save(join(to,'inherited.json'),{sourceDirectory:relative(to,from),files:['events.jsonl','request.json','collection.json'].map(name=>({name,sha256:sha256(readFileSync(join(from,name)))}))});
+          row.samples.push(sample);
+        }
         log.write('checkpoint.json',{reference:store.reference,sessionId:restore.session.id,stateRelativePath:relative(log.directory,store.reference.directory),inherited:true});
         log.record('session.restored',{sessionId:restore.session.id,readOnlySource:restore.readOnlySource,completedTurnIds:restore.turns.map(t=>t.id)});
       }
       async function turn(name:string,input:string,ledger:NonNullable<CollectionOptions['ledger']>) {
+        for(let attempt=0;;attempt++) {
         if(++turnsDispatched>66) throw new Error('MANAGED_TURN_CAP');
         if(guard.snapshot().admissionEstimateUsd+.2>2) throw new Error('STUDY_ADMISSION_CAP');
-        const e=new Evidence(join(log.directory,`${String(sequence++).padStart(2,'0')}-${name}`),[key]),api=client();
+        const e=new Evidence(join(log.directory,`${String(sequence++).padStart(2,'0')}-${name}${attempt?`-retry-${attempt}`:''}`),[key]),api=client();
         root.record('managed.reserved',{id,name,reservationUsd:.2,prior:guard.snapshot()});
         console.log(JSON.stringify({event:'managed-turn',id,name,estimateUsd:guard.snapshot().estimateUsd}));
         const result=await collectTrial(api,{...trial,id:`${id}-${name}`},e,guard,{
@@ -141,6 +158,16 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
         const events=readFileSync(join(e.directory,'events.jsonl'),'utf8').trim().split('\n').map(l=>JSON.parse(l) as {kind:string;data:any});
         const listed:Turn[]=events.filter(r=>r.kind==='session.turns').flatMap(r=>r.data.data);
         const fresh=listed.filter(t=>!seenTurns.has(t.id));
+        if(result.error && (result.error as {code?:string}).code==='internal_error' && row.sessionId && transportRetries<(options.transportRetries??0)) {
+          const status=await api.beta.agents.sessions.retrieve(row.sessionId),page=await api.beta.agents.sessions.turns.list(row.sessionId,{order:'asc',limit:100});
+          e.record('transport.read-only-check',{session:status,turns:page.data});
+          if(canRetryUnestablished(status,page.data,seenTurns,page.hasNextPage())) {
+            for(const t of page.data) guard.observeTurn(row.sessionId,t);guard.observeSession(row.sessionId,status.usage);
+            guard.reserveUnestablished();guard.check(row.sessionId);transportRetries++;
+            e.write('transport-retry.json',{sameInput:true,sameIdempotencyKey:`${id}-${name}`,noNewPublicTurn:true,retainedReservationUsd:.2,attempt:transportRetries});
+            root.record('transport.retry',{id,name,attempt:transportRetries,budget:guard.snapshot()});continue;
+          }
+        }
         if(fresh.length!==1 || !row.sessionId) throw new Error('CURRENT_TURN_UNESTABLISHED');
         const current=fresh[0]!;seenTurns.add(current.id);
         const items:AgentSessionItem[]=events.filter(r=>r.kind==='root.items').flatMap(r=>r.data.data);
@@ -157,6 +184,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
         e.write('settled.json',{turn:latest,stable,hiddenGenerationCount:null,reason:'Public items do not certify all internal generations.'});
         if(result.error || !stable) throw new Error(result.error?'COLLECTOR_FAILED':'UNSETTLED_USAGE');
         return {log:e,turn:latest,items,complete:result.historyComplete && result.terminal==='agent.session.turn.completed'};
+        }
       }
       const noTools={correct:null,handle:()=>{throw new Error('MEASUREMENT_TOOL_CALL');}};
       async function ack(name:string,input=ACK) {
@@ -175,13 +203,14 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
           const frozen=store.freeze();bindings.freeze(row.sessionId,frozen);log.write('checkpoint.json',{reference:frozen,sessionId:row.sessionId,stateRelativePath:relative(log.directory,frozen.directory)});
           await ack('baseline-1');
         }
-        await ack('baseline-2');
+        if(!row.samples.some(s=>s.id==='baseline-2')) await ack('baseline-2');
         let confirming=false;
         for(let dose=1;dose<=4;dose++) {
-          const f=fact(`block${dose}`);facts.push(f);
+          const pending=dose===1?restore?.pendingDose:undefined;
+          const f=pending?.fact??fact(`block${dose}`);facts.push(f);
           const noise=randomBytes((arm==='pressure'?65536:256)/2).toString('hex');
-          const input=`${factText(f)}\nIrrelevant log (do not reproduce): ${noise}\n${ACK}`;
-          log.write(`block-${dose}.json`,{fact:f,noiseBytes:Buffer.byteLength(noise),noiseHash:sha256(noise)});
+          const input=pending?.input??`${factText(f)}\nIrrelevant log (do not reproduce): ${noise}\n${ACK}`;
+          log.write(`block-${dose}.json`,{fact:f,noiseBytes:Buffer.byteLength(noise),noiseHash:pending?null:sha256(noise),inheritedRequest:pending?.source??null});
           const sample=await ack(`dose-${dose}`,input),before=row.samples.at(-2)!;
           if(drop(before,sample,rule)) {confirming=true;await ack('confirm-1');await ack('confirm-2');break;}
         }
@@ -221,6 +250,6 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
     } catch(error) {reconciliation.push({id:row.id,error:error instanceof Error?error.message:'RECONCILE_FAILED'});}
   }
   root.write('managed-reconciliation.json',{readOnly:true,reconciliation,budget:guard.snapshot()});
-  const result={cases,error:fatal,turnsDispatched,budget:guard.snapshot(),mechanism:'unidentified; candidates are usage observations only'};
+  const result={cases,error:fatal,turnsDispatched,transportRetries,budget:guard.snapshot(),mechanism:'unidentified; candidates are usage observations only'};
   root.write('managed.json',result);return result;
 }
