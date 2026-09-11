@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { boundedFetch, UsageGuard } from './budget.js';
 import { allPages, type Collected } from './collector.js';
 import { Evidence, safeError, verifyLog } from './evidence.js';
-import type { Trial } from './protocol.js';
+import { LIMITS, SDK_VERSION, sha256, type Trial } from './protocol.js';
 
 const directory = process.argv[2];
 if (!directory) throw new Error('Usage: pnpm reconcile <study-directory>');
@@ -13,11 +13,9 @@ process.loadEnvFile('.env');
 const apiKey = process.env.OPENAI_API_KEY?.trim();
 if (!apiKey) throw new Error('MISSING_OPENAI_API_KEY');
 verifyLog(join(directory, 'events.jsonl'));
-const manifest = JSON.parse(readFileSync(join(directory, 'manifest.json'), 'utf8')) as {trials: Trial[]; modelRequested: string};
+const manifest = JSON.parse(readFileSync(join(directory, 'manifest.json'), 'utf8')) as {trials: Trial[]; modelRequested: string; priorEstimateUsd?: number};
 const evidence = new Evidence(join(directory, `reconcile-${new Date().toISOString().replace(/[:.]/g, '-')}`), [apiKey]);
-const budget = new UsageGuard(manifest.modelRequested);
-const client = new OpenAI({apiKey, maxRetries: 0, timeout: 10_000, fetch: boundedFetch(fetch),
-  ...(process.env.OPENAI_PROJECT_ID ? {project: process.env.OPENAI_PROJECT_ID} : {})});
+const budget = new UsageGuard(manifest.modelRequested, LIMITS.studyUsd, LIMITS.reservationUsd, manifest.priorEstimateUsd ?? 0);
 const summaries: unknown[] = [];
 try {
   for (const trial of manifest.trials) {
@@ -25,6 +23,8 @@ try {
     if (!existsSync(collectionFile)) continue;
     const collection = JSON.parse(readFileSync(collectionFile, 'utf8')) as Collected;
     if (!collection.sessionId) continue;
+    const client = new OpenAI({apiKey, maxRetries: 0, timeout: 10_000, fetch: boundedFetch(fetch),
+      ...(process.env.OPENAI_PROJECT_ID ? {project: process.env.OPENAI_PROJECT_ID} : {})});
     const id = collection.sessionId;
     const session = await client.beta.agents.sessions.retrieve(id);
     if (session.metadata.trial !== trial.id) throw new Error('SESSION_OWNERSHIP_MISMATCH');
@@ -47,6 +47,7 @@ try {
       itemCount: items.length, children: childSummaries});
   }
 } catch (error) {evidence.record('error', safeError(error)); process.exitCode = 1;}
-const result = {readOnly: true, summaries, budget: budget.snapshot()};
+const result = {readOnly: true, sdk: SDK_VERSION, node: process.version, sourceSha256: sha256(readFileSync('src/reconcile.ts')),
+  summaries, budget: budget.snapshot()};
 evidence.write('result.json', result);
 console.log(JSON.stringify({evidence: evidence.directory, ...result}, null, 2));

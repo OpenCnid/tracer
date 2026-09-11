@@ -1,0 +1,7 @@
+{
+  "verifiedRecords": 18,
+  "collectedTrials": 9,
+  "outcome": "inconclusive",
+  "reason": "INSUFFICIENT_ROUTE_OR_CONTROL_EVIDENCE",
+  "caution": "Hashes verify integrity, not truth. Execution-route decisions depend on reviewer trace interpretation."
+}

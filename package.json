@@ -12,7 +12,8 @@
     "check": "pnpm typecheck && pnpm test",
     "probe": "tsx src/cli.ts",
     "replay": "tsx src/replay.ts",
-    "reconcile": "tsx src/reconcile.ts"
+    "reconcile": "tsx src/reconcile.ts",
+    "analyze": "tsx src/analyze.ts"
   },
   "dependencies": { "openai": "7.15.0" },
   "devDependencies": {

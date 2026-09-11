@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-09-11T00:48:24.087Z",
+  "kind": "local-verification",
+  "command": "npx --yes pnpm@11.7.0 typecheck",
+  "toolResult": {
+    "chunk_id": "357cc4",
+    "wall_time_seconds": 3.9987117,
+    "exit_code": 0,
+    "original_token_count": 17,
+    "output": "Already up to date\nDone in 427ms using pnpm v11.7.0\n$ tsc --noEmit\n"
+  },
+  "preLiveTestReport": "evidence/local-tests/vitest-v4.json",
+  "preLivePassingTests": 31,
+  "note": "Typecheck covers the final working tree, including read-only reconciliation and descriptive analysis. Vitest transport tests use mocked HTTP; live observations are stored separately."
+}

@@ -24,16 +24,24 @@ Our probe compares ordinary delegation, code running without delegation, and cod
 
 ## Current status
 
-**Inconclusive. No live API experiments have run.**
+**The tested native-from-code workflow failed all three answer checks.** We completed a nine-trial matrix on `gpt-5.6-luna`, after two separately recorded calibration attempts.
 
-The research and probe are in place, and 22 local tests passed. Our first attempt stopped because no API key was configured and we could not verify a hard spending limit that meets our experiment's budget rules. Local tests do not establish that the managed workflow works.
+| Workflow | Correct submissions |
+| --- | --- |
+| Code without delegation | 3 of 3 |
+| Direct child-agent delegation | 2 of 3 |
+| Child-agent delegation requested from code | 0 of 3 |
+
+The native-from-code trials created two children but submitted an undefined value after a wait returned only one child's result. This points to incomplete result collection. It does **not** prove that the API cannot support RLM: the exact execution route still needs independent trace review, and one control also failed a string transformation.
+
+The runner uses a **$2 stopping threshold**, with possible overshoot explicitly accepted by OpenCnid. The latest conservative estimate for all attempts is **about $0.37**, not a final bill. [Live results and evidence](research/08-live-results.md).
 
 ## Read the study
 
 1. [Our reading and sources](research/01-reading.md)
 2. [The experiment and what would disprove our hypothesis](research/02-preregistered-probe.md)
 3. [How the probe works](research/03-implementation.md)
-4. [Results and what remains unknown](research/04-results.md)
+4. [Live results and what remains unknown](research/08-live-results.md)
 
 ## Run locally
 
@@ -46,6 +54,6 @@ pnpm probe plan
 pnpm probe run
 ```
 
-`probe run` currently records why the experiment is blocked and exits with an error without making paid requests. Adding an API key alone does not remove the spending-limit block.
+`probe run` makes paid requests when a key is configured in `.env`. It runs trials sequentially, monitors reported usage, and stops on budget or evidence problems. The $2 threshold is not a guaranteed billing cap: usage and cancellation can be delayed. An unreviewed run exits with an inconclusive result.
 
 See [setup and budget details](research/03-implementation.md) and [how to inspect the evidence](evidence/README.md) before running a live experiment.

@@ -1,0 +1,9 @@
+{
+  "kind": "browser-access-observation",
+  "requestedUrl": "https://platform.openai.com/logs?api=agents",
+  "observedUrl": "https://platform.openai.com/login?next=%2Flogs%3Fapi%3Dagents",
+  "observedPage": "OpenAI Platform login, with an email field and sign-in options",
+  "method": "Codex in-app browser accessibility inspection",
+  "traceContentRetrieved": false,
+  "note": "This records an access limitation, not a trace review or evidence of execution-route failure."
+}

@@ -1,0 +1,854 @@
+{
+  "protocol": "native-seam-v4",
+  "sourceSha256": "67385a71c5c41c18f7d214f79503332a7c69bfe351823cba60cb9d68f14c32f3",
+  "routeCertified": false,
+  "note": "Derived observations. Child correctness and wait records do not prove program-to-child caller edges.",
+  "trials": [
+    {
+      "trial": "b1-direct-native",
+      "arm": "direct-native",
+      "block": 1,
+      "started": true,
+      "sessionId": "sess_09ba8e1937b8c34a006aa34c9e34e481919a71fbd422d50942",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": true,
+      "completedChildren": 2,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b1-direct-native/events.jsonl",
+        "sha256": "4f493cced019d08f851e075156b5fee79df461c1a990ee03808e6f21a1e3fa67",
+        "verifiedRecords": 288
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "314c6da562b4436ceba7bc7688d31cc2",
+          "value": "2cc13d8867cb7abec6344b265ad6c413"
+        },
+        {
+          "key": "task-1",
+          "nonce": "dcee0992e0a5f0f02310a6e4a631bc06",
+          "value": "60cb136a4e6a01320f0f5a0e2990eecd"
+        }
+      ],
+      "submission": {
+        "sequence": 200,
+        "at": "2026-09-11T00:35:12.807Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_09ba8e1937b8c34a006aa34ca692208191a2de30cbb1aa3abe",
+          "call_id": "exec-9420d93f-58fd-4f06-892a-f622efb8cd28",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "2cc13d8867cb7abec6344b265ad6c413"
+              },
+              {
+                "key": "task-1",
+                "value": "60cb136a4e6a01320f0f5a0e2990eecd"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [
+        {
+          "sequence": 154,
+          "at": "2026-09-11T00:35:04.420Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-abc83d3b-630a-4b00-ba8c-ec7d18afdf75",
+            "turn_id": "turn_09ba8e1937b8c34a006aa34ca692208191a2de30cbb1aa3abe",
+            "status": "in_progress",
+            "sender_agent_id": "agent_d0cd6b6989e248a0abb6b75925721309d3ef00d691ca4617b9",
+            "recipient_agent_ids": [
+              "subagent_9022b4f290a8ab360f6c2942b32829b9",
+              "subagent_b948d657d9d7c02090f3b0bbae34ef5c"
+            ]
+          }
+        },
+        {
+          "sequence": 155,
+          "at": "2026-09-11T00:35:04.485Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-abc83d3b-630a-4b00-ba8c-ec7d18afdf75",
+            "turn_id": "turn_09ba8e1937b8c34a006aa34ca692208191a2de30cbb1aa3abe",
+            "status": "completed",
+            "sender_agent_id": "agent_d0cd6b6989e248a0abb6b75925721309d3ef00d691ca4617b9",
+            "recipient_agent_ids": [
+              "subagent_9022b4f290a8ab360f6c2942b32829b9"
+            ]
+          }
+        },
+        {
+          "sequence": 189,
+          "at": "2026-09-11T00:35:06.215Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-32bd41c6-1fa5-4577-a072-f7d90b356b71",
+            "turn_id": "turn_09ba8e1937b8c34a006aa34ca692208191a2de30cbb1aa3abe",
+            "status": "in_progress",
+            "sender_agent_id": "agent_d0cd6b6989e248a0abb6b75925721309d3ef00d691ca4617b9",
+            "recipient_agent_ids": [
+              "subagent_b948d657d9d7c02090f3b0bbae34ef5c"
+            ]
+          }
+        },
+        {
+          "sequence": 190,
+          "at": "2026-09-11T00:35:06.274Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-32bd41c6-1fa5-4577-a072-f7d90b356b71",
+            "turn_id": "turn_09ba8e1937b8c34a006aa34ca692208191a2de30cbb1aa3abe",
+            "status": "completed",
+            "sender_agent_id": "agent_d0cd6b6989e248a0abb6b75925721309d3ef00d691ca4617b9",
+            "recipient_agent_ids": [
+              "subagent_b948d657d9d7c02090f3b0bbae34ef5c"
+            ]
+          }
+        }
+      ],
+      "childResults": [
+        {
+          "childId": "subagent_9022b4f290a8ab360f6c2942b32829b9",
+          "taskKey": "task-0",
+          "finalText": "2cc13d8867cb7abec6344b265ad6c413",
+          "trimmedExact": true
+        },
+        {
+          "childId": "subagent_b948d657d9d7c02090f3b0bbae34ef5c",
+          "taskKey": "task-1",
+          "finalText": "60cb136a4e6a01320f0f5a0e2990eecd",
+          "trimmedExact": true
+        }
+      ]
+    },
+    {
+      "trial": "b1-programmatic-local",
+      "arm": "programmatic-local",
+      "block": 1,
+      "started": true,
+      "sessionId": "sess_0468ca229dc41662006aa34cdc6ddc8191840404713255786d",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": true,
+      "completedChildren": 0,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b1-programmatic-local/events.jsonl",
+        "sha256": "28d762055d341ff09e7b560d68ff697713d2f7d53e6a4203dd3b2f8b30d12bcf",
+        "verifiedRecords": 138
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "895e557330b70e6d6e2cec70837cd273",
+          "value": "372dc73807cec2e6d6e07b033755e598"
+        },
+        {
+          "key": "task-1",
+          "nonce": "59454654141bcda981eb6bc02bf1a1eb",
+          "value": "be1a1fb20cb6be189adcb14145645495"
+        }
+      ],
+      "submission": {
+        "sequence": 63,
+        "at": "2026-09-11T00:36:06.625Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_0468ca229dc41662006aa34ce4bc908191a7a99c96f5ef0b8e",
+          "call_id": "exec-9ded8e61-216c-4198-866e-a065d07afb3b",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "372dc73807cec2e6d6e07b033755e598"
+              },
+              {
+                "key": "task-1",
+                "value": "be1a1fb20cb6be189adcb14145645495"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [],
+      "childResults": []
+    },
+    {
+      "trial": "b1-programmatic-native",
+      "arm": "programmatic-native",
+      "block": 1,
+      "started": true,
+      "sessionId": "sess_0f330bfa19403895006aa34d0552e08191b050d56264ec07d6",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": false,
+      "completedChildren": 2,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b1-programmatic-native/events.jsonl",
+        "sha256": "54fb420361166b0e5ab3cdff1d2c30476e7561715b91f7236d69653da43443dc",
+        "verifiedRecords": 444
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "cfc006049c882957eef95487a483a233",
+          "value": "332a384a78459fee759288c940600cfc"
+        },
+        {
+          "key": "task-1",
+          "nonce": "bfafc4c8df68cc899a860f8452141793",
+          "value": "3971412548f068a998cc86fd8c4cfafb"
+        }
+      ],
+      "submission": {
+        "sequence": 237,
+        "at": "2026-09-11T00:36:56.091Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+          "call_id": "exec-14091643-e0bd-4608-86ad-017a0a76e7f5",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "undefined"
+              },
+              {
+                "key": "task-1",
+                "value": "3971412548f068a998cc86fd8c4cfafb"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [
+        {
+          "sequence": 231,
+          "at": "2026-09-11T00:36:51.958Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-43cc14a9-b4c3-4e79-b23b-721a239c46b5",
+            "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+            "status": "in_progress",
+            "sender_agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+            "recipient_agent_ids": [
+              "subagent_708b75d008523591a6b519b85593df51",
+              "subagent_674a90c31f87136deb2b274b5341ab65"
+            ]
+          }
+        },
+        {
+          "sequence": 232,
+          "at": "2026-09-11T00:36:52.026Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-43cc14a9-b4c3-4e79-b23b-721a239c46b5",
+            "turn_id": "turn_0f330bfa19403895006aa34d0e13248191bca0c720132e1f7a",
+            "status": "completed",
+            "sender_agent_id": "agent_baaa426dcfc94a288aec1d0c8b735722401a6c9e387e479cbf",
+            "recipient_agent_ids": [
+              "subagent_674a90c31f87136deb2b274b5341ab65"
+            ]
+          }
+        }
+      ],
+      "childResults": [
+        {
+          "childId": "subagent_708b75d008523591a6b519b85593df51",
+          "taskKey": "task-0",
+          "finalText": "332a384a78459fee759288c940600cfc",
+          "trimmedExact": true
+        },
+        {
+          "childId": "subagent_674a90c31f87136deb2b274b5341ab65",
+          "taskKey": "task-1",
+          "finalText": "3971412548f068a998cc86fd8c4cfafb",
+          "trimmedExact": true
+        }
+      ]
+    },
+    {
+      "trial": "b2-programmatic-local",
+      "arm": "programmatic-local",
+      "block": 2,
+      "started": true,
+      "sessionId": "sess_07d09c10f70d0ddc006aa34d412a3081919c0b3b9f703b8f39",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": true,
+      "completedChildren": 0,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b2-programmatic-local/events.jsonl",
+        "sha256": "02a87917edc919919a72b8d0a00120bddd044077ca8fe7d42462f32e2126279f",
+        "verifiedRecords": 288
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "2af4a303e51b13d595a3945284d564b3",
+          "value": "3b465d4825493a595d31b15e303a4fa2"
+        },
+        {
+          "key": "task-1",
+          "nonce": "c8f38d7656dcff9151ea6d1549f764f2",
+          "value": "2f467f9451d6ae1519ffcd6567d83f8c"
+        }
+      ],
+      "submission": {
+        "sequence": 206,
+        "at": "2026-09-11T00:37:41.760Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_07d09c10f70d0ddc006aa34d489c188191b11450da7916fbe6",
+          "call_id": "exec-e7845b88-bfd0-4a2d-aff9-052b7c932335",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "3b465d4825493a595d31b15e303a4fa2"
+              },
+              {
+                "key": "task-1",
+                "value": "2f467f9451d6ae1519ffcd6567d83f8c"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [],
+      "childResults": []
+    },
+    {
+      "trial": "b2-programmatic-native",
+      "arm": "programmatic-native",
+      "block": 2,
+      "started": true,
+      "sessionId": "sess_01d36fccdbf28655006aa34d633a7c81918261d82129892679",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": false,
+      "completedChildren": 2,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b2-programmatic-native/events.jsonl",
+        "sha256": "1b4a8a586cb1b7440491e7e28132f8214339fa1b04ba7a44a198d86ac44288ce",
+        "verifiedRecords": 436
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "87e5065e1b242898687a92f5b2f8574e",
+          "value": "e4758f2b5f29a786898242b1e5605e78"
+        },
+        {
+          "key": "task-1",
+          "nonce": "7d21e8d1009f6f54dc28f33dfa5aa89e",
+          "value": "e98aa5afd33f82cd45f6f9001d8e12d7"
+        }
+      ],
+      "submission": {
+        "sequence": 204,
+        "at": "2026-09-11T00:38:30.757Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_01d36fccdbf28655006aa34d6b182c81918ddb0347b0eeb90a",
+          "call_id": "exec-b754f4d2-0951-4804-8bca-0c57de61e448",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "e4758f2b5f29a786898242b1e5605e78"
+              },
+              {
+                "key": "task-1",
+                "value": "ERROR: undefined"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [
+        {
+          "sequence": 195,
+          "at": "2026-09-11T00:38:24.548Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-468697a5-f0f6-479b-99e3-7ad6a43bb977",
+            "turn_id": "turn_01d36fccdbf28655006aa34d6b182c81918ddb0347b0eeb90a",
+            "status": "in_progress",
+            "sender_agent_id": "agent_5be04594326f48ff9b96139c14da1948302a7cf5193a433e9c",
+            "recipient_agent_ids": [
+              "subagent_1b6dc71ef568358bd47858bf8aa00de3",
+              "subagent_216aaf67c96d4e4fde5ae82d63b24cb7"
+            ]
+          }
+        },
+        {
+          "sequence": 199,
+          "at": "2026-09-11T00:38:27.673Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-468697a5-f0f6-479b-99e3-7ad6a43bb977",
+            "turn_id": "turn_01d36fccdbf28655006aa34d6b182c81918ddb0347b0eeb90a",
+            "status": "completed",
+            "sender_agent_id": "agent_5be04594326f48ff9b96139c14da1948302a7cf5193a433e9c",
+            "recipient_agent_ids": [
+              "subagent_1b6dc71ef568358bd47858bf8aa00de3"
+            ]
+          }
+        }
+      ],
+      "childResults": [
+        {
+          "childId": "subagent_1b6dc71ef568358bd47858bf8aa00de3",
+          "taskKey": "task-0",
+          "finalText": "e4758f2b5f29a786898242b1e5605e78",
+          "trimmedExact": true
+        },
+        {
+          "childId": "subagent_216aaf67c96d4e4fde5ae82d63b24cb7",
+          "taskKey": "task-1",
+          "finalText": "e98aa5afd33f82cd45f6f9001d8e12d7",
+          "trimmedExact": true
+        }
+      ]
+    },
+    {
+      "trial": "b2-direct-native",
+      "arm": "direct-native",
+      "block": 2,
+      "started": true,
+      "sessionId": "sess_0425a02e0b99d9c5006aa34d9e9ba48191ac84982b69e6c395",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": true,
+      "completedChildren": 2,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b2-direct-native/events.jsonl",
+        "sha256": "cb6891743ef87fe89a8b70c6c59fd236694fc36f01fdd6ed576c299876753a5a",
+        "verifiedRecords": 340
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "bde44ac2f9a6e1e3e63fbd170dcd3e27",
+          "value": "72e3dcd071dbf36e3e1e6a9f2ca44edb"
+        },
+        {
+          "key": "task-1",
+          "nonce": "5254eb71acffe557320956843ea07359",
+          "value": "95370ae348659023755effca17be4525"
+        }
+      ],
+      "submission": {
+        "sequence": 152,
+        "at": "2026-09-11T00:39:31.916Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_0425a02e0b99d9c5006aa34da6d7d881918a1f6524a9493d53",
+          "call_id": "exec-40fbf627-ca26-4ad9-b029-7277dc939f60",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "72e3dcd071dbf36e3e1e6a9f2ca44edb"
+              },
+              {
+                "key": "task-1",
+                "value": "95370ae348659023755effca17be4525"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [
+        {
+          "sequence": 163,
+          "at": "2026-09-11T00:39:34.752Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-98594484-d8b9-4031-98f7-d808f197cee8",
+            "turn_id": "turn_0425a02e0b99d9c5006aa34da6d7d881918a1f6524a9493d53",
+            "status": "in_progress",
+            "sender_agent_id": "agent_83333b0d7a2c4a15950840f632ddb4426bc190aab7b84cbbb8",
+            "recipient_agent_ids": [
+              "subagent_385e7c5901012bc5dc17f6dee3c1e6ee",
+              "subagent_2dfcb7e8b9d794ae863e4ec8060acd19"
+            ]
+          }
+        },
+        {
+          "sequence": 164,
+          "at": "2026-09-11T00:39:34.812Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-98594484-d8b9-4031-98f7-d808f197cee8",
+            "turn_id": "turn_0425a02e0b99d9c5006aa34da6d7d881918a1f6524a9493d53",
+            "status": "completed",
+            "sender_agent_id": "agent_83333b0d7a2c4a15950840f632ddb4426bc190aab7b84cbbb8",
+            "recipient_agent_ids": [
+              "subagent_385e7c5901012bc5dc17f6dee3c1e6ee"
+            ]
+          }
+        },
+        {
+          "sequence": 249,
+          "at": "2026-09-11T00:39:34.873Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-a0f39d9d-56e7-4d8d-a135-c250a2b6c1e4",
+            "turn_id": "turn_0425a02e0b99d9c5006aa34da6d7d881918a1f6524a9493d53",
+            "status": "in_progress",
+            "sender_agent_id": "agent_83333b0d7a2c4a15950840f632ddb4426bc190aab7b84cbbb8",
+            "recipient_agent_ids": [
+              "subagent_2dfcb7e8b9d794ae863e4ec8060acd19"
+            ]
+          }
+        },
+        {
+          "sequence": 250,
+          "at": "2026-09-11T00:39:34.888Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-a0f39d9d-56e7-4d8d-a135-c250a2b6c1e4",
+            "turn_id": "turn_0425a02e0b99d9c5006aa34da6d7d881918a1f6524a9493d53",
+            "status": "completed",
+            "sender_agent_id": "agent_83333b0d7a2c4a15950840f632ddb4426bc190aab7b84cbbb8",
+            "recipient_agent_ids": [
+              "subagent_2dfcb7e8b9d794ae863e4ec8060acd19"
+            ]
+          }
+        }
+      ],
+      "childResults": [
+        {
+          "childId": "subagent_385e7c5901012bc5dc17f6dee3c1e6ee",
+          "taskKey": "task-0",
+          "finalText": "72e3dcd071dbf36e3e1e6a9f2ca44edb",
+          "trimmedExact": true
+        },
+        {
+          "childId": "subagent_2dfcb7e8b9d794ae863e4ec8060acd19",
+          "taskKey": "task-1",
+          "finalText": "95370ae348659023755effca17be4525",
+          "trimmedExact": true
+        }
+      ]
+    },
+    {
+      "trial": "b3-programmatic-native",
+      "arm": "programmatic-native",
+      "block": 3,
+      "started": true,
+      "sessionId": "sess_02a48a2a74cf2ed8006aa34ddddda481918af5f1ca2f19efe1",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": false,
+      "completedChildren": 2,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b3-programmatic-native/events.jsonl",
+        "sha256": "78443649b44f2cad12a497dc44a88258c3c1106ee03fb8247d348e454eb4602c",
+        "verifiedRecords": 284
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "763abbdc45d0b08d5a50598e1a38b7d2",
+          "value": "2d7b83a1e89505a5d80b0d54cdbba367"
+        },
+        {
+          "key": "task-1",
+          "nonce": "bf78ca1b95b44200a5a5da0038084132",
+          "value": "2314808300ad5a5a00244b59b1ac87fb"
+        }
+      ],
+      "submission": {
+        "sequence": 125,
+        "at": "2026-09-11T00:40:30.806Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_02a48a2a74cf2ed8006aa34de6b0648191b1b4891ebc4727cd",
+          "call_id": "exec-9ebc0fbf-ef41-4ee9-8888-a354a48ae855",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "ERROR: undefined"
+              },
+              {
+                "key": "task-1",
+                "value": "2314808300ad5a5a00244b59b1ac87fb"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [
+        {
+          "sequence": 116,
+          "at": "2026-09-11T00:40:27.073Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-55f7d09c-8d5c-4b71-9cf7-674ff006ed22",
+            "turn_id": "turn_02a48a2a74cf2ed8006aa34de6b0648191b1b4891ebc4727cd",
+            "status": "in_progress",
+            "sender_agent_id": "agent_e30d2599310a43f49603d7b8f40c51a3325467ae403d4cc383",
+            "recipient_agent_ids": [
+              "subagent_fe2eb7d137c784b41507142f513340b2",
+              "subagent_50f91a54390df9b2ae185d73e3d1c04a"
+            ]
+          }
+        },
+        {
+          "sequence": 117,
+          "at": "2026-09-11T00:40:27.157Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-55f7d09c-8d5c-4b71-9cf7-674ff006ed22",
+            "turn_id": "turn_02a48a2a74cf2ed8006aa34de6b0648191b1b4891ebc4727cd",
+            "status": "completed",
+            "sender_agent_id": "agent_e30d2599310a43f49603d7b8f40c51a3325467ae403d4cc383",
+            "recipient_agent_ids": [
+              "subagent_50f91a54390df9b2ae185d73e3d1c04a"
+            ]
+          }
+        }
+      ],
+      "childResults": [
+        {
+          "childId": "subagent_fe2eb7d137c784b41507142f513340b2",
+          "taskKey": "task-0",
+          "finalText": "2d7b83a1e895050ad80b0d54cdbba367",
+          "trimmedExact": false
+        },
+        {
+          "childId": "subagent_50f91a54390df9b2ae185d73e3d1c04a",
+          "taskKey": "task-1",
+          "finalText": "2314808300ad5a5a00244b59b1ac87fb",
+          "trimmedExact": true
+        }
+      ]
+    },
+    {
+      "trial": "b3-direct-native",
+      "arm": "direct-native",
+      "block": 3,
+      "started": true,
+      "sessionId": "sess_096b7b66c1c37a7d006aa34e199b6c81918f0a354fc49c9eae",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": false,
+      "completedChildren": 2,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b3-direct-native/events.jsonl",
+        "sha256": "453cd7f40ced37b91b26a71bfc474bcb674cabe98ac1455fb3aab39191bb91ad",
+        "verifiedRecords": 314
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "7975fa94b4b226e13fdab00136fc6b33",
+          "value": "33b6cf63100badf31e622b4b49af5797"
+        },
+        {
+          "key": "task-1",
+          "nonce": "31eb102b62fd7c04147cc58d86dde222",
+          "value": "222edd68d85cc74140c7df26b201be13"
+        }
+      ],
+      "submission": {
+        "sequence": 238,
+        "at": "2026-09-11T00:41:32.458Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_096b7b66c1c37a7d006aa34e2159c4819195c1d26b3dfcfdd4",
+          "call_id": "exec-d4139b99-54b9-44d0-bd22-c9b801cc75de",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "33b6cf63100badf31e622b4b49af5797"
+              },
+              {
+                "key": "task-1",
+                "value": "22e2dd868dc57c14047cfd622b10eb31"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [
+        {
+          "sequence": 188,
+          "at": "2026-09-11T00:41:21.722Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-d0258438-bb53-4771-8f6c-f22d10ac9874",
+            "turn_id": "turn_096b7b66c1c37a7d006aa34e2159c4819195c1d26b3dfcfdd4",
+            "status": "in_progress",
+            "sender_agent_id": "agent_852685647bdb4758a2a6e882ba15c8fc08fd76942a5b46b0b9",
+            "recipient_agent_ids": [
+              "subagent_ddb59b202483fc2f9ed9c7313c213e73",
+              "subagent_596fc9668cb058e936657d49a9f74731"
+            ]
+          }
+        },
+        {
+          "sequence": 189,
+          "at": "2026-09-11T00:41:21.722Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-d0258438-bb53-4771-8f6c-f22d10ac9874",
+            "turn_id": "turn_096b7b66c1c37a7d006aa34e2159c4819195c1d26b3dfcfdd4",
+            "status": "completed",
+            "sender_agent_id": "agent_852685647bdb4758a2a6e882ba15c8fc08fd76942a5b46b0b9",
+            "recipient_agent_ids": [
+              "subagent_ddb59b202483fc2f9ed9c7313c213e73"
+            ]
+          }
+        },
+        {
+          "sequence": 227,
+          "at": "2026-09-11T00:41:22.823Z",
+          "eventType": "agent.session.turn.item.added",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-c3f11a2e-7182-4cdc-9296-c78896645fcd",
+            "turn_id": "turn_096b7b66c1c37a7d006aa34e2159c4819195c1d26b3dfcfdd4",
+            "status": "in_progress",
+            "sender_agent_id": "agent_852685647bdb4758a2a6e882ba15c8fc08fd76942a5b46b0b9",
+            "recipient_agent_ids": [
+              "subagent_596fc9668cb058e936657d49a9f74731"
+            ]
+          }
+        },
+        {
+          "sequence": 228,
+          "at": "2026-09-11T00:41:27.381Z",
+          "eventType": "agent.session.turn.item.done",
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-c3f11a2e-7182-4cdc-9296-c78896645fcd",
+            "turn_id": "turn_096b7b66c1c37a7d006aa34e2159c4819195c1d26b3dfcfdd4",
+            "status": "completed",
+            "sender_agent_id": "agent_852685647bdb4758a2a6e882ba15c8fc08fd76942a5b46b0b9",
+            "recipient_agent_ids": [
+              "subagent_596fc9668cb058e936657d49a9f74731"
+            ]
+          }
+        }
+      ],
+      "childResults": [
+        {
+          "childId": "subagent_ddb59b202483fc2f9ed9c7313c213e73",
+          "taskKey": "task-0",
+          "finalText": "33b6cf63100badf31e622b4b49af5797",
+          "trimmedExact": true
+        },
+        {
+          "childId": "subagent_596fc9668cb058e936657d49a9f74731",
+          "taskKey": "task-1",
+          "finalText": "22e2dd868dc57c14047cfd622b10eb31",
+          "trimmedExact": false
+        }
+      ]
+    },
+    {
+      "trial": "b3-programmatic-local",
+      "arm": "programmatic-local",
+      "block": 3,
+      "started": true,
+      "sessionId": "sess_008a2a03bc6fe2e9006aa34e536c04819189c7ddfc6876845d",
+      "terminal": "agent.session.turn.completed",
+      "taskCorrect": true,
+      "completedChildren": 0,
+      "historyComplete": true,
+      "route": "unestablished",
+      "error": null,
+      "source": {
+        "logPath": "evidence/runs/2026-09-11T00-34-37-740Z-run-fa6155a8/b3-programmatic-local/events.jsonl",
+        "sha256": "5a1e9704921dceaa3459a46502468557d8e73e0742e43056d5e958ef8cd782b1",
+        "verifiedRecords": 305
+      },
+      "expected": [
+        {
+          "key": "task-0",
+          "nonce": "2aacace975c6b6ca2fcff8b9a1ae2a2c",
+          "value": "c2a2ea1a9b8ffcf2ac6b6c579ecacaa2"
+        },
+        {
+          "key": "task-1",
+          "nonce": "496894486bc5789e8b27584b8cbc6f92",
+          "value": "29f6cbc8b48572b8e9875cb684498694"
+        }
+      ],
+      "submission": {
+        "sequence": 240,
+        "at": "2026-09-11T00:42:17.897Z",
+        "action": {
+          "type": "function_call",
+          "turn_id": "turn_008a2a03bc6fe2e9006aa34e5ae4c88191ad1b76bbfd928539",
+          "call_id": "exec-b881105b-ab03-48b9-b7f3-45821adc5868",
+          "name": "tracer_submit",
+          "arguments": {
+            "results": [
+              {
+                "key": "task-0",
+                "value": "c2a2ea1a9b8ffcf2ac6b6c579ecacaa2"
+              },
+              {
+                "key": "task-1",
+                "value": "29f6cbc8b48572b8e9875cb684498694"
+              }
+            ]
+          }
+        }
+      },
+      "waits": [],
+      "childResults": []
+    }
+  ]
+}

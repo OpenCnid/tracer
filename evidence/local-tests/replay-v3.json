@@ -1,0 +1,7 @@
+{
+  "verifiedRecords": 2,
+  "collectedTrials": 1,
+  "outcome": "inconclusive",
+  "reason": "INCOMPLETE_OR_REUSED_SESSIONS",
+  "caution": "Hashes verify integrity, not truth. Execution-route decisions depend on reviewer trace interpretation."
+}
