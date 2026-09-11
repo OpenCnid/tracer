@@ -1,6 +1,7 @@
 import {readFileSync,readdirSync,existsSync} from 'node:fs';
 import {join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {execFileSync} from 'node:child_process';
 import type {Turn} from 'openai/resources/beta/agents/sessions/turns';
 import type {Response as ModelResponse} from 'openai/resources/responses/responses';
 import {verifyLog} from './evidence.js';
@@ -14,7 +15,9 @@ const equal=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b);
 export function replayObservation(directory:string) {
   const manifest=read(join(directory,'manifest.json'));
   if(manifest.sdk!==SDK_VERSION || manifest.modelRequested!==DEFAULT_MODEL) throw new Error('MANIFEST_CHANGED');
-  const sourceMatches=manifest.sources.map((s:{path:string;sha256:string})=>({path:s.path,matches:existsSync(s.path)&&sha256(readFileSync(s.path))===s.sha256}));
+  const sourceMatches=manifest.sources.map((s:{path:string;sha256:string})=>({path:s.path,
+    workingTreeMatches:existsSync(s.path)&&sha256(readFileSync(s.path))===s.sha256,
+    recordedCommitMatches:sha256(execFileSync('git',['show',`${manifest.gitCommit}:${s.path}`]))===s.sha256}));
   const all=files(directory),logs=all.filter(p=>p.endsWith('events.jsonl'));
   const logRecords=logs.map(path=>({path,records:verifyLog(path)}));
   const fixtures:unknown[]=[];
@@ -25,7 +28,27 @@ export function replayObservation(directory:string) {
     if(response.usage) {inputTokens+=response.usage.input_tokens;outputTokens+=response.usage.output_tokens;}
   }
   for(const id of ['development','heldout-1','heldout-2']) {
-    const path=join(directory,id);if(!existsSync(join(path,'result.json'))) continue;
+    const path=join(directory,id);if(!existsSync(path)) continue;
+    if(!existsSync(join(path,'result.json'))) {
+      // Salvage observations without treating an unfinished scheduled fixture as a passed gate.
+      const trajectory:Partial<Record<Arm,Sample[]>>={},recall:Partial<Record<Arm,unknown>>={};
+      const events=readFileSync(join(path,'events.jsonl'),'utf8').trim().split('\n').map(JSON.parse as (text:string)=>any);
+      for(const arm of ARMS) {
+        const names=['pre-1','pre-2',`${arm}-post-1`,`${arm}-post-2`,`${arm}-post-3`];
+        if(names.every(name=>existsSync(join(path,`${name}-response.json`)))) {
+          trajectory[arm]=names.map(name=>{
+            const r=read<ModelResponse>(join(path,`${name}-response.json`)),event=events.find(e=>e.kind==='request.completed'&&e.data.name===name);
+            return {id:name,at:event?.at??new Date(r.created_at*1000).toISOString(),input:r.usage?.input_tokens??null,
+              cached:r.usage?.input_tokens_details.cached_tokens??null,output:r.usage?.output_tokens??null,
+              valid:r.status==='completed' && r.output_text.trim()==='ACK' && !!r.usage && r.output.every(o=>['message','reasoning'].includes(o.type)),reasons:[]};
+          });
+        }
+        if(existsSync(join(path,`${arm}-recall-score.json`))) recall[arm]=read(join(path,`${arm}-recall-score.json`));
+      }
+      fixtures.push({id,complete:false,pass:null,reason:'SCHEDULE_INCOMPLETE',candidates:locked?Object.fromEntries(Object.entries(trajectory).map(([arm,s])=>[arm,detect(s,locked)])):null,
+        inputTrajectories:Object.fromEntries(Object.entries(trajectory).map(([arm,s])=>[arm,s.map(v=>v.input)])),recall});
+      continue;
+    }
     const stored=read(join(path,'result.json')),fixture=read(join(path,'fixture.json'));
     const trajectories={} as Record<Arm,Sample[]>;
     for(const arm of ARMS) {
@@ -47,7 +70,7 @@ export function replayObservation(directory:string) {
     if(id==='development' && !equal(chooseRule(trajectories),locked)) throw new Error('LEARNED_RULE_CHANGED');
     const pass=locked!==null && calibrationPass(trajectories,locked);
     if(stored.pass!==pass) throw new Error('CALIBRATION_REPLAY_MISMATCH');
-    fixtures.push({id,pass,candidates:locked?Object.fromEntries(ARMS.map(arm=>[arm,detect(trajectories[arm],locked)])):null,
+    fixtures.push({id,complete:true,pass,candidates:locked?Object.fromEntries(ARMS.map(arm=>[arm,detect(trajectories[arm],locked)])):null,
       inputTrajectories:Object.fromEntries(ARMS.map(a=>[a,trajectories[a].map(s=>s.input)])),recall:stored.recall});
   }
   const managed:unknown[]=[];

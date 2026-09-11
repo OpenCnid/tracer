@@ -8,8 +8,9 @@ import {DEFAULT_MODEL,SDK_VERSION,sha256} from './protocol.js';
 import {OBS_PROTOCOL,ObservationBudget,studyFetch} from './observation.js';
 import {calibrate} from './observation-calibration.js';
 import {managedStudy} from './observation-managed.js';
+import {captureResponses} from './observation-transport.js';
 
-const sources=['src/observation.ts','src/observation-probe.ts','src/observation-calibration.ts','src/observation-managed.ts','src/observation-replay.ts',
+const sources=['src/observation.ts','src/observation-probe.ts','src/observation-calibration.ts','src/observation-managed.ts','src/observation-replay.ts','src/observation-transport.ts',
   'src/collector.ts','src/budget.ts','src/evidence.ts','src/checkpoint-protocol.ts','src/checkpoint-store.ts','src/checkpoint-ledger.ts','src/state-store.ts','src/protocol.ts'];
 const mode=process.argv[2];
 if(!['plan','run'].includes(mode??'') || process.argv.length!==3) throw new Error('Usage: pnpm observation-probe [plan|run]');
@@ -31,7 +32,7 @@ else {
     sharedThresholdUsd:2,overshootAccepted:true,priorStudiesExcluded:true});
   let calibration:Awaited<ReturnType<typeof calibrate>>|null=null,managed:Awaited<ReturnType<typeof managedStudy>>|null=null,error:unknown=null;
   try {
-    const api=new OpenAI({apiKey:key,maxRetries:0,timeout:120000,fetch:http.fetch,...(process.env.OPENAI_PROJECT_ID?{project:process.env.OPENAI_PROJECT_ID}:{})});
+    const api=new OpenAI({apiKey:key,maxRetries:0,timeout:120000,fetch:captureResponses(http.fetch,log),...(process.env.OPENAI_PROJECT_ID?{project:process.env.OPENAI_PROJECT_ID}:{})});
     calibration=await calibrate(api,log,budget,[key]);
     if(calibration.pass && calibration.rule) managed=await managedStudy(log,calibration.rule,budget.snapshot().admissionEstimateUsd,key,http.fetch);
   } catch(e) {error={...safeError(e),reason:e instanceof Error && /^[A-Z_]+$/.test(e.message)?e.message:'REQUEST_OR_STUDY_FAILED'};log.tryRecord('study.failed',error);}

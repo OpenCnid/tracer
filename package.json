@@ -2,7 +2,7 @@
   "name": "tracer",
   "version": "0.1.0",
   "private": true,
-  "description": "Independent managed-harness RLM review and falsifiable native-delegation probe",
+  "description": "OpenCnid's managed-harness RLM research and falsifiable context probes",
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "engines": { "node": "^22.19.0 || >=24.0.0" },

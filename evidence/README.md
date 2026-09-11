@@ -1,5 +1,7 @@
 # Evidence provenance
 
+- `preregistration-v9.json` and `dispatch-observation-v9.json` freeze and exclusively claim the context-observation study. Its 53 attempts produced 52 saved Responses results and one unresolved request; no managed sessions ran. `analysis/2026-09-11-observation-v9-replay.json` verifies the recorded source commit, completed calibration trajectories and partial third fixture. It does not relabel the incomplete gate as a pass. Post-run raw HTTP capture is tested locally and was not present in the live attempt. See [the result and accounting qualification](../research/17-observation-results.md).
+
 - `preregistration.json` binds the experiment design to its SHA-256 before implementation and inference. Git commit `53939cb` records that freeze.
 - `preregistration-v2.json` records the authorized Luna/$2 stopping-budget amendment. `preregistration-v3.json` additionally binds the telemetry-lag correction and prior accounting. Earlier cohorts are retained separately.
 - `preregistration-v4.json` binds the corrected two-child control and the reservation policy for delayed usage. Its nine-trial cohort is distinct from the two earlier one-trial calibration attempts.

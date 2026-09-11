@@ -9,6 +9,8 @@ import {ackObservation,ObservationBindings,RecordLedger} from '../src/observatio
 import {CheckpointStore} from '../src/checkpoint-store.js';
 import {CheckpointLedger,exactReport} from '../src/checkpoint-ledger.js';
 import {Evidence} from '../src/evidence.js';
+import OpenAI from 'openai';
+import {captureResponses} from '../src/observation-transport.js';
 
 const rule:Rule={fraction:.75,absolute:2048,confirmations:2};
 const samples=(counts:(number|null)[]):Sample[]=>counts.map((input,i)=>({id:`m${i}`,at:`t${i}`,input,cached:0,output:3,valid:input!==null,reasons:input===null?['MISSING_USAGE']:[]}));
@@ -66,6 +68,22 @@ describe('context observation independent of recovery',()=>{
     expect(ackObservation('x',turn,[item],true,true)).toMatchObject({valid:true,input:10000,cached:9000});
     expect(ackObservation('x',turn,[item,item],true,true).valid).toBe(false);
     expect(ackObservation('x',turn,[item],false,true).valid).toBe(false);
+  });
+  it('captures a malformed mock response before the pinned SDK throws, with no retry or secret exposure',async()=>{
+    const path=mkdtempSync(join(tmpdir(),'tracer-observation-'));
+    try {
+      let requests=0;const evidence=new Evidence(join(path,'wire'),['synthetic-secret']);
+      const mock:typeof fetch=async()=>{requests++;return new Response(JSON.stringify({object:'response',output:null,
+        usage:{input_tokens:12,output_tokens:3},test:'synthetic-secret'}),{headers:{'content-type':'application/json','x-request-id':'mock-request'}});};
+      const api=new OpenAI({apiKey:'synthetic-secret',maxRetries:0,fetch:captureResponses(mock,evidence)});
+      await expect(api.responses.create({model:'gpt-5.6-luna',input:'ACK'})).rejects.toThrow(TypeError);
+      const raw=readFileSync(join(path,'wire','http-001.json'),'utf8');
+      expect(raw).not.toContain('synthetic-secret');expect(raw).toContain('mock-request');
+      expect(JSON.parse(JSON.parse(raw).body).usage).toEqual({input_tokens:12,output_tokens:3});expect(requests).toBe(1);
+    } finally {
+      if(!resolve(path).startsWith(resolve(tmpdir())+sep) || !path.includes('tracer-observation-')) throw new Error('UNSAFE_TEST_CLEANUP');
+      rmSync(path,{recursive:true,force:true});
+    }
   });
   it('freezes state in the same binding and allows corrected reports without repeating work',()=>{
     const path=mkdtempSync(join(tmpdir(),'tracer-observation-'));

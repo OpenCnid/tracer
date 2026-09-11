@@ -27,3 +27,5 @@ The separate [Responses experiment](research/12-responses-compaction-results.md)
 | Can this replace all current harness guarantees? | Not established |
 
 The next evidence target is [recovery across an inferred managed-context transition](research/15-managed-compaction-evidence-plan.md), using client-side input-usage measurements and calibrated information probes. We will investigate without requiring a vendor event, while distinguishing an inferred compaction mechanism from observed recovery. A fresh-session reset, a long prompt, or a successful answer alone must not close the actual-compaction question.
+
+The [first detector study](research/17-observation-results.md) measured persistent input-token drops after known compaction and deliberate deletion. This supports investigating context reduction, not identifying compaction from usage alone. Recall also failed on a fresh code visibly supplied after compaction, so selective forgetting cannot certify discarded context. Calibration stopped on an unresolved request before any managed sessions; D001 remains supported by the earlier checkpoint evidence, and survival across managed compaction remains unmeasured.

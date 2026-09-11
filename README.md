@@ -24,9 +24,13 @@ We first tested delegation and external-state retrieval in managed Agents sessio
 
 ## Current status
 
-**New managed Agents sessions recovered and finished all three saved tasks. Each needed error correction. Survival across the harness's own compaction remains unproven.**
+**We have a candidate signal for context reduction, but have not yet tested it on managed Agents. Survival across the harness's own compaction remains unproven.**
 
-In the latest test, an agent completed one of three jobs. We saved its result, started a new session with no old conversation, and let it discover its assigned task through `current_task_state()`. All three new sessions found the checkpoint and finished only the remaining jobs. None repeated completed work. Three controls with no task binding correctly reported that they were blocked.
+The newest experiment compared known Responses compaction with full history and deliberate deletion. All three measured compacted branches showed a persistent token drop, but deletion did too. The detector can flag a reduction; it cannot identify the hidden mechanism. A request failed before the last calibration fixture finished, so no managed sessions were launched. Known usage was about **13 cents**, with one request's usage unresolved. [What the detector found, and what stopped the test](research/17-observation-results.md).
+
+Recall also proved misleading: compacted branches omitted a random code even when we supplied it visibly after compaction. An incorrect answer cannot tell us that the harness removed the information.
+
+In the earlier checkpoint test, an agent completed one of three jobs. We saved its result, started a new session with no old conversation, and let it discover its assigned task through `current_task_state()`. All three new sessions found the checkpoint and finished only the remaining jobs. None repeated completed work. Three controls with no task binding correctly reported that they were blocked.
 
 Two recoveries initially omitted the old job's result from their reports; the third mistyped a handle. All corrected their errors after tool feedback. The implementation's strict workflow score was therefore **0 of 3**, while eventual exact recovery was **3 of 3**. [Read what happened, including the scoring qualification](research/14-checkpoint-resume-results.md).
 
@@ -35,10 +39,11 @@ Two recoveries initially omitted the old job's result from their reports; the th
 | Managed Agents: short control and two pressure sessions | 3 of 3 exact retrievals passed | No |
 | Responses: explicit compaction, with paired controls | All 3 compacted branches and all 3 controls passed | Explicit Responses compaction only |
 | Managed Agents: fresh sessions with saved checkpoints | All 3 tasks eventually recovered; all 3 needed error correction | No; these were deliberate session resets |
+| Context detector: controlled Responses histories | Token drops after compaction and deletion; final calibration fixture incomplete | No managed sessions dispatched |
 
 Our working decision is **we own exact state; OpenAI owns the agent loop**. Application storage holds the source data, completion status and task locator, and the session can rediscover that state through a tool. [The decision record](DECISIONS.md) preserves the evidence and limits: this is demonstrated for the checkpoint fixture, with error correction, and is not a full RLM migration decision.
 
-Our next step is a client-side detector: measure persistent changes in input usage on controlled turns, probe access to older information, and calibrate against known compaction and deliberate truncation. We can then test exact recovery in that same managed session after an inferred transition. [The evidence plan](research/15-managed-compaction-evidence-plan.md) distinguishes observations from claims about OpenAI's hidden implementation; a service-generated marker is not a prerequisite for this investigation.
+Our next step is to finish calibration, then use the fixed detector in controlled managed sessions and test exact recovery after an inferred transition. [The evidence plan](research/15-managed-compaction-evidence-plan.md) distinguishes observations from claims about OpenAI's hidden implementation; a service-generated marker is not a prerequisite. The stopped attempt's costs and reservation must carry forward into any continuation.
 
 The revised delegation test also improved collection: two of three trials requesting delegation from code submitted both assigned children's answers. Other failures involved omitted task inputs and incorrect reversals. The inspected traces still do not expose the executing JavaScript, so a faithful native RLM port remains unverified.
 
@@ -49,11 +54,13 @@ The latest checkpoint study used nine sessions and a shared **$2 stopping thresh
 1. [Our reading and sources](research/01-reading.md)
 2. [The experiment and what would disprove our hypothesis](research/02-preregistered-probe.md)
 3. [How the probe works](research/03-implementation.md)
-4. [Latest results: checkpoint recovery in fresh managed sessions](research/14-checkpoint-resume-results.md)
+4. [Latest results: context detector calibration](research/17-observation-results.md)
 5. [The checkpoint recovery protocol](research/13-checkpoint-resume-protocol.md)
 6. [Exact state after Responses compaction](research/12-responses-compaction-results.md)
 7. [The Responses compaction protocol](research/11-responses-compaction-protocol.md)
 8. [Managed Agents follow-up results](research/10-followup-results.md)
+9. [Checkpoint recovery in fresh managed sessions](research/14-checkpoint-resume-results.md)
+10. [The context observation protocol](research/16-observation-protocol.md)
 
 ## Run locally
 
@@ -62,8 +69,8 @@ Use Node `^22.19.0 || >=24.0.0` and pnpm **11.7.0**. The official OpenAI SDK is 
 ```sh
 pnpm install --frozen-lockfile
 pnpm check
-pnpm checkpoint-probe plan
-pnpm checkpoint-replay evidence/runs/2026-09-11T03-42-25-736Z-checkpoint-resume-v8-86b26841
+pnpm observation-probe plan
+pnpm observation-replay evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e
 ```
 
 These commands inspect the plan and replay published evidence without paid inference. Each completed study's one-use dispatch claim blocks another paid run, so rerunning it cannot silently reset the spending allowance. Live studies require a key in `.env` and their own authorized accounting. The stopping threshold is not a guaranteed billing cap.
