@@ -1,0 +1,93 @@
+{
+  "protocol": "responses-compact-v7",
+  "reviewedAt": "2026-09-11T03:13:29.117Z",
+  "readOnly": true,
+  "paidRequests": 0,
+  "manifestSha256": "274e9c5923cc86868e5f65505b827de68c39583b92196813aa5c7bc7bb133d1a",
+  "resultSha256": "82193555b755f7af12b0132771d716e913ff1a3d8e7c2b460e584a5874eff30b",
+  "protocolHash": "85ec47e2e8d9e12727dd1ba1c9686498aa15cfdd075f38124191444bdbe5a7a4",
+  "sourceCommit": "3108d7d3f8d5763965e3921ce455d8e01959573f",
+  "logsVerified": 10,
+  "recordsVerified": 87,
+  "pairs": [
+    {
+      "pair": 1,
+      "boundary": {
+        "established": true,
+        "objectId": "resp_096cbffd4511f410016aa3713b338887d1ab25a6b973a1bfb3",
+        "itemIds": [
+          "cmp_096cbffd4511f410016aa3713c515087d18c7655d4c1a28e2c"
+        ],
+        "outputSha256": "a21a24680f213a3dd1a06fe9590e183752da4df2f26c2cc6f779b521a8400777",
+        "visibleHandlePaths": []
+      },
+      "control": {
+        "readStatus": "valid",
+        "stateIntact": true,
+        "submissionCorrect": true
+      },
+      "treatment": {
+        "readStatus": "valid",
+        "stateIntact": true,
+        "submissionCorrect": true
+      },
+      "classification": {
+        "outcome": "supported-for-fixture",
+        "reason": "LOCATOR_RECOVERED_FROM_COMPACTED_CONTEXT"
+      }
+    },
+    {
+      "pair": 2,
+      "boundary": {
+        "established": true,
+        "objectId": "resp_037bd98f83d1c02e016aa37168d64087d1a19392424c01ea49",
+        "itemIds": [
+          "cmp_037bd98f83d1c02e016aa371696cd487d1a3efbfebdb07796c"
+        ],
+        "outputSha256": "5c69b7ccc7af69e6e6ee35ad2ca63529ccf57290ddd90bab71fefd43835e2b77",
+        "visibleHandlePaths": []
+      },
+      "control": {
+        "readStatus": "valid",
+        "stateIntact": true,
+        "submissionCorrect": true
+      },
+      "treatment": {
+        "readStatus": "valid",
+        "stateIntact": true,
+        "submissionCorrect": true
+      },
+      "classification": {
+        "outcome": "supported-for-fixture",
+        "reason": "LOCATOR_RECOVERED_FROM_COMPACTED_CONTEXT"
+      }
+    },
+    {
+      "pair": 3,
+      "boundary": {
+        "established": true,
+        "objectId": "resp_050155e7f333bb8e016aa3718db45487d19119ad3a48daa99b",
+        "itemIds": [
+          "cmp_050155e7f333bb8e016aa3718e552887d1a20ce567003911fb"
+        ],
+        "outputSha256": "e9d470e875ec18219cb07da5d3eb2d88eb690d3857e8295c4588687ff4e42b52",
+        "visibleHandlePaths": []
+      },
+      "control": {
+        "readStatus": "valid",
+        "stateIntact": true,
+        "submissionCorrect": true
+      },
+      "treatment": {
+        "readStatus": "valid",
+        "stateIntact": true,
+        "submissionCorrect": true
+      },
+      "classification": {
+        "outcome": "supported-for-fixture",
+        "reason": "LOCATOR_RECOVERED_FROM_COMPACTED_CONTEXT"
+      }
+    }
+  ],
+  "note": "Replay checks artifact consistency and observed service items. It does not decrypt compact state or establish managed Agents behavior."
+}

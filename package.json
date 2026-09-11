@@ -17,7 +17,8 @@
     "followup": "tsx src/followup.ts",
     "state-probe": "tsx src/state-probe.ts",
     "state-replay": "tsx src/state-replay.ts",
-    "compact-probe": "tsx src/compact-probe.ts"
+    "compact-probe": "tsx src/compact-probe.ts",
+    "compact-replay": "tsx src/compact-replay.ts"
   },
   "dependencies": { "openai": "7.15.0" },
   "devDependencies": {

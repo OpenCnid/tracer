@@ -58,6 +58,21 @@ The state probe creates an immutable file before setup, selects records after se
 
 `state-replay` leaves compaction survival inconclusive without an independently reviewed service boundary. A `boundary-review.json`, if justified, must bind the actual session, protocol hash, retained artifact hash and span/event IDs, and establish that compaction happened after setup and before lookup. Model self-report and token-count changes are not acceptable substitutes. The current pressure trace reviews establish no such boundary.
 
+## Explicit Responses compaction
+
+The [Responses protocol](11-responses-compaction-protocol.md) has three paired fixtures and a separate shared USD 2 reported-usage allowance. It calls the standalone compact endpoint once per pair and continues with its complete output, preserving retained messages. It neither invokes nor observes managed Agents compaction.
+
+```sh
+pnpm compact-probe plan
+pnpm compact-replay evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c
+```
+
+`compact-probe run` creates an exclusive `evidence/dispatch-responses-v7.json` before any inference. The published completed claim blocks another invocation; it is not a file to delete merely to retry a study. A new authorized cohort needs separate registration and accounting. The runner admits at most 21 sequential paid requests, reserves USD 0.30 per compact call and USD 0.05 per ordinary generation, and refuses admission when the reservation does not fit. Returned valid usage replaces reservations. Missing usage or an API/transport error stops further inference. Client timeouts do not prove server cancellation.
+
+`compact-protocol.ts` defines the paired workflow and distinguishes a compact item from a visible retained handle. `compact-probe.ts` records every request and response, selects queries after compaction, checks exact read arguments and bytes, and scores submitted values separately. It uses ordinary function calls to isolate locator recovery. `compact-budget.ts` enforces request/output/body limits and the shared stopping threshold. The SDK is pinned; retries are disabled.
+
+`compact-replay.ts` verifies committed source hashes, evidence chains, unchanged external files and the exact prefix of the treatment's continuation input. It also checks later query selection, oracle bytes and successful model submissions against the files. Replays save a new artifact when a previous replay exists; they do not call the API. [Observed results](12-responses-compaction-results.md).
+
 ## Original v4 commands
 
 ```sh
@@ -79,4 +94,4 @@ Each study artifact directory contains `manifest.json`, `requests.json`, `sdk-au
 
 ## Deliberate limits
 
-There is no automatic generation-trace exporter, service-compaction trigger, exact billing calculator, large-corpus benchmark, native-child context-isolation test, long-output test, or sandbox restoration test here. The conservative spending estimate only supports the agreed stopping policy. Prerequisites and follow-up tests are stated explicitly rather than inferred from tiny tasks.
+There is no automatic generation-trace exporter, managed Agents compaction trigger, exact billing calculator, large-corpus benchmark, native-child context-isolation test, long-output test, or sandbox restoration test here. Explicit Responses compaction is a separate component experiment. The conservative spending estimate only supports the agreed stopping policy. Prerequisites and follow-up tests are stated explicitly rather than inferred from tiny tasks.

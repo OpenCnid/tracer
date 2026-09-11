@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-11T03:16:52.587Z",
+  "nonignoredFilesScanned": 355,
+  "credentialMatches": 0,
+  "missingLocalLinks": 0,
+  "localTestsPassed": 51,
+  "typecheck": "passed",
+  "paidRequests": 21,
+  "unknownUsageRequests": 0,
+  "estimateUsd": 0.09622999999999998,
+  "replayLogs": 10,
+  "replayRecords": 87,
+  "liveSourceCommit": "3108d7d3f8d5763965e3921ce455d8e01959573f"
+}
