@@ -59,7 +59,7 @@ else {
       const adopted=new Evidence(join(directory,'adopted-dose-1'),[key]);adoptedDirectory=adopted.directory;
       adopted.record('root.items',{page:0,data:itemPage.data});adopted.record('session.turns',{page:0,data:turnPage.data});adopted.record('session.snapshot',session);
       adopted.write('request.json',request);adopted.write('collection.json',read(join(from,'collection.json')));
-      adopted.write('adopted-collection.json',{...read(join(from,'collection.json')),error:null,historyComplete:true,terminal:'agent.session.turn.completed',completionBasis:'read-only-turn-resource',originalDirectory:from,inputSha256:sha256(request.input)});
+      adopted.write('adopted-collection.json',{...read<Record<string,unknown>>(join(from,'collection.json')),error:null,historyComplete:true,terminal:'agent.session.turn.completed',completionBasis:'read-only-turn-resource',originalDirectory:from,inputSha256:sha256(request.input)});
       adopted.write('measurement.json',{sample:ackObservation('dose-1',turn,itemPage.data,true,true),adopted:true});
       adopted.write('settled.json',{turn,stable:true,readOnlySource:join(preflight.directory,'events.jsonl')});
     }
