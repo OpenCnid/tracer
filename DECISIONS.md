@@ -31,3 +31,13 @@ The next evidence target is [recovery across an inferred managed-context transit
 The [completed observation study](research/23-managed-observation-results.md) passed calibration without changing the detector and ran three managed pressure/control pairs. All pressure sessions reached roughly 157,000–158,000 measured input tokens without the required sustained drop. None triggered a post-transition recovery challenge. All three controls completed their pending work and exact submissions; two have complete recovery evidence, while one retains an incomplete-collection qualification. D001 remains supported, but survival across managed compaction is still inconclusive. The next experiment must reach an observable transition before it can test that claim.
 
 Calibration also showed that compaction and deliberate deletion both trigger the signal, and that recall can fail on freshly supplied information. Neither a token drop alone nor selective forgetting identifies the hidden mechanism. The study retained prior costs and reservations: $1.5993449 known estimated usage and $1.8293449 admission accounting against the original $2 stopping threshold.
+
+## D002: Keep a searchable conversation archive outside the managed harness
+
+Recorded by OpenCnid on September 11, 2026. **Implemented as a separate context manager and optional Agents collector integration.**
+
+Let OpenAI manage the model's working context. Save application inputs, tool results and available public session items in an application-owned, append-only archive. Offer search and bounded reads as persistent agent tools. Save/load the archive independently of an API session; retain earlier revisions and label incomplete capture.
+
+This extends D001 from structured task state to captured conversation history. Compaction detection is not a prerequisite for storage or retrieval. The model's choice to search remains a behavior to evaluate; keeping an archive alone does not guarantee successful recall or task completion. Business state and authorization remain application responsibilities.
+
+The [implementation and usage](docs/context-manager.md) describe the public-data boundary and storage limits. Local tests and [offline replay evidence](evidence/context-archive/verification.json) verify exact save/load and retrieval of an older real message after a simulated reduction of working history, with an empty-archive control. There was no new inference, and this does not change D001's unmeasured managed-compaction boundary.

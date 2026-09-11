@@ -5,12 +5,14 @@ import type { SessionCreateParamsStreaming } from 'openai/resources/beta/agents/
 import { AdmissionCounter, type UsageGuard } from './budget.js';
 import { Evidence, safeError } from './evidence.js';
 import { checkResults, fixture, LIMITS, requestFor, type Trial } from './protocol.js';
+import type {AgentsContext} from './context/agents.js';
 
 interface Page<T> { data: T[]; hasNextPage(): boolean; getNextPage(): Promise<Page<T>> }
-export async function allPages<T>(first: PromiseLike<Page<T>>, evidence: Evidence, kind: string): Promise<T[]> {
+export async function allPages<T>(first: PromiseLike<Page<T>>, evidence: Evidence, kind: string,
+  capture?: (items:T[], ordinal:number)=>void): Promise<T[]> {
   const result: T[] = []; let page = await first;
   for (let i = 0; i < LIMITS.pages; i++) {
-    evidence.record(kind, { page: i, data: page.data }); result.push(...page.data);
+    evidence.record(kind, { page: i, data: page.data }); capture?.(page.data,result.length); result.push(...page.data);
     if (!page.hasNextPage()) return result;
     if (i + 1 === LIMITS.pages) throw new Error('PAGE_CAP');
     page = await page.getNextPage();
@@ -61,6 +63,7 @@ export interface CollectionOptions {
   ledger?: Pick<FunctionLedger, 'handle' | 'correct'>;
   continuation?: {sessionId: string; input: string};
   onSession?: (sessionId: string) => void;
+  context?: AgentsContext;
 }
 
 export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evidence, budget?: UsageGuard,
@@ -93,6 +96,8 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
   let boundSession: string | null = null;
   let stream: (AsyncIterable<AgentSessionEvent> & {controller: AbortController}) | undefined;
   try {
+    if(options.continuation)options.context?.bindSession(options.continuation.sessionId);
+    options.context?.input(trial.id,options.continuation??request);
     if (options.continuation) {
       result.sessionId = options.continuation.sessionId;
       stream = client.beta.agents.sessions.stream(result.sessionId, {
@@ -108,6 +113,7 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
       if ('session_id' in event) result.sessionId = event.session_id;
       if (event.type === 'agent.session.created') result.sessionId = event.session.id;
       evidence.record('sse', event);
+      options.context?.capture(event);
       if (result.sessionId && options.onSession) {
         if (boundSession && boundSession !== result.sessionId) throw new Error('SESSION_ID_CHANGED');
         if (!boundSession) { options.onSession(result.sessionId); boundSession = result.sessionId; }
@@ -134,6 +140,7 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
         for (const action of current.required_actions) {
           if (action.type !== 'function_call') throw new Error('UNEXPECTED_ENVIRONMENT_ACTION');
           const output = ledger.handle(result.sessionId, action);
+          options.context?.toolResult(action.turn_id,action.call_id,output);
           await client.beta.agents.sessions.events.create(result.sessionId, {
             'Idempotency-Key': `${trial.id}-${action.call_id}`,
             events: [{ type: 'agent.session.input.tool_result', call_id: action.call_id,
@@ -152,7 +159,8 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
     if (result.sessionId) {
       const id = result.sessionId;
       const opts = { signal: abort.signal };
-      const items = await allPages(client.beta.agents.sessions.items.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'root.items');
+      const items = await allPages(client.beta.agents.sessions.items.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'root.items',
+        (items,ordinal)=>options.context?.captureItems(items,'root',ordinal));
       for (const item of items) if (item.type === 'create_subagent_call') budget?.observeModel(item.model);
       const turns = await allPages(client.beta.agents.sessions.turns.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'session.turns');
       for (const turn of turns) budget?.observeTurn(id, turn);
@@ -160,7 +168,8 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
       if (children.length > 2) throw new Error('EXCESS_CHILDREN_OBSERVED');
       for (const child of children) {
         await allPages(client.beta.agents.sessions.subagents.items.list(child.id,
-          { session_id: id, limit: 100, order: 'asc' }, opts), evidence, `child.items:${child.id}`);
+          { session_id: id, limit: 100, order: 'asc' }, opts), evidence, `child.items:${child.id}`,
+          (items,ordinal)=>options.context?.captureItems(items,`subagent:${child.id}`,ordinal));
         const childTurns = await allPages(client.beta.agents.sessions.subagents.turns.list(child.id,
           { session_id: id, limit: 100, order: 'asc' }, opts), evidence, `child.turns:${child.id}`);
         for (const turn of childTurns) budget?.observeTurn(id, turn);
@@ -183,6 +192,14 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
     finalizing = true; clearTimeout(deadline); if (poll) clearInterval(poll);
     abort.abort(); stream?.controller.abort(); await polling;
     result.taskCorrect = ledger.correct;
+    try {
+      if(options.context?.sessionId)options.context.markCoverage(result.historyComplete,{collector:'collectTrial',
+        terminal:result.terminal,error:result.error!==null,hiddenContextCaptured:false,pointInTimeSnapshot:false,missedEventsRecovered:false});
+      else options.context?.checkpoint();
+    } catch(error) {
+      result.error??={...safeError(error),localReason:'CONTEXT_CHECKPOINT_FAILED'};
+      evidence.tryRecord('context.error',safeError(error));
+    }
     // Closing SSE does not stop managed work. Explicitly send cancellation.
     // This is cleanup, never a hard billing guarantee or proof all descendants stopped.
     if (result.sessionId && (result.error !== null || result.terminal !== 'agent.session.turn.completed' ||

@@ -12,6 +12,8 @@
     "check": "pnpm typecheck && pnpm test",
     "probe": "tsx src/cli.ts",
     "replay": "tsx src/replay.ts",
+    "context": "tsx src/context/cli.ts",
+    "context-demo": "tsx src/context/demo.ts",
     "reconcile": "tsx src/reconcile.ts",
     "analyze": "tsx src/analyze.ts",
     "followup": "tsx src/followup.ts",

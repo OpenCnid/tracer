@@ -6,3 +6,4 @@ dist/
 research/cache/
 evidence/private/
 *.tsbuildinfo
+.tracer/

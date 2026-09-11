@@ -16,6 +16,14 @@ For OpenCnid, this could mean less infrastructure to maintain. Our [deepseek-rlm
 
 Our reading is that RLM and managed compaction can work together. The unresolved part is whether the managed service exposes the operations this workflow needs.
 
+## Searchable conversation archive
+
+**OpenAI can compact the agent's working memory while we keep our own conversation record.** We now provide a separate context manager that saves captured inputs, outputs and tool records in local files. The agent can use `context_search` and `context_read` whenever it needs an older detail. We do not need to detect compaction to keep this archive available.
+
+The archive has an append-only JSONL journal, a readable `context.txt` for grep, and portable save/load snapshots. An Agents API adapter captures stream events and reconciles saved histories after a turn. Earlier revisions remain searchable. Private local archives go under the git-ignored `.tracer/` directory.
+
+This preserves what our application captures; it cannot expose OpenAI's hidden working context or recover data lost before capture. Local tests and replay of a real earlier transcript verify saving, reloading and exact retrieval. No new paid inference was used. [Use the context manager](docs/context-manager.md) · [Inspect the verification](evidence/context-archive/verification.json).
+
 ## What we're testing
 
 Our central concern is **whether exact external data remains usable when OpenAI manages and compacts the agent's working memory**.

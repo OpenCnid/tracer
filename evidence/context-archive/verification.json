@@ -1,0 +1,45 @@
+{
+  "schema": "tracer-context-verification-v1",
+  "recordedAt": "2026-09-11T15:52:31.071Z",
+  "mode": "offline-replay-and-synthetic-control",
+  "source": "evidence/runs/2026-09-11T14-53-15-103Z-context-observation-v10-last-11441bae/b1-control/11-recovery/events.jsonl",
+  "import": {
+    "mode": "offline-evidence-import",
+    "sourceSha256": "1f5560ef95eedac997d32216432a9897f3ce4a21a35f0dc0e6dd477c58946508",
+    "sessionId": "sess_0c0210e0042ab6d1006aa4053966708191b85d94c4ded61ad5",
+    "conversationId": "4ab8ef7b-49e4-461b-bb8a-aa62730b5369",
+    "sourceRecords": 284,
+    "events": 238,
+    "items": 49,
+    "archiveRecords": 293,
+    "archiveHead": "431fb936535ed9c2f65e07e75bd0cf50ec09fa9f08b4201893408524146dc477",
+    "newApiCalls": 0,
+    "managedCompactionEstablished": false
+  },
+  "node": "v24.19.0",
+  "pnpm": "pnpm@11.7.0",
+  "sdk": "7.15.0",
+  "reference": {
+    "sequence": 256,
+    "key": "item:sess_0c0210e0042ab6d1006aa4053966708191b85d94c4ded61ad5:root:msg_394b35f5b0debe5d33ca637e86784e512217569644e6552fb9",
+    "textCharacters": 151,
+    "textSha256": "f29f57d42baa0fde0be424be9deb9a63a333b75cc2c346596e363894b47340ca",
+    "query": "user:\nSetup: discover the assigned task, process ONLY the first pending job, then stop. Leave the ot"
+  },
+  "recoveredSha256": "f29f57d42baa0fde0be424be9deb9a63a333b75cc2c346596e363894b47340ca",
+  "searchMatchCount": 1,
+  "readCalls": 1,
+  "maxReplyBytes": 857,
+  "checks": {
+    "snapshotRoundtripExact": true,
+    "oldTextAbsentFromSimulatedWorkingHistory": true,
+    "earlierItemRetainedAfterShorterSimulatedHistory": true,
+    "toolReadExact": true,
+    "emptyArchiveReturnsNoMatches": true,
+    "repliesWithin24KB": true
+  },
+  "newApiCalls": 0,
+  "newPaidInferenceUsd": 0,
+  "liveModelRetrievalTest": false,
+  "managedCompactionEstablished": false
+}
