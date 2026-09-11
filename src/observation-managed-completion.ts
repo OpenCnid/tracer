@@ -7,17 +7,18 @@ import {Evidence,safeError} from './evidence.js';
 import {DEFAULT_MODEL,SDK_VERSION,sha256} from './protocol.js';
 import {studyFetch} from './observation.js';
 import {FIXED_RULE} from './observation-continuation.js';
-import {managedStudy,ObservationBindings,ackObservation} from './observation-managed.js';
+import {managedStudy,ObservationBindings,ackObservation,matchesCompletedAck} from './observation-managed.js';
 
 const read=<T=any>(path:string):T=>JSON.parse(readFileSync(path,'utf8'));
-const mode=process.argv[2];if(!['plan','run','transport-plan','transport-run'].includes(mode??'') || process.argv.length!==3) throw new Error('Usage: pnpm observation-complete [plan|run|transport-plan|transport-run]');
-const transport=mode!.startsWith('transport-'),reg=read(`evidence/preregistration-v10-${transport?'transport':'completion'}.json`);
+const mode=process.argv[2];if(!['plan','run','transport-plan','transport-run','adoption-plan','adoption-run'].includes(mode??'') || process.argv.length!==3) throw new Error('INVALID_COMPLETION_MODE');
+const adoption=mode!.startsWith('adoption-'),transport=mode!.startsWith('transport-')||adoption,stage=adoption?'adoption':transport?'transport':'completion';
+const reg=read(`evidence/preregistration-v10-${stage}.json`);
 const calibrationRun=reg.calibrationRun??reg.parent,bindingParent=reg.bindingParent??reg.parent;
 for(const [path,hash] of [[reg.protocolPath??'research/19-managed-usage-settlement-addendum.md',reg.protocolHash],[join(reg.parent,'result.json'),reg.parentResultHash],
   [join(calibrationRun,'calibration.json'),reg.calibrationHash],['src/observation.ts',reg.detectorHash]]) if(sha256(readFileSync(path))!==hash) throw new Error('COMPLETION_REGISTRATION_CHANGED');
 const parentResult=read(join(reg.parent,'result.json')),calibrationResult=read(join(calibrationRun,'result.json')),parentManifest=read(join(calibrationRun,'manifest.json'));
-const priorResolved=transport?read(reg.resolvedSnapshot).reconciliation[0]:readFileSync(reg.resolvedSnapshot,'utf8').trim().split('\n').map(l=>JSON.parse(l)).find(e=>e.kind==='read-only.snapshot').data;
-if(!calibrationResult.calibrationPassed || parentResult.managedCases!==1 || parentResult.managedError!==(transport?'CURRENT_TURN_UNESTABLISHED':'FINAL_USAGE_INCOMPLETE')) throw new Error('UNEXPECTED_PARENT_STATE');
+const priorResolved=transport&&!adoption?read(reg.resolvedSnapshot).reconciliation[0]:readFileSync(reg.resolvedSnapshot,'utf8').trim().split('\n').map(l=>JSON.parse(l)).find(e=>e.kind==='read-only.snapshot').data;
+if(!calibrationResult.calibrationPassed || (adoption?parentResult.error?.reason!=='RESTORE_PREFLIGHT_CHANGED':parentResult.managedCases!==1 || parentResult.managedError!==(transport?'CURRENT_TURN_UNESTABLISHED':'FINAL_USAGE_INCOMPLETE'))) throw new Error('UNEXPECTED_PARENT_STATE');
 if(mode!.endsWith('plan')) console.log(JSON.stringify({registration:reg,sessionId:priorResolved.session.id,paidRequests:0,existingTurns:priorResolved.turns.length,fixedRule:FIXED_RULE},null,2));
 else {
   if(existsSync('.env')) process.loadEnvFile('.env');
@@ -25,7 +26,7 @@ else {
   if((process.env.TRACER_MODEL?.trim()||DEFAULT_MODEL)!==DEFAULT_MODEL || read('node_modules/openai/package.json').version!==SDK_VERSION) throw new Error('MODEL_OR_SDK_CHANGED');
   // Claim before network access so repeated invocations cannot create paid work or uncounted preflights.
   const directory=join('evidence/runs',`${new Date().toISOString().replace(/[:.]/g,'-')}-${reg.protocol}-${randomUUID().slice(0,8)}`);
-  writeFileSync(`evidence/dispatch-observation-v10-${transport?'transport':'completion'}.json`,JSON.stringify({protocol:reg.protocol,parent:reg.parent,run:directory,startedAt:new Date().toISOString(),newAllowance:false,totalThresholdUsd:2,priorHttpAttempts:reg.priorHttpAttempts})+'\n',{flag:'wx'});
+  writeFileSync(`evidence/dispatch-observation-v10-${stage}.json`,JSON.stringify({protocol:reg.protocol,parent:reg.parent,run:directory,startedAt:new Date().toISOString(),newAllowance:false,totalThresholdUsd:2,priorHttpAttempts:reg.priorHttpAttempts})+'\n',{flag:'wx'});
   const root=new Evidence(directory,[key]),preflight=new Evidence(join(directory,'preflight'),[key]),http=studyFetch(fetch);
   const fetcher:typeof fetch=async(input,init)=>{
     const method=init?.method??(input instanceof Request?input.method:'GET'),cleanup=method==='GET'||init?.body==='{"events":[{"type":"agent.session.input.cancel"}]}';
@@ -50,10 +51,22 @@ else {
     const store=new ObservationBindings(join(bindingParent,'bindings')).lookup(id);
     if(!store || store.results().length!==1 || store.priorJobIds().length!==1 || turnPage.data.slice(1).some((t,i)=>!ackObservation(`baseline-${i+1}`,t,itemPage.data,true,true).valid)) throw new Error('RESTORE_STATE_INVALID');
     preflight.write('result.json',{readOnly:true,passed:true,sessionId:id,turnIds:turnPage.data.map(t=>t.id),stateReference:store.reference,stableUsage:true});
+    const inheritedFrom=reg.previousCompletion??reg.parent;
+    let adoptedDirectory:string|null=null;
+    if(adoption) {
+      const from=join(inheritedFrom,'b1-control/03-dose-1'),request=read(join(from,'request.json')),turn=turnPage.data[3]!;
+      if(!matchesCompletedAck(request.input,turn,itemPage.data)) throw new Error('ADOPTED_INPUT_MISMATCH');
+      const adopted=new Evidence(join(directory,'adopted-dose-1'),[key]);adoptedDirectory=adopted.directory;
+      adopted.record('root.items',{page:0,data:itemPage.data});adopted.record('session.turns',{page:0,data:turnPage.data});adopted.record('session.snapshot',session);
+      adopted.write('request.json',request);adopted.write('collection.json',read(join(from,'collection.json')));
+      adopted.write('adopted-collection.json',{...read(join(from,'collection.json')),error:null,historyComplete:true,terminal:'agent.session.turn.completed',completionBasis:'read-only-turn-resource',originalDirectory:from,inputSha256:sha256(request.input)});
+      adopted.write('measurement.json',{sample:ackObservation('dose-1',turn,itemPage.data,true,true),adopted:true});
+      adopted.write('settled.json',{turn,stable:true,readOnlySource:join(preflight.directory,'events.jsonl')});
+    }
     managed=await managedStudy(root,FIXED_RULE,calibrationResult.calibrationBudget.admissionEstimateUsd+(reg.transportReservationUsd??0),key,fetcher,
       {protocol:'context-observation-v10',restore:{parent:bindingParent,session,turns:turnPage.data,items:itemPage.data,readOnlySource:join(preflight.directory,'events.jsonl'),
-        ...(transport?{measurementDirectories:[join(reg.parent,'b1-control/01-baseline-1'),join(reg.parent,'b1-control/02-baseline-2')],
-          pendingDose:{fact:read(join(reg.parent,'b1-control/block-1.json')).fact,input:read(join(reg.parent,'b1-control/03-dose-1/request.json')).input,source:join(reg.parent,'b1-control/03-dose-1/request.json')}}:{})},
+        ...(adoption?{measurementDirectories:[join(inheritedFrom,'b1-control/01-baseline-1'),join(inheritedFrom,'b1-control/02-baseline-2'),adoptedDirectory!],completedFacts:[read(join(inheritedFrom,'b1-control/block-1.json')).fact]}:
+          transport?{measurementDirectories:[join(reg.parent,'b1-control/01-baseline-1'),join(reg.parent,'b1-control/02-baseline-2')],pendingDose:{fact:read(join(reg.parent,'b1-control/block-1.json')).fact,input:read(join(reg.parent,'b1-control/03-dose-1/request.json')).input,source:join(reg.parent,'b1-control/03-dose-1/request.json')}}:{})},
         settlementPolls:18,settlementDelayMs:5000,transportRetries:transport?2:0});
   } catch(e) {error={...safeError(e),reason:e instanceof Error&&/^[A-Z_]+$/.test(e.message)?e.message:'COMPLETION_FAILED'};root.tryRecord('completion.failed',error);}
   const result={protocol:reg.protocol,error,managedError:managed?.error??null,managedCases:managed?.cases.length??0,budget:managed?.budget??null,

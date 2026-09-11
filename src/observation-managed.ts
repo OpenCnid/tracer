@@ -86,7 +86,7 @@ export function ackObservation(id:string,turn:Turn,items:AgentSessionItem[],stab
     cached:turn.usage?.input_tokens_details.cached_tokens??null,output:turn.usage?.output_tokens??null,valid:reasons.length===0,reasons};
 }
 export interface ManagedCase {id:string;sessionId:string|null;samples:Sample[];candidate:ReturnType<typeof detect>;recovery:unknown;error:string|null}
-export interface ManagedRestore {parent:string;session:AgentSession;turns:Turn[];items:AgentSessionItem[];readOnlySource:string;measurementDirectories?:string[];pendingDose?:{fact:Fact;input:string;source:string}}
+export interface ManagedRestore {parent:string;session:AgentSession;turns:Turn[];items:AgentSessionItem[];readOnlySource:string;measurementDirectories?:string[];completedFacts?:Fact[];pendingDose?:{fact:Fact;input:string;source:string}}
 export class TransportUsageGuard extends UsageGuard {
   transportReservationUsd=0;
   reserveUnestablished() {this.transportReservationUsd+=.2;}
@@ -99,6 +99,11 @@ export class TransportUsageGuard extends UsageGuard {
 export function canRetryUnestablished(status:AgentSession,turns:Turn[],seen:Set<string>,more:boolean) {
   return status.status==='idle'&&!status.required_actions.length&&!more&&turns.length===seen.size&&
     turns.every(t=>seen.has(t.id)&&t.status==='completed'&&!!t.usage);
+}
+export function matchesCompletedAck(input:string,turn:Turn,items:AgentSessionItem[]) {
+  const user=items.filter(i=>i.turn_id===turn.id&&i.type==='message'&&i.role==='user').map(i=>i.type==='message'?i.content.map(c=>'text' in c?c.text:'').join(''):'').join('');
+  const sample=ackObservation('adoption',turn,items,true,true);
+  return user===input&&sample.reasons.every(r=>r==='UNSETTLED_USAGE');
 }
 export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string;restore?:ManagedRestore;settlementPolls?:number;settlementDelayMs?:number;transportRetries?:number}={}) {
   const guard=new TransportUsageGuard(DEFAULT_MODEL,2,.5,priorUsd),cases:ManagedCase[]=[];
@@ -123,14 +128,15 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
       const body=request(trial);if(options.protocol) body.metadata={...body.metadata,protocol:options.protocol};log.write('configuration.json',body);
       const row:ManagedCase={id,sessionId:restore?.session.id??null,samples:[],candidate:null,recovery:null,error:null};cases.push(row);
       const seenTurns=new Set<string>(restore?.turns.map(t=>t.id));
-      const facts:Fact[]=[];
+      const facts:Fact[]=[...(restore?.completedFacts??[])];
       const measurements:{sample:Sample;turnId:string;items:AgentSessionItem[];complete:boolean}[]=[];
       let sequence=restore?.turns.length??0;
       if(restore) {
         const dirs=restore.measurementDirectories??[join(restore.parent,id,'01-baseline-1')];
         for(let index=0;index<dirs.length;index++) {
-          const from=dirs[index]!,name=`baseline-${index+1}`,to=join(log.directory,`${String(index+1).padStart(2,'0')}-${name}`);mkdirSync(to,{recursive:true});
+          const from=dirs[index]!,name=existsSync(join(from,'measurement.json'))?read<{sample:Sample}>(join(from,'measurement.json')).sample.id:`baseline-${index+1}`,to=join(log.directory,`${String(index+1).padStart(2,'0')}-${name}`);mkdirSync(to,{recursive:true});
           for(const file of ['events.jsonl','request.json','collection.json']) copyFileSync(join(from,file),join(to,file),constants.COPYFILE_EXCL);
+          if(existsSync(join(from,'adopted-collection.json'))) copyFileSync(join(from,'adopted-collection.json'),join(to,'adopted-collection.json'),constants.COPYFILE_EXCL);
           const current=restore.turns[index+1]!,sample=ackObservation(name,current,restore.items,true,true);
           if(!sample.valid) throw new Error('RESTORED_ACK_INVALID');
           save(join(to,'settled.json'),{turn:current,stable:true,readOnlySource:restore.readOnlySource,inherited:true});
@@ -148,7 +154,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
         const e=new Evidence(join(log.directory,`${String(sequence++).padStart(2,'0')}-${name}${attempt?`-retry-${attempt}`:''}`),[key]),api=client();
         root.record('managed.reserved',{id,name,reservationUsd:.2,prior:guard.snapshot()});
         console.log(JSON.stringify({event:'managed-turn',id,name,estimateUsd:guard.snapshot().estimateUsd}));
-        const result=await collectTrial(api,{...trial,id:`${id}-${name}`},e,guard,{
+        let result=await collectTrial(api,{...trial,id:`${id}-${name}`},e,guard,{
           request:{...body,input},ledger,
           ...(row.sessionId?{continuation:{sessionId:row.sessionId,input}}:{}),
           onSession:sid=>{if(row.sessionId && row.sessionId!==sid) throw new Error('SESSION_CHANGED');if(!row.sessionId) {
@@ -157,11 +163,20 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
         });
         const events=readFileSync(join(e.directory,'events.jsonl'),'utf8').trim().split('\n').map(l=>JSON.parse(l) as {kind:string;data:any});
         const listed:Turn[]=events.filter(r=>r.kind==='session.turns').flatMap(r=>r.data.data);
-        const fresh=listed.filter(t=>!seenTurns.has(t.id));
-        if(result.error && (result.error as {code?:string}).code==='internal_error' && row.sessionId && transportRetries<(options.transportRetries??0)) {
+        let fresh=listed.filter(t=>!seenTurns.has(t.id)),recoveredItems:AgentSessionItem[]|null=null;
+        if(result.error && (result.error as {code?:string}).code==='internal_error' && row.sessionId && (options.transportRetries??0)>0) {
           const status=await api.beta.agents.sessions.retrieve(row.sessionId),page=await api.beta.agents.sessions.turns.list(row.sessionId,{order:'asc',limit:100});
           e.record('transport.read-only-check',{session:status,turns:page.data});
-          if(canRetryUnestablished(status,page.data,seenTurns,page.hasNextPage())) {
+          const added=page.data.filter(t=>!seenTurns.has(t.id));
+          if(status.status==='idle'&&!status.required_actions.length&&!page.hasNextPage()&&added.length===1&&/^(baseline|dose|confirm|endpoint)-/.test(name)) {
+            const ip=await api.beta.agents.sessions.items.list(row.sessionId,{order:'asc',limit:100});
+            if(!ip.hasNextPage()&&matchesCompletedAck(input,added[0]!,ip.data)) {
+              e.record('root.items',{page:0,data:ip.data});e.record('session.turns',{page:0,data:page.data});e.record('session.snapshot',status);
+              e.write('adopted-collection.json',{...result,error:null,originalError:result.error,historyComplete:true,terminal:'agent.session.turn.completed',completionBasis:'read-only-turn-resource',inputSha256:sha256(input)});
+              result={...result,error:null,historyComplete:true,terminal:'agent.session.turn.completed'};fresh=added;recoveredItems=ip.data;
+            }
+          }
+          if(result.error&&transportRetries<(options.transportRetries??0)&&canRetryUnestablished(status,page.data,seenTurns,page.hasNextPage())) {
             for(const t of page.data) guard.observeTurn(row.sessionId,t);guard.observeSession(row.sessionId,status.usage);
             guard.reserveUnestablished();guard.check(row.sessionId);transportRetries++;
             e.write('transport-retry.json',{sameInput:true,sameIdempotencyKey:`${id}-${name}`,noNewPublicTurn:true,retainedReservationUsd:.2,attempt:transportRetries});
@@ -170,7 +185,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
         }
         if(fresh.length!==1 || !row.sessionId) throw new Error('CURRENT_TURN_UNESTABLISHED');
         const current=fresh[0]!;seenTurns.add(current.id);
-        const items:AgentSessionItem[]=events.filter(r=>r.kind==='root.items').flatMap(r=>r.data.data);
+        const items:AgentSessionItem[]=recoveredItems??events.filter(r=>r.kind==='root.items').flatMap(r=>r.data.data);
         let latest=current,stable=false;
         for(let poll=0;poll<(options.settlementPolls??3);poll++) {
           await delay(options.settlementDelayMs??1000);
@@ -205,7 +220,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
         }
         if(!row.samples.some(s=>s.id==='baseline-2')) await ack('baseline-2');
         let confirming=false;
-        for(let dose=1;dose<=4;dose++) {
+        for(let dose=facts.length+1;dose<=4;dose++) {
           const pending=dose===1?restore?.pendingDose:undefined;
           const f=pending?.fact??fact(`block${dose}`);facts.push(f);
           const noise=randomBytes((arm==='pressure'?65536:256)/2).toString('hex');

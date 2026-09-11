@@ -55,7 +55,7 @@ export function replayContinuation(directory:string) {
     const measurements=readdirSync(path,{withFileTypes:true}).filter(e=>e.isDirectory()&&existsSync(join(path,e.name,'measurement.json'))).map(e=>{
       const folder=join(path,e.name),raw=events(folder),saved=read(join(folder,'measurement.json')),settled=read(join(folder,'settled.json'));
       const items:AgentSessionItem[]=raw.filter(e=>e.kind==='root.items').flatMap(e=>e.data.data);
-      const collection=read(join(folder,'collection.json'));
+      const collection=read(join(folder,existsSync(join(folder,'adopted-collection.json'))?'adopted-collection.json':'collection.json'));
       const sample=ackObservation(saved.sample.id,settled.turn,items,settled.stable,collection.historyComplete&&collection.terminal==='agent.session.turn.completed'&&!collection.error);
       if(!same(sample,saved.sample)) throw new Error('ACK_ELIGIBILITY_CHANGED');
       const turn:Turn|undefined=reconciled?.turns?.find((t:Turn)=>t.id===settled.turn.id);
@@ -91,8 +91,8 @@ export function replayContinuation(directory:string) {
   return {readOnly:true,run:directory,calibration:{pass:joined.pass,rule:joined.rule,bridge:joined.bridge,newResponses:generic.calibration.paidResponses,
       newInputTokens:generic.calibration.inputTokens,newOutputTokens:generic.calibration.outputTokens},
     logs:generic.logs,records:generic.records,sourceMatches:generic.sourceMatches,cases,pairs,
-    accounting:{admissionEstimateUsd:budget.admissionEstimateUsd,knownEstimateUsd:budget.estimateUsd===null?null:budget.estimateUsd-manifest.carriedUnresolvedUsd,
-      historicalUnresolvedReservationUsd:manifest.carriedUnresolvedUsd,newUnknownTurnCount:budget.unknownTurnCount,thresholdUsd:2,newAllowance:false},
+    accounting:{admissionEstimateUsd:budget.admissionEstimateUsd,knownEstimateUsd:budget.estimateUsd===null?null:budget.estimateUsd-manifest.carriedUnresolvedUsd-(budget.transportReservationUsd??0),
+      historicalUnresolvedReservationUsd:manifest.carriedUnresolvedUsd,additionalTransportReservationUsd:budget.transportReservationUsd??0,newUnknownTurnCount:budget.unknownTurnCount,thresholdUsd:2,newAllowance:false},
     sourceHashes:generic.hashes.map(h=>({...h,path:relative(directory,h.path)}))};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href) {
