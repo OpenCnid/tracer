@@ -1,0 +1,17 @@
+# Resume the same session after delayed usage
+
+The requested continuation completed calibration, then paused after the first managed control's first ACK because its completed turn still had null usage during the three short polls. A later read-only snapshot at 13:45:19 UTC reported 7,848 input and 5 output tokens for that same ACK. Its original request, completed lifecycle, null revisions, checkpoint and session remain preserved in the v10 run.
+
+This is an observed reporting delay. It is not a context drop, a task failure or a reason to repeat the ACK. The user has authorized completing the managed comparisons. This addendum records how we continue that work without silently replacing the interrupted case.
+
+Before additional inference, retrieve the original session, turns and items read-only and confirm the two completed turns' usage matches the earlier resolved snapshot. Verify idle status, no required actions, exact ACK, original agent configuration, original binding and frozen receipt. Any mismatch stops paid work. Keep all read-only snapshots and inherited evidence.
+
+Resume **the same session and original application binding**, with the original checkpoint and baseline ACK. Do not run setup or baseline 1 again. Start with baseline 2, then the unchanged four doses and endpoint/confirmation turns. Keep the other five planned sessions, fixed detector, pressure sizes, tool limits, recovery scoring and total $2 allowance unchanged. Do not rerun calibration.
+
+For subsequent turns, replace the too-short usage polling interval with up to **18 read-only polls, five seconds apart**. Require two consecutive equal, non-null usage records for the completed turn. This changes only the settlement wait, not the detector. No next paid turn starts with new usage unresolved. Each turn's existing 40-request transport cap still applies, so a turn with extensive tool activity may hit that cap before all polls. Preserve all revisions and stop if settlement cannot be established. The per-inference 120-second deadline remains unchanged. Reporting delay is retained as a finding.
+
+The new completion manifest references the interrupted v10 run, its passed calibration, the delayed usage evidence and the unchanged v9 detector. Inherited evidence is copied byte-for-byte with source hashes; derived settled measurements cite their read-only source. Original state stays at its original location and the binding files are reused. An inherited baseline is not a new model call.
+
+Initialize the usage guard with the same $0.1720471 calibration admission accounting, including the historical $0.03 reservation. Seed the original session's two resolved turns and aggregate into that guard once; do not add their charge both to the prior and to the session. Keep their $0.50 session stop. All subsequent sessions share this guard. Start the global HTTP accounting with the preceding 90 attempts plus the three later read-only calls; count confirmation reads and every new call against the original 3,000 ceiling. An exclusive `dispatch-observation-v10-completion.json` prevents duplicate resumption. No allowance resets.
+
+Final replay must join the inherited baseline and later measurements, verify actual results and effects against the original state directory, and compare online candidates with final reconciled usage. Report the initial pause separately. If no transition occurs at the fixed doses, the survival result is inconclusive; no extra pressure is added after seeing the outcome.

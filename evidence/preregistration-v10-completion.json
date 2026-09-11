@@ -1,0 +1,13 @@
+{
+  "protocol": "context-observation-v10-completion",
+  "parent": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "registeredAt": "2026-09-11T13:48:08.922Z",
+  "protocolHash": "62fca8c5935c6e0c1fd369153bb57b7b67a4b36ffe89fcd7513dde0b19044437",
+  "parentResultHash": "69200620c73964525ffc105ee5e9d53c183b1be308922142b606679fff607310",
+  "calibrationHash": "70898a1964b9aa97e2263e0470c61a03ad0f0b03d59e5525f588fa1b67a61e7f",
+  "detectorHash": "cc8d7542c1fbcd1b096041f82a76bfd97bf15b6be7ea02d7b2f176d6df0d35a4",
+  "resolvedSnapshot": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db/read-only-2026-09-11T13-45-19-163Z/events.jsonl",
+  "priorHttpAttempts": 93,
+  "totalThresholdUsd": 2,
+  "paidCallsSincePause": 0
+}
