@@ -1,0 +1,92 @@
+{
+  "at": "2026-09-11T12:50:20.709Z",
+  "analysis": "Retrospective known-positive input-usage contrasts; not validation of a managed compaction detector.",
+  "formula": "1 - compactedInputTokens / controlInputTokens",
+  "pairs": [
+    {
+      "pair": 1,
+      "verifiedResponsesBoundary": true,
+      "controlInputTokens": 9759,
+      "compactedInputTokens": 689,
+      "inputReductionFraction": 0.9293985039450763,
+      "exactLocatorPreserved": true
+    },
+    {
+      "pair": 2,
+      "verifiedResponsesBoundary": true,
+      "controlInputTokens": 9818,
+      "compactedInputTokens": 659,
+      "inputReductionFraction": 0.9328783866367896,
+      "exactLocatorPreserved": true
+    },
+    {
+      "pair": 3,
+      "verifiedResponsesBoundary": true,
+      "controlInputTokens": 9791,
+      "compactedInputTokens": 698,
+      "inputReductionFraction": 0.9287100398324992,
+      "exactLocatorPreserved": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/control/read-response.json",
+      "sha256": "3261936f89f5de246e3299271dee22950e73df9a1ff5d4d83bdb292d51d73824"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/treatment/read-response.json",
+      "sha256": "b2adb5068b885bfcc90ea586e2f3cf463ad83ea541e5e1c156627135ab14c8d5"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/boundary.json",
+      "sha256": "c31bc979279759f290da419cbf0f8a0eb541b3b493d16ff696e1e09e8f105afc"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-1/fixture.json",
+      "sha256": "443e1d707ba819ecc3a9d6fd909043ab0af4a360d439ef7c9318291d60b8fce7"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-2/control/read-response.json",
+      "sha256": "c678fd6413804ecd19dc826755a31a8557de47923712997e4b5c139ac20aea60"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-2/treatment/read-response.json",
+      "sha256": "f11c919b95defdb40e09db4b0c88fad318d23b4471e24b796d03d319a3cd3231"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-2/boundary.json",
+      "sha256": "8d230a7df33c311fe89d06434e2ac8a57ff3a00ff341e041839bb7fccdfc3358"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-2/fixture.json",
+      "sha256": "e0099b0272ef508fc81356ec1267012f448ce57c72ea7ab2a98ea825ab5546b2"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-3/control/read-response.json",
+      "sha256": "562be3453ec110abf47d5fb175292a1581a6697536c2173b8f503d75e1b36050"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-3/treatment/read-response.json",
+      "sha256": "8d8e9987347cc6a3abe14d183ab9fce8de91e1a8efc538a2f5983863c8674631"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-3/boundary.json",
+      "sha256": "802da5bf1f6e09113afafbf86e734f7fd4939525da278307d4e8ab613ce2b8d3"
+    },
+    {
+      "path": "evidence/runs/2026-09-11T03-10-48-421Z-responses-compact-v7-3a77cf0c/pair-3/fixture.json",
+      "sha256": "87ae052126f05645ae196bc9b8cf35fe9ff6eb576478725f049fc71b37b93bc4"
+    }
+  ],
+  "observed": "All three known Responses compactions reduced first-lookup input usage while preserving the exact random locator.",
+  "implications": [
+    "Recall failure is not a necessary sign of compaction.",
+    "Input reduction needs negative controls for truncation and other causes."
+  ],
+  "notEstablished": [
+    "Managed Agents compaction",
+    "Within-session change-point timing",
+    "Detector sensitivity or specificity"
+  ],
+  "paidInferenceRequests": 0
+}

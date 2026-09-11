@@ -26,4 +26,4 @@ The separate [Responses experiment](research/12-responses-compaction-results.md)
 | Can native generated code delegate and consume child results with the required RLM semantics? | Unverified |
 | Can this replace all current harness guarantees? | Not established |
 
-The next evidence target is [recovery across actual managed compaction](research/15-managed-compaction-evidence-plan.md). A fresh-session reset, a long prompt, or a successful answer alone must not close that question.
+The next evidence target is [recovery across an inferred managed-context transition](research/15-managed-compaction-evidence-plan.md), using client-side input-usage measurements and calibrated information probes. We will investigate without requiring a vendor event, while distinguishing an inferred compaction mechanism from observed recovery. A fresh-session reset, a long prompt, or a successful answer alone must not close the actual-compaction question.
