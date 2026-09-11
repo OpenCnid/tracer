@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import {randomBytes,randomInt} from 'node:crypto';
-import {readFileSync,writeFileSync,existsSync} from 'node:fs';
-import {join} from 'node:path';
+import {readFileSync,writeFileSync,existsSync,mkdirSync,copyFileSync,constants} from 'node:fs';
+import {join,relative} from 'node:path';
 import {setTimeout as delay} from 'node:timers/promises';
 import type {Turn} from 'openai/resources/beta/agents/sessions/turns';
 import type {AgentSession,AgentSessionItem} from 'openai/resources/beta/agents/agents';
@@ -86,24 +86,45 @@ export function ackObservation(id:string,turn:Turn,items:AgentSessionItem[],stab
     cached:turn.usage?.input_tokens_details.cached_tokens??null,output:turn.usage?.output_tokens??null,valid:reasons.length===0,reasons};
 }
 export interface ManagedCase {id:string;sessionId:string|null;samples:Sample[];candidate:ReturnType<typeof detect>;recovery:unknown;error:string|null}
-export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string}={}) {
+export interface ManagedRestore {parent:string;session:AgentSession;turns:Turn[];items:AgentSessionItem[];readOnlySource:string}
+export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string;restore?:ManagedRestore;settlementPolls?:number;settlementDelayMs?:number}={}) {
   const guard=new UsageGuard(DEFAULT_MODEL,2,.5,priorUsd),cases:ManagedCase[]=[];
-  const bindings=new ObservationBindings(join(root.directory,'bindings'));
-  let turnsDispatched=0;
+  const bindings=new ObservationBindings(join(options.restore?.parent??root.directory,'bindings'));
+  let turnsDispatched=options.restore?.turns.length??0;
   const client=()=>new OpenAI({apiKey:key,maxRetries:0,timeout:120000,fetch:boundedFetch(fetcher),...(process.env.OPENAI_PROJECT_ID?{project:process.env.OPENAI_PROJECT_ID}:{})});
   const seenSessions=new Set<string>();
+  if(options.restore) {
+    guard.observeSession(options.restore.session.id,options.restore.session.usage);
+    for(const t of options.restore.turns) guard.observeTurn(options.restore.session.id,t);
+    guard.requireComplete(options.restore.session.id);seenSessions.add(options.restore.session.id);
+  }
   let fatal:string|null=null;
   try {
     for(let pair=1;pair<=3;pair++) for(const arm of ['control','pressure'] as const) {
       const id=`b${pair}-${arm}`,log=new Evidence(join(root.directory,id),[key]);
-      const store=CheckpointStore.create(join(log.directory,'state'));
+      const restore=pair===1&&arm==='control'?options.restore:undefined;
+      const store=restore?bindings.lookup(restore.session.id)!:CheckpointStore.create(join(log.directory,'state'));
+      if(!store) throw new Error('RESTORED_BINDING_MISSING');
       const trial:Trial={id,block:pair,arm:'programmatic-local',seed:sha256(id),model:DEFAULT_MODEL};
       const body=request(trial);if(options.protocol) body.metadata={...body.metadata,protocol:options.protocol};log.write('configuration.json',body);
-      const row:ManagedCase={id,sessionId:null,samples:[],candidate:null,recovery:null,error:null};cases.push(row);
-      const seenTurns=new Set<string>();
+      const row:ManagedCase={id,sessionId:restore?.session.id??null,samples:[],candidate:null,recovery:null,error:null};cases.push(row);
+      const seenTurns=new Set<string>(restore?.turns.map(t=>t.id));
       const facts:Fact[]=[];
       const measurements:{sample:Sample;turnId:string;items:AgentSessionItem[];complete:boolean}[]=[];
-      let sequence=0;
+      let sequence=restore?.turns.length??0;
+      if(restore) {
+        const from=join(restore.parent,id,'01-baseline-1'),to=join(log.directory,'01-baseline-1');mkdirSync(to,{recursive:true});
+        for(const name of ['events.jsonl','request.json','collection.json']) copyFileSync(join(from,name),join(to,name),constants.COPYFILE_EXCL);
+        const current=restore.turns.at(-1)!;
+        const sample=ackObservation('baseline-1',current,restore.items,true,true);
+        if(!sample.valid) throw new Error('RESTORED_ACK_INVALID');
+        save(join(to,'settled.json'),{turn:current,stable:true,readOnlySource:restore.readOnlySource,inherited:true});
+        save(join(to,'measurement.json'),{sample,hiddenGenerationCount:null,inherited:true,sourceDirectory:relative(to,from),readOnlySource:restore.readOnlySource});
+        save(join(to,'inherited.json'),{sourceDirectory:relative(to,from),files:['events.jsonl','request.json','collection.json'].map(name=>({name,sha256:sha256(readFileSync(join(from,name)))}))});
+        row.samples.push(sample);
+        log.write('checkpoint.json',{reference:store.reference,sessionId:restore.session.id,stateRelativePath:relative(log.directory,store.reference.directory),inherited:true});
+        log.record('session.restored',{sessionId:restore.session.id,readOnlySource:restore.readOnlySource,completedTurnIds:restore.turns.map(t=>t.id)});
+      }
       async function turn(name:string,input:string,ledger:NonNullable<CollectionOptions['ledger']>) {
         if(++turnsDispatched>66) throw new Error('MANAGED_TURN_CAP');
         if(guard.snapshot().admissionEstimateUsd+.2>2) throw new Error('STUDY_ADMISSION_CAP');
@@ -124,12 +145,13 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
         const current=fresh[0]!;seenTurns.add(current.id);
         const items:AgentSessionItem[]=events.filter(r=>r.kind==='root.items').flatMap(r=>r.data.data);
         let latest=current,stable=false;
-        for(let poll=0;poll<3;poll++) {
-          await delay(1000);
+        for(let poll=0;poll<(options.settlementPolls??3);poll++) {
+          await delay(options.settlementDelayMs??1000);
           const next=await api.beta.agents.sessions.turns.retrieve(current.id,{session_id:row.sessionId});
           e.record('usage.revision',next);guard.observeTurn(row.sessionId,next);
           stable=!!next.usage && JSON.stringify(next.usage)===JSON.stringify(latest.usage);latest=next;
           if(stable) break;
+          if(poll===0 || poll%6===5) console.log(JSON.stringify({event:'usage-pending',id,name,poll:poll+1}));
         }
         guard.requireComplete(row.sessionId);
         e.write('settled.json',{turn:latest,stable,hiddenGenerationCount:null,reason:'Public items do not certify all internal generations.'});
@@ -145,12 +167,15 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
         return sample;
       }
       try {
-        const setupLog=new Evidence(join(log.directory,'setup-ledger'),[key]);
-        const setup=new CheckpointLedger(bindings,'setup',setupLog);
-        const start=await turn('setup',body.input as string,setup);
-        if(!start.complete || !setup.correct || !row.sessionId) throw new Error('INVALID_SETUP');
-        const frozen=store.freeze();bindings.freeze(row.sessionId,frozen);log.write('checkpoint.json',{reference:frozen,sessionId:row.sessionId});
-        await ack('baseline-1');await ack('baseline-2');
+        if(!restore) {
+          const setupLog=new Evidence(join(log.directory,'setup-ledger'),[key]);
+          const setup=new CheckpointLedger(bindings,'setup',setupLog);
+          const start=await turn('setup',body.input as string,setup);
+          if(!start.complete || !setup.correct || !row.sessionId) throw new Error('INVALID_SETUP');
+          const frozen=store.freeze();bindings.freeze(row.sessionId,frozen);log.write('checkpoint.json',{reference:frozen,sessionId:row.sessionId,stateRelativePath:relative(log.directory,frozen.directory)});
+          await ack('baseline-1');
+        }
+        await ack('baseline-2');
         let confirming=false;
         for(let dose=1;dose<=4;dose++) {
           const f=fact(`block${dose}`);facts.push(f);
@@ -172,7 +197,7 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
           const recoveryLog=new Evidence(join(log.directory,'recovery-ledger'),[key]);
           const base=new CheckpointLedger(bindings,'bound',recoveryLog),records=new RecordLedger(base,indices,recoveryLog);
           const result=await turn('recovery',`Resume the assigned task. Discover saved state, finish pending jobs without requesting completed jobs, and submit tracer_resume_report with every exact original and new result. Also read external indices ${JSON.stringify(indices)} with tracer_state_read and submit their exact values through tracer_state_submit. Correct rejected submissions within tool limits.`,records);
-          const restored=bindings.lookup(row.sessionId)!;restored.verify();
+          const restored=bindings.lookup(row.sessionId!)!;restored.verify();
           const obs=base.observation(),duplicate=obs.processAttempts.some(p=>p.status==='already_completed');
           const pass=result.complete && restored.results().length===3 && base.correct===true && records.correct===true && !duplicate;
           row.recovery={pass,checkpoint:obs,recordsCorrect:records.correct,recordReports:records.reports,duplicateCompletedRequest:duplicate,

@@ -6,6 +6,8 @@ import OpenAI from 'openai';
 import {CarriedCalibrationBudget,missingCalibrationRequests,continuationRegistration,bridgePass,responseSample,
   claimContinuation,completeCalibration,FIXED_RULE} from '../src/observation-continuation.js';
 import {Evidence} from '../src/evidence.js';
+import {UsageGuard} from '../src/budget.js';
+import {ackObservation,ObservationBindings} from '../src/observation-managed.js';
 import type {Response as ModelResponse} from 'openai/resources/responses/responses';
 
 const parent='evidence/runs/2026-09-11T13-13-03-969Z-context-observation-v9-d3b43f6e';
@@ -15,6 +17,20 @@ function cleanup(path:string) {
   rmSync(path,{recursive:true,force:true});
 }
 describe('carried observation continuation',()=>{
+  it('restores delayed usage into the same guard once, preserving the original binding',()=>{
+    const reg=read('evidence/preregistration-v10-completion.json');
+    const rows=readFileSync(reg.resolvedSnapshot,'utf8').trim().split('\n').map(l=>JSON.parse(l));
+    const resolved=rows.find(e=>e.kind==='read-only.snapshot').data;
+    const guard=new UsageGuard('gpt-5.6-luna',2,.5,.1720471);
+    guard.observeSession(resolved.session.id,resolved.session.usage);
+    for(const t of resolved.turns) guard.observeTurn(resolved.session.id,t);
+    guard.requireComplete(resolved.session.id);
+    expect(guard.snapshot().admissionEstimateUsd).toBeCloseTo(.1910812,10);
+    expect(guard.snapshot().unknownTurnCount).toBe(0);
+    expect(ackObservation('baseline-1',resolved.turns[1],resolved.items,true,true)).toMatchObject({input:7848,valid:true});
+    const store=new ObservationBindings(join(reg.parent,'bindings')).lookup(resolved.session.id)!;
+    expect(store.priorJobIds()).toHaveLength(1);store.verify();
+  });
   it('does not release the historical reservation or settle it with the replacement usage',()=>{
     const b=new CarriedCalibrationBudget(.1328787,.03);expect(b.snapshot().admissionEstimateUsd).toBeCloseTo(.1628787,10);
     b.reserve('replacement');b.settle({input_tokens:1000,output_tokens:100});

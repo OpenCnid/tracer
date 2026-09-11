@@ -96,8 +96,8 @@ export function replayObservation(directory:string) {
     if(!equal(online,result.candidate)) throw new Error('ONLINE_DETECTION_CHANGED');
     let storage:unknown=null;
     if(existsSync(join(path,'checkpoint.json'))) {
-      const ref=read(join(path,'checkpoint.json')).reference;
-      const store=new CheckpointStore({...ref,directory:resolve(path,'state')});store.verify();
+      const checkpoint=read(join(path,'checkpoint.json')),ref=checkpoint.reference;
+      const store=new CheckpointStore({...ref,directory:resolve(path,checkpoint.stateRelativePath??'state')});store.verify();
       storage={sourceIntact:true,originalReceiptIntact:true,operations:store.results().length,prior:store.priorJobIds()};
     }
     managed.push({id:entry.name,onlineCandidate:online,reconciledCandidate:after,candidateStable:equal(online,after),revisions,
