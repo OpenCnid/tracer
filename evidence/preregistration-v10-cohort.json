@@ -1,0 +1,15 @@
+{
+  "protocol": "context-observation-v10-cohort",
+  "parent": "evidence\\runs\\2026-09-11T14-04-43-436Z-context-observation-v10-adoption-7209f94b",
+  "bindingParent": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "calibrationRun": "evidence\\runs\\2026-09-11T13-41-59-357Z-context-observation-v10-bf0d11db",
+  "registeredAt": "2026-09-11T14:17:34.961Z",
+  "protocolHash": "ca5fc2a885be1d9670550c384df86a8ff08e191f0d0f432dca559717af072f8a",
+  "parentResultHash": "5b559dec84ebdf0529529c9df0804983c3ef44072d6c69f7dca3bc4f30d6befc",
+  "detectorHash": "cc8d7542c1fbcd1b096041f82a76bfd97bf15b6be7ea02d7b2f176d6df0d35a4",
+  "priorHttpAttempts": 272,
+  "priorAdmissionUsd": 0.3720471,
+  "carriedUnresolvedUsd": 0.23,
+  "totalThresholdUsd": 2,
+  "newPaidCalls": 0
+}
