@@ -1,5 +1,29 @@
-import {Evidence} from './evidence.js';
+import {Evidence,safeError} from './evidence.js';
+import {setTimeout as delay} from 'node:timers/promises';
 import {sha256} from './protocol.js';
+
+// Put this outside boundedFetch: every actual attempt must traverse its counter.
+export function readOnlyRetryFetch(base:typeof fetch,evidence:Evidence,wait:(ms:number)=>Promise<unknown>=delay):typeof fetch {
+  return async(input,init)=>{
+    const method=(init?.method??(input instanceof Request?input.method:'GET')).toUpperCase();
+    if(method!=='GET') return base(input,init);
+    const path=new URL(typeof input==='string'?input:input instanceof URL?input.href:input.url).pathname;
+    const signal=init?.signal??(input instanceof Request?input.signal:null);
+    for(let attempt=0;;attempt++) {
+      let response:Response;
+      try {response=await base(input,init);}
+      catch(error) {
+        // Native fetch reports network failures as TypeError. Local budget errors and aborts are terminal.
+        if(!(error instanceof TypeError)||signal?.aborted||attempt>=2) throw error;
+        evidence.record('http.read-only-retry',{path,attempt:attempt+1,error:safeError(error)});
+        await wait(500*(attempt+1));continue;
+      }
+      if(attempt>=2||signal?.aborted||!(response.status===408||response.status===429||response.status>=500)) return response;
+      evidence.record('http.read-only-retry',{path,attempt:attempt+1,status:response.status,requestId:response.headers.get('x-request-id')});
+      await response.body?.cancel();await wait(500*(attempt+1));
+    }
+  };
+}
 
 // Added after v9 stopped. Capture the wire result before SDK convenience parsing can throw.
 // This does not retry, change a model request, settle a bill, or reopen a dispatch claim.

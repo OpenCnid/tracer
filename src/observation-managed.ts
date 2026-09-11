@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
 import {randomBytes,randomInt} from 'node:crypto';
-import {readFileSync,writeFileSync,existsSync,mkdirSync,copyFileSync,constants} from 'node:fs';
+import {readFileSync,writeFileSync,existsSync,mkdirSync,copyFileSync,cpSync,constants} from 'node:fs';
 import {join,relative} from 'node:path';
 import {setTimeout as delay} from 'node:timers/promises';
 import type {Turn} from 'openai/resources/beta/agents/sessions/turns';
@@ -14,6 +14,7 @@ import {CheckpointStore,SessionBindings,type TaskReference} from './checkpoint-s
 import {CheckpointLedger} from './checkpoint-ledger.js';
 import {ACK,OBS_INSTRUCTIONS,OBS_PROTOCOL,drop,detect,fact,factText,recallQuery,scoreRecall,type Fact,type Sample,type Rule} from './observation.js';
 import type {StateRecord} from './state-store.js';
+import {readOnlyRetryFetch} from './observation-transport.js';
 
 type Action=Extract<AgentSession['required_actions'][number],{type:'function_call'}>;
 const read=<T>(path:string):T=>JSON.parse(readFileSync(path,'utf8'));
@@ -105,11 +106,11 @@ export function matchesCompletedAck(input:string,turn:Turn,items:AgentSessionIte
   const sample=ackObservation('adoption',turn,items,true,true);
   return user===input&&sample.reasons.every(r=>r==='UNSETTLED_USAGE');
 }
-export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string;restore?:ManagedRestore;settlementPolls?:number;settlementDelayMs?:number;transportRetries?:number}={}) {
+export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:string,fetcher:typeof fetch,options:{protocol?:string;restore?:ManagedRestore;settlementPolls?:number;settlementDelayMs?:number;transportRetries?:number;readOnlyRetries?:boolean;completedControl?:{directory:string;row:ManagedCase}}={}) {
   const guard=new TransportUsageGuard(DEFAULT_MODEL,2,.5,priorUsd),cases:ManagedCase[]=[];
   const bindings=new ObservationBindings(join(options.restore?.parent??root.directory,'bindings'));
   let turnsDispatched=options.restore?.turns.length??0;
-  const client=()=>new OpenAI({apiKey:key,maxRetries:0,timeout:120000,fetch:boundedFetch(fetcher),...(process.env.OPENAI_PROJECT_ID?{project:process.env.OPENAI_PROJECT_ID}:{})});
+  const client=()=>{const counted=boundedFetch(fetcher);return new OpenAI({apiKey:key,maxRetries:0,timeout:120000,fetch:options.readOnlyRetries?readOnlyRetryFetch(counted,root):counted,...(process.env.OPENAI_PROJECT_ID?{project:process.env.OPENAI_PROJECT_ID}:{})});};
   const seenSessions=new Set<string>();
   let transportRetries=0;
   if(options.restore) {
@@ -117,9 +118,18 @@ export async function managedStudy(root:Evidence,rule:Rule,priorUsd:number,key:s
     for(const t of options.restore.turns) guard.observeTurn(options.restore.session.id,t);
     guard.requireComplete(options.restore.session.id);seenSessions.add(options.restore.session.id);
   }
+  if(options.completedControl) {
+    const c=options.completedControl;
+    if(!options.restore||c.row.id!=='b1-control'||c.row.sessionId!==options.restore.session.id||c.row.error) throw new Error('INVALID_COMPLETED_CONTROL');
+    const destination=join(root.directory,c.row.id);if(existsSync(destination)) throw new Error('COMPLETED_CONTROL_EXISTS');
+    cpSync(c.directory,destination,{recursive:true,errorOnExist:true,force:false});
+    save(join(destination,'adopted-result.json'),{...c.row,sourceDirectory:relative(destination,c.directory),originalResultHash:sha256(readFileSync(join(c.directory,'result.json'))),readOnlySource:options.restore.readOnlySource});
+    cases.push(c.row);root.record('managed.inherited-control',c.row);
+  }
   let fatal:string|null=null;
   try {
     for(let pair=1;pair<=3;pair++) for(const arm of ['control','pressure'] as const) {
+      if(pair===1&&arm==='control'&&options.completedControl) continue;
       const id=`b${pair}-${arm}`,log=new Evidence(join(root.directory,id),[key]);
       const restore=pair===1&&arm==='control'?options.restore:undefined;
       const store=restore?bindings.lookup(restore.session.id)!:CheckpointStore.create(join(log.directory,'state'));
