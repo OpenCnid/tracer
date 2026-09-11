@@ -18,30 +18,35 @@ Our reading is that RLM and managed compaction can work together. The unresolved
 
 ## What we're testing
 
-**Can code written by an agent launch built-in child agents, read their results, and continue computing with those results?**
+Our central concern is **whether exact external data remains usable when OpenAI manages and compacts the agent's working memory**.
 
-Our probe compares ordinary delegation, code running without delegation, and code that delegates. We plan three trials of each. We check both the answers and execution records: a correct answer alone cannot show how the work happened.
+We first tested whether an agent could delegate two jobs and collect their answers. We then tested whether it could recover an earlier storage handle and retrieve exact records in a later turn, including under context pressure. We check tool records and stored bytes independently of the model's account of what happened.
 
 ## Current status
 
-**The tested native-from-code workflow failed all three answer checks.** We completed a nine-trial matrix on `gpt-5.6-luna`, after two separately recorded calibration attempts.
+**Exact external-state retrieval passed all three follow-up tests. Survival across compaction remains unproven.**
 
-| Workflow | Correct submissions |
+Each session received a handle to an external file larger than 1 MiB. A later turn requested two newly selected records without repeating the handle. Two sessions also received 640 KiB of irrelevant text to put pressure on context.
+
+| External-state test | Exact retrieval |
 | --- | --- |
-| Code without delegation | 3 of 3 |
-| Direct child-agent delegation | 2 of 3 |
-| Child-agent delegation requested from code | 0 of 3 |
+| Short session | Passed |
+| Pressure trial 1 | Passed |
+| Pressure trial 2 | Passed |
 
-The native-from-code trials created two children but submitted an undefined value after a wait returned only one child's result. This points to incomplete result collection. It does **not** prove that the API cannot support RLM: the exact execution route still needs independent trace review, and one control also failed a string transformation.
+The agents recovered their earlier handles and submitted the exact records. The external files stayed unchanged. However, the API and inspected dashboard traces did not establish that compaction occurred, so these passes cannot certify post-compaction behavior.
 
-The runner uses a **$2 stopping threshold**, with possible overshoot explicitly accepted by OpenCnid. The latest conservative estimate for all attempts is **about $0.37**, not a final bill. [Live results and evidence](research/08-live-results.md).
+The revised delegation test also improved collection: two of three trials requesting delegation from code submitted both assigned children's answers. Other failures involved omitted task inputs and incorrect reversals. The inspected traces still do not expose the executing JavaScript, so a faithful native RLM port remains unverified.
+
+The complete follow-up used a **$2 stopping threshold** with accepted possible overshoot. Its conservative usage estimate is **$1.38**, not a final bill. [Read what happened and what it means](research/10-followup-results.md). The [earlier study](research/08-live-results.md) remains unchanged.
 
 ## Read the study
 
 1. [Our reading and sources](research/01-reading.md)
 2. [The experiment and what would disprove our hypothesis](research/02-preregistered-probe.md)
 3. [How the probe works](research/03-implementation.md)
-4. [Live results and what remains unknown](research/08-live-results.md)
+4. [Current results: external state, collection and compaction](research/10-followup-results.md)
+5. [The follow-up protocol](research/09-followup-protocol.md)
 
 ## Run locally
 
@@ -50,10 +55,10 @@ Use Node `^22.19.0 || >=24.0.0` and pnpm **11.7.0**. The official OpenAI SDK is 
 ```sh
 pnpm install --frozen-lockfile
 pnpm check
-pnpm probe plan
-pnpm probe run
+pnpm followup plan
+pnpm followup run
 ```
 
-`probe run` makes paid requests when a key is configured in `.env`. It runs trials sequentially, monitors reported usage, and stops on budget or evidence problems. The $2 threshold is not a guaranteed billing cap: usage and cancellation can be delayed. An unreviewed run exits with an inconclusive result.
+`followup run` makes paid requests when a key is configured in `.env`. After its collection gate passes, reconcile usage and pass that accounting artifact to `state-probe`; the second stage carries the first stage's spending into the same $2 allowance. The threshold is not a guaranteed billing cap: usage and cancellation can be delayed.
 
 See [setup and budget details](research/03-implementation.md) and [how to inspect the evidence](evidence/README.md) before running a live experiment.

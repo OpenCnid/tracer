@@ -1,0 +1,57 @@
+{
+  "id": "span_979198d63e8560e3",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_dcaa305ffa3738c2",
+  "status": "completed",
+  "started_at_ms": 1789091618000,
+  "ended_at_ms": 1789091621068,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "type": "message",
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "Setup turn: use code to call tracer_manifest once, then return its opaque handle so you can retrieve exact external records in a future turn. Do not read records yet."
+          }
+        ]
+      }
+    ],
+    "output": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f412de0e7e557c5016aa35f2370c487d18143a7e79c8cca44",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f2433f081918d73b5410f62af8d",
+        "summary": [],
+        "status": "completed"
+      },
+      {
+        "type": "message",
+        "id": "msg_0f412de0e7e557c5016aa35f23cba887d199ff3ebe19b5ca55",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f2433f081918d73b5410f62af8d",
+        "role": "assistant",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "I’m initializing the trace manifest and will retain the returned opaque handle for the later lookup."
+          }
+        ],
+        "phase": "commentary"
+      },
+      {
+        "type": "function_call",
+        "id": "exec-3cf43469-de28-47fd-89fb-d59db51a8cee",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f2433f081918d73b5410f62af8d",
+        "call_id": "exec-3cf43469-de28-47fd-89fb-d59db51a8cee",
+        "name": "tracer_manifest",
+        "arguments": {},
+        "status": "completed"
+      }
+    ]
+  }
+}

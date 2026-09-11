@@ -1,0 +1,49 @@
+- region "Session graph":
+    - button "Turn 1, Root agent. Agent. Completed. Duration 13s."
+    - button "Turn 1, Generation · gpt-5.6-luna. Generation. Completed. Duration 3s."
+    - button "Turn 1, tracer_manifest. Tool. Completed. Duration 8s."
+    - button "Turn 1, Generation · gpt-5.6-luna. Generation. Completed. Duration 936ms."
+    - button "Turn 2, Root agent. Agent. Completed. Duration 31s."
+    - button "Turn 2, Generation · gpt-5.6-luna. Generation. Completed. Duration 13s."
+    - button "Turn 2, tracer_state_read. Tool. Completed. Duration 8s."
+    - button "Turn 2, Generation · gpt-5.6-luna. Generation. Completed. Duration 2ms."
+    - button "Turn 2, tracer_state_submit. Tool. Completed. Duration 8s."
+    - button "Turn 2, Generation · gpt-5.6-luna. Generation. Completed. Duration 2s."
+    - generic: 8:53:40
+    - generic: 8:53:50
+    - generic: 8:54:00
+    - generic: 8:54:10
+    - generic: 8:54:20
+    - generic: 8:54:30
+    - generic "Timeline controls":
+      - button "Fit timeline":
+      - button "Zoom out":
+      - button "Zoom in":
+  - region "Session event list":
+    - heading "Turn 1 Completed 13s" [level=3]:
+      - button "Turn 1 Completed 13s" [expanded]:
+        - generic: Turn 1
+        - img "Completed":
+        - generic: 13s
+    - tree "Events for Turn 1":
+      - treeitem "Root agent" [expanded] [level=1]:
+        - generic: Root agent
+        - generic: 13s
+        - generic: Agent event. Completed. Duration 13s.
+        - treeitem "Generation · gpt-5.6-luna" [level=2]:
+          - generic: Generation · gpt-5.6-luna
+          - generic: 3s
+          - generic: Generation event. Completed. Duration 3s.
+        - treeitem "tracer_manifest" [level=2]:
+          - generic: tracer_manifest
+          - generic: 8s
+          - generic: Tool event. Completed. Duration 8s.
+        - treeitem "Generation · gpt-5.6-luna" [level=2]:
+          - generic: Generation · gpt-5.6-luna
+          - generic: 936ms
+          - generic: Generation event. Completed. Duration 936ms.
+    - heading "Turn 2 Completed 31s" [level=3]:
+      - button "Turn 2 Completed 31s":
+        - generic: Turn 2
+        - img "Completed":
+        - generic: 31s

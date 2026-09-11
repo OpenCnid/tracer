@@ -1,0 +1,111 @@
+{
+  "protocol": "external-state-v6",
+  "note": "Retrieval observations are independent of compaction-boundary attribution.",
+  "trials": [
+    {
+      "trial": "s1-control",
+      "sessionId": "sess_05b67e0bcfb77248006aa35edcaaac8191bc17111e7b9d2dd7",
+      "pressureBytes": 0,
+      "selectedIndices": [
+        36,
+        218
+      ],
+      "stateBytes": 1061346,
+      "stateSha256": "7ec783cfcf576f3c233a6b3250feaedf20d8651cb0aa0a03a8ba34c4ea0a4fc1",
+      "stateIntact": true,
+      "handleRepeatedInLookupInput": false,
+      "readHandleMatches": true,
+      "lookupCorrect": true,
+      "functions": [
+        {
+          "sequence": 209,
+          "at": "2026-09-11T01:53:06.396Z",
+          "name": "tracer_state_read",
+          "callId": "exec-6869d48c-e08e-45bf-8e3e-a5101efefa2d",
+          "argumentSha256": "a5bd602a5439b7c4e9f6dfa2a7f9b0892daf96abe4a18db3f6129de906b84c16",
+          "outputSha256": "a35649ca9d4c3ef07cc01592c9079a0876eb0f68d7a61774c020040efe118d38"
+        },
+        {
+          "sequence": 217,
+          "at": "2026-09-11T01:53:14.274Z",
+          "name": "tracer_state_submit",
+          "callId": "exec-583c16dd-49c5-4aef-9f0a-ebe32748c175",
+          "argumentSha256": "a35649ca9d4c3ef07cc01592c9079a0876eb0f68d7a61774c020040efe118d38",
+          "outputSha256": "11a49f853eb8befe94fef278d487125cd20930b9e41c4c0934394443e7f00878"
+        }
+      ],
+      "sourceLogSha256": "5a970f2f4f5ada3d5264b83bc8f325532f6f08186f28d484f76d91b8f89f1ec6",
+      "compactionBoundary": "unestablished"
+    },
+    {
+      "trial": "s2-pressure",
+      "sessionId": "sess_037bc373fd2c12b9006aa35f1b9c2c81918190448a71df90b4",
+      "pressureBytes": 655360,
+      "selectedIndices": [
+        80,
+        382
+      ],
+      "stateBytes": 1061346,
+      "stateSha256": "581ff7ddcdaca137f95bb824bd3d837a7f349fd0cbb25458d7611cabe3d00716",
+      "stateIntact": true,
+      "handleRepeatedInLookupInput": false,
+      "readHandleMatches": true,
+      "lookupCorrect": true,
+      "functions": [
+        {
+          "sequence": 32,
+          "at": "2026-09-11T01:54:18.478Z",
+          "name": "tracer_state_read",
+          "callId": "exec-3f5c9b03-22e4-48ad-9229-b35788d068eb",
+          "argumentSha256": "b380d76a6c19d4016269c3629a659dcb83028e09f57fcf757a9d23e28685044d",
+          "outputSha256": "7bdc29eabb083216eae09f9dd905dcc9f9c5c423d1ee465130b0173fb75e352d"
+        },
+        {
+          "sequence": 43,
+          "at": "2026-09-11T01:54:26.496Z",
+          "name": "tracer_state_submit",
+          "callId": "exec-973bddc1-9894-4d20-af84-a48e80eb28dd",
+          "argumentSha256": "7bdc29eabb083216eae09f9dd905dcc9f9c5c423d1ee465130b0173fb75e352d",
+          "outputSha256": "11a49f853eb8befe94fef278d487125cd20930b9e41c4c0934394443e7f00878"
+        }
+      ],
+      "sourceLogSha256": "28d79b4c65c3392b02e2c28d0492b5d2c9d761b74fef2ac91bb08eb54cf20a64",
+      "compactionBoundary": "unestablished"
+    },
+    {
+      "trial": "s3-pressure",
+      "sessionId": "sess_04aa00fdbfc011cf006aa35f640eb08191b1913bc06ad92d33",
+      "pressureBytes": 655360,
+      "selectedIndices": [
+        19,
+        96
+      ],
+      "stateBytes": 1061346,
+      "stateSha256": "b33edb52ba737799584d93bbaea905134f43898ab738308f28e5addd92b83ba5",
+      "stateIntact": true,
+      "handleRepeatedInLookupInput": false,
+      "readHandleMatches": true,
+      "lookupCorrect": true,
+      "functions": [
+        {
+          "sequence": 119,
+          "at": "2026-09-11T01:55:33.468Z",
+          "name": "tracer_state_read",
+          "callId": "exec-5387de17-ef3c-4c77-bafc-39ffe7d79a40",
+          "argumentSha256": "f468ddc454eb7b4dd8316982661dc7963b2b4566a560dacfec055f83a77d4c31",
+          "outputSha256": "4b50c06e6078691725b72c6c8bf404ca8468d128df0eda82fe822ea49e9d0d12"
+        },
+        {
+          "sequence": 129,
+          "at": "2026-09-11T01:55:42.326Z",
+          "name": "tracer_state_submit",
+          "callId": "exec-00d74f9f-b65d-45a0-84a5-466eb26a12de",
+          "argumentSha256": "4b50c06e6078691725b72c6c8bf404ca8468d128df0eda82fe822ea49e9d0d12",
+          "outputSha256": "11a49f853eb8befe94fef278d487125cd20930b9e41c4c0934394443e7f00878"
+        }
+      ],
+      "sourceLogSha256": "9a87d09737ed5f0fea3239262c6ccbc9ef25ee73b39f40efaaa0a2063849e505",
+      "compactionBoundary": "unestablished"
+    }
+  ]
+}

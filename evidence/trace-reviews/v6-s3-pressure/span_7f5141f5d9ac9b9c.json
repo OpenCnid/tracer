@@ -1,0 +1,62 @@
+{
+  "id": "span_7f5141f5d9ac9b9c",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_7a2add0c807292ff",
+  "status": "completed",
+  "started_at_ms": 1789091690000,
+  "ended_at_ms": 1789091691852,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "type": "message",
+        "role": "user",
+        "content": [
+          {
+            "type": "input_text",
+            "text": "Setup turn: use code to call tracer_manifest once, then return its opaque handle so you can retrieve exact external records in a future turn. Do not read records yet."
+          }
+        ]
+      }
+    ],
+    "output": [
+      {
+        "type": "reasoning",
+        "id": "rs_0fe641e49e815262016aa35f6a949c87d18de253656e1364cc",
+        "turn_id": "turn_04aa00fdbfc011cf006aa35f6bef6081918a024d20be8b0b47",
+        "summary": [
+          {
+            "type": "summary_text",
+            "text": "**Searching for tool execution**\n\nI need to look into the deferred tools for the tracer_manifest. My next step is to use the functions to execute a JavaScript tool for a complete lookup of all available tools. It’s essential to ensure that I have access to all the tools needed for this process. I’ll call the appropriate function to make that happen. I'll stay focused on gathering accurate information!"
+          }
+        ],
+        "status": "completed"
+      },
+      {
+        "type": "message",
+        "id": "msg_0fe641e49e815262016aa35f6bace487d1a05d1ca02b476dcd",
+        "turn_id": "turn_04aa00fdbfc011cf006aa35f6bef6081918a024d20be8b0b47",
+        "role": "assistant",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "I’m initializing the tracer handle only; I will not read any records on this setup turn."
+          }
+        ],
+        "phase": "commentary"
+      },
+      {
+        "type": "function_call",
+        "id": "exec-b2d0334e-c598-4970-9fc2-dfc6737a5e12",
+        "turn_id": "turn_04aa00fdbfc011cf006aa35f6bef6081918a024d20be8b0b47",
+        "call_id": "exec-b2d0334e-c598-4970-9fc2-dfc6737a5e12",
+        "name": "tracer_manifest",
+        "arguments": {},
+        "status": "completed"
+      }
+    ]
+  }
+}

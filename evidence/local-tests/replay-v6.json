@@ -1,0 +1,32 @@
+{
+  "verifiedRecords": 835,
+  "trials": [
+    {
+      "trial": "s1-control",
+      "pressure": false,
+      "retrievalCorrect": true,
+      "stateIntact": true,
+      "boundaryVerified": false,
+      "locatorFailure": false
+    },
+    {
+      "trial": "s2-pressure",
+      "pressure": true,
+      "retrievalCorrect": true,
+      "stateIntact": true,
+      "boundaryVerified": false,
+      "locatorFailure": false
+    },
+    {
+      "trial": "s3-pressure",
+      "pressure": true,
+      "retrievalCorrect": true,
+      "stateIntact": true,
+      "boundaryVerified": false,
+      "locatorFailure": false
+    }
+  ],
+  "outcome": "inconclusive",
+  "reason": "COMPACTION_BOUNDARY_OR_RETRIEVAL_UNESTABLISHED",
+  "caution": "Integrity checks do not prove the meaning of a trace; boundary annotations require independent service evidence."
+}

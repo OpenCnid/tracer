@@ -1,0 +1,43 @@
+{
+  "reviewedAt": "2026-09-11T02:00:55.739Z",
+  "reviewer": "OpenCnid / Codex",
+  "sessionId": "sess_04aa00fdbfc011cf006aa35f640eb08191b1913bc06ad92d33",
+  "source": "Visible Platform timeline and Raw span JSON panels",
+  "files": [
+    {
+      "file": "span_3b6d95da206afc23.json",
+      "sha256": "2658ead8496a207af87227107cdd58051983ebe15a09a9228280a6aa90cb440d"
+    },
+    {
+      "file": "span_78cb7335b5b63c12.json",
+      "sha256": "f0e25405449e78171c18059f690944dee684e67e682c04a999f513bd5df9b279"
+    },
+    {
+      "file": "span_7f5141f5d9ac9b9c.json",
+      "sha256": "34b04c29ce9a2324bb5ab4d25db28d12304c89adc957a2780b4039f26856b9ef"
+    },
+    {
+      "file": "span_cc7ead4da2234bec.json",
+      "sha256": "d985e7aae28063bbe7ff0af0e0aa09cb543402b069629cfe0dc24be018f76738"
+    },
+    {
+      "file": "span_e70a5158d12173d5.json",
+      "sha256": "6c6bf08c50d1428933b030f2c6e06c6fb7b9426f5eb92e8d7aad51eb526aabd0"
+    },
+    {
+      "file": "timeline.txt",
+      "sha256": "cfc85e196d9dbfdb9b08e590bb524aa94e93fb5ff0f0fc12d56914dcd52bf7b0"
+    }
+  ],
+  "generationSpanIds": [
+    "span_3b6d95da206afc23",
+    "span_78cb7335b5b63c12",
+    "span_7f5141f5d9ac9b9c",
+    "span_cc7ead4da2234bec",
+    "span_e70a5158d12173d5"
+  ],
+  "generationCount": 5,
+  "observed": "Five generation spans cover setup and lookup. Recorded item types are messages, reasoning summaries, function calls and function results. No service compaction item or boundary is exposed. No executed JavaScript or caller edge is exposed.",
+  "compactionBoundary": "unestablished",
+  "fullRenderedModelInputsCertified": false
+}

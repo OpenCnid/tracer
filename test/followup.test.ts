@@ -3,13 +3,20 @@ import {mkdtempSync, readFileSync, rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {Evidence} from '../src/evidence.js';
-import {collectionAgreement, followupRegistration, joinMatrix, joinRequest} from '../src/followup-protocol.js';
+import {claimStateStage, collectionAgreement, followupRegistration, joinMatrix, joinRequest} from '../src/followup-protocol.js';
 import {DEFAULT_MODEL, fixture} from '../src/protocol.js';
 
 const dirs: string[] = [];
 afterEach(() => {for (const path of dirs.splice(0)) rmSync(path, {recursive: true, force: true});});
 
 describe('follow-up evidence', () => {
+  it('prevents a second Stage B dispatch from resetting the shared spending allowance', () => {
+    const directory = mkdtempSync(join(tmpdir(), 'tracer-claim-')); dirs.push(directory);
+    claimStateStage(directory, join(directory, 'first-attempt'));
+    const original = readFileSync(join(directory, 'state-stage-claim.json'), 'utf8');
+    expect(() => claimStateStage(directory, join(directory, 'second-attempt'))).toThrow('STATE_STAGE_ALREADY_DISPATCHED');
+    expect(readFileSync(join(directory, 'state-stage-claim.json'), 'utf8')).toBe(original);
+  });
   it('binds the new frozen protocol and keeps six fresh trials separate from v4', () => {
     expect(followupRegistration().protocolHash).toMatch(/^[a-f0-9]{64}$/);
     const trials = joinMatrix('test', DEFAULT_MODEL);

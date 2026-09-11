@@ -6,7 +6,7 @@ import {execFileSync} from 'node:child_process';
 import {authorizePaidInference, boundedFetch, UsageGuard} from './budget.js';
 import {collectTrial, type Collected} from './collector.js';
 import {Evidence, safeError, verifyLog} from './evidence.js';
-import {followupRegistration, implementationHashes, STATE_PROTOCOL} from './followup-protocol.js';
+import {claimStateStage, followupRegistration, implementationHashes, STATE_PROTOCOL} from './followup-protocol.js';
 import {DEFAULT_MODEL, LIMITS, SDK_VERSION, sha256, type Trial} from './protocol.js';
 import {StateLedger, StateStore, RECORD_COUNT} from './state-store.js';
 import {stateQuery, stateRequest} from './state-protocol.js';
@@ -53,6 +53,7 @@ const summaries: unknown[] = []; const errors: unknown[] = [];
 let inputAttempts = 0;
 console.log(JSON.stringify({event: 'state-study-started', evidence: evidence.directory, carriedUsd, mode}));
 try {
+  if (mode === 'run') claimStateStage(sourceDirectory, evidence.directory);
   if (mode === 'run') for (const trial of trials) {
     const pressure = trial.block > 1; const reservation = pressure ? 0.7 : 0.15;
     if (carriedUsd + reservation > 2) throw new Error('STUDY_ADMISSION_CAP');

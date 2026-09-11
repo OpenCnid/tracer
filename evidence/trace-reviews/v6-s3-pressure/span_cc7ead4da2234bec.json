@@ -1,0 +1,47 @@
+{
+  "id": "span_cc7ead4da2234bec",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_7a2add0c807292ff",
+  "status": "completed",
+  "started_at_ms": 1789091702473,
+  "ended_at_ms": 1789091703448,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "id": "fco_exec-b2d0334e-c598-4970-9fc2-dfc6737a5e12",
+        "turn_id": "turn_04aa00fdbfc011cf006aa35f6bef6081918a024d20be8b0b47",
+        "type": "function_call_output",
+        "call_id": "exec-b2d0334e-c598-4970-9fc2-dfc6737a5e12",
+        "status": "completed",
+        "output": "{\"handle\":\"state_b07be0e0933a2d399ea1b00ca613bbb60dd69ed192c518ae\",\"recordCount\":512}",
+        "error": null
+      }
+    ],
+    "output": [
+      {
+        "type": "reasoning",
+        "id": "rs_0fe641e49e815262016aa35f76dfd887d1841b7c01c313a8fa",
+        "turn_id": "turn_04aa00fdbfc011cf006aa35f6bef6081918a024d20be8b0b47",
+        "summary": [],
+        "status": "completed"
+      },
+      {
+        "type": "message",
+        "id": "msg_0fe641e49e815262016aa35f774ed887d18bff5b2f9feac4f8",
+        "turn_id": "turn_04aa00fdbfc011cf006aa35f6bef6081918a024d20be8b0b47",
+        "role": "assistant",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "state_b07be0e0933a2d399ea1b00ca613bbb60dd69ed192c518ae"
+          }
+        ],
+        "phase": "final_answer"
+      }
+    ]
+  }
+}

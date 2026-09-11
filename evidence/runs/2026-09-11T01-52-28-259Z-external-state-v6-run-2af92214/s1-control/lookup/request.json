@@ -1,0 +1,1 @@
+{"sessionId":"sess_05b67e0bcfb77248006aa35edcaaac8191bc17111e7b9d2dd7","input":"Lookup turn: retrieve record indices [36,218] using the handle from the earlier setup turn. Use code to call tracer_state_read and pass its exact records to tracer_state_submit. The handle is intentionally not supplied again. Do not recreate the manifest or reconstruct the values."}

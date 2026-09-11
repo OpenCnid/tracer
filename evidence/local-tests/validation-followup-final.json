@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-11T02:10:21.668Z",
+  "node": "v24.19.0",
+  "sdk": "7.15.0",
+  "protocolHash": "9f955b81b6046035e593ee38f1e53c9662c4ba06fa107de7cd6e4ae854a7a973",
+  "hashLinkedLogsVerified": 40,
+  "recordsVerified": 8882,
+  "localTestsPassed": 43,
+  "localTestsFailed": 0,
+  "typecheck": "passed",
+  "credentialScan": "zero matches across 259 non-ignored files",
+  "markdownLinkCheck": "no missing local targets",
+  "paidRerunsForFinalGuard": 0
+}

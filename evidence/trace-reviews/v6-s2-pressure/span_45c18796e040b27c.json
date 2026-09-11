@@ -1,0 +1,47 @@
+{
+  "id": "span_45c18796e040b27c",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_dcaa305ffa3738c2",
+  "status": "completed",
+  "started_at_ms": 1789091629502,
+  "ended_at_ms": 1789091630438,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "id": "fco_exec-3cf43469-de28-47fd-89fb-d59db51a8cee",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f2433f081918d73b5410f62af8d",
+        "type": "function_call_output",
+        "call_id": "exec-3cf43469-de28-47fd-89fb-d59db51a8cee",
+        "status": "completed",
+        "output": "{\"handle\":\"state_9bbab7efb10bfafcb3c550ce0fbd71bc41216624cadba8fc\",\"recordCount\":512}",
+        "error": null
+      }
+    ],
+    "output": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f412de0e7e557c5016aa35f2df3d887d1a51e50d2c49c3a46",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f2433f081918d73b5410f62af8d",
+        "summary": [],
+        "status": "completed"
+      },
+      {
+        "type": "message",
+        "id": "msg_0f412de0e7e557c5016aa35f2e51bc87d1bffba8a4e5ca6b49",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f2433f081918d73b5410f62af8d",
+        "role": "assistant",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "Setup complete. Opaque handle: `state_9bbab7efb10bfafcb3c550ce0fbd71bc41216624cadba8fc`"
+          }
+        ],
+        "phase": "final_answer"
+      }
+    ]
+  }
+}

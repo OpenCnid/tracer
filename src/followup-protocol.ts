@@ -1,5 +1,5 @@
-import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import type { AgentSessionItem, Subagent } from 'openai/resources/beta/agents/agents';
 import { fixture, requestFor, sha256, type Trial } from './protocol.js';
 import { verifyLog } from './evidence.js';
@@ -8,6 +8,18 @@ export const FOLLOWUP_PROTOCOL = 'collect-all-v5';
 export const STATE_PROTOCOL = 'external-state-v6';
 export const FOLLOWUP_PREREGISTRATION = 'evidence/preregistration-v5.json';
 export const PRESSURE_BYTES = 640 * 1024;
+
+export function claimStateStage(sourceDirectory: string, runDirectory: string) {
+  try {
+    writeFileSync(join(sourceDirectory, 'state-stage-claim.json'), JSON.stringify({
+      protocol: STATE_PROTOCOL, runDirectory: resolve(runDirectory), claimedAt: new Date().toISOString(),
+      note: 'This Stage A allowance has admitted its one Stage B attempt. No automatic redispatch.',
+    }, null, 2) + '\n', {flag: 'wx'});
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'EEXIST') throw new Error('STATE_STAGE_ALREADY_DISPATCHED');
+    throw error;
+  }
+}
 
 export function followupRegistration() {
   const frozen = JSON.parse(readFileSync(FOLLOWUP_PREREGISTRATION, 'utf8')) as {

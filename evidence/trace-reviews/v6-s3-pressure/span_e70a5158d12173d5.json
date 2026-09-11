@@ -1,0 +1,40 @@
+{
+  "id": "span_e70a5158d12173d5",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_6d19aa25a79841bb",
+  "status": "completed",
+  "started_at_ms": 1789091746815,
+  "ended_at_ms": 1789091747477,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "id": "fco_exec-00d74f9f-b65d-45a0-84a5-466eb26a12de",
+        "turn_id": "turn_04aa00fdbfc011cf006aa35f859a2081919d2b472b29b6a23d",
+        "type": "function_call_output",
+        "call_id": "exec-00d74f9f-b65d-45a0-84a5-466eb26a12de",
+        "status": "completed",
+        "output": "{\"accepted\":true}",
+        "error": null
+      }
+    ],
+    "output": [
+      {
+        "type": "message",
+        "id": "msg_0fe641e49e815262016aa35fa35e7887d181838a1487600263",
+        "turn_id": "turn_04aa00fdbfc011cf006aa35f859a2081919d2b472b29b6a23d",
+        "role": "assistant",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "Lookup completed successfully; records submitted."
+          }
+        ],
+        "phase": "final_answer"
+      }
+    ]
+  }
+}

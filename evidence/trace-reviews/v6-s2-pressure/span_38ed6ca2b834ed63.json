@@ -1,0 +1,47 @@
+{
+  "id": "span_38ed6ca2b834ed63",
+  "object": "session.turn.trace.span",
+  "parent_id": "span_c07c7f6fafc7bc81",
+  "status": "completed",
+  "started_at_ms": 1789091670726,
+  "ended_at_ms": 1789091672566,
+  "error": null,
+  "span_data": {
+    "type": "generation",
+    "model": "gpt-5.6-luna",
+    "input": [
+      {
+        "id": "fco_exec-973bddc1-9894-4d20-af84-a48e80eb28dd",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f3d34b08191b50d9084fa580313",
+        "type": "function_call_output",
+        "call_id": "exec-973bddc1-9894-4d20-af84-a48e80eb28dd",
+        "status": "completed",
+        "output": "{\"accepted\":true}",
+        "error": null
+      }
+    ],
+    "output": [
+      {
+        "type": "reasoning",
+        "id": "rs_0f412de0e7e557c5016aa35f573dd487d1afdd609391e6566f",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f3d34b08191b50d9084fa580313",
+        "summary": [],
+        "status": "completed"
+      },
+      {
+        "type": "message",
+        "id": "msg_0f412de0e7e557c5016aa35f587ef887d185920362f1b11b61",
+        "turn_id": "turn_037bc373fd2c12b9006aa35f3d34b08191b50d9084fa580313",
+        "role": "assistant",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "text": "Lookup completed successfully; records submitted."
+          }
+        ],
+        "phase": "final_answer"
+      }
+    ]
+  }
+}

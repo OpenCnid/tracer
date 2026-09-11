@@ -1,0 +1,336 @@
+{
+  "protocol": "collect-all-v5",
+  "note": "Descriptive extraction of unchanged recorded trials. Reported source does not certify execution.",
+  "trials": [
+    {
+      "trial": "b1-direct-native",
+      "arm": "direct-native",
+      "sessionId": "sess_0fdab4c5addeea16006aa35c57c3208191ac864226fa5db590",
+      "taskCorrect": true,
+      "collectionAgreement": true,
+      "agreement": [
+        {
+          "key": "task-0",
+          "childId": "subagent_01d9dd82d52a7eeb8c7bb7ca3604fd24",
+          "finalText": "1fc63430ee87b7b56fbc45ee04d3a21d",
+          "childTaskCorrect": true,
+          "submittedValue": "1fc63430ee87b7b56fbc45ee04d3a21d",
+          "agreement": true
+        },
+        {
+          "key": "task-1",
+          "childId": "subagent_3b00800a7480de2d8ca7dfebf5cdc43f",
+          "finalText": "78a827d1e2e9beaa4f37b57a6c85e37d",
+          "childTaskCorrect": true,
+          "submittedValue": "78a827d1e2e9beaa4f37b57a6c85e37d",
+          "agreement": true
+        }
+      ],
+      "completedChildren": 2,
+      "waits": [
+        {
+          "sequence": 301,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-40d26583-33f4-469c-b936-b46e755dd212",
+            "turn_id": "turn_0fdab4c5addeea16006aa35c6171988191b7d85cabafb236e1",
+            "status": "completed",
+            "sender_agent_id": "agent_ace92fdf895b40098423928725a1d17a193f14f8a16d405a9c",
+            "recipient_agent_ids": [
+              "subagent_01d9dd82d52a7eeb8c7bb7ca3604fd24"
+            ]
+          }
+        },
+        {
+          "sequence": 304,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-4eb8af7f-537f-458e-ae9b-5cf0f5ff118e",
+            "turn_id": "turn_0fdab4c5addeea16006aa35c6171988191b7d85cabafb236e1",
+            "status": "completed",
+            "sender_agent_id": "agent_ace92fdf895b40098423928725a1d17a193f14f8a16d405a9c",
+            "recipient_agent_ids": [
+              "subagent_3b00800a7480de2d8ca7dfebf5cdc43f"
+            ]
+          }
+        }
+      ],
+      "reportedSourcePresent": false,
+      "route": "unestablished"
+    },
+    {
+      "trial": "b1-programmatic-native",
+      "arm": "programmatic-native",
+      "sessionId": "sess_0eb8704da3423fe8006aa35c9810dc8191acaf393337e1e8e2",
+      "taskCorrect": true,
+      "collectionAgreement": true,
+      "agreement": [
+        {
+          "key": "task-0",
+          "childId": "subagent_4e546ea8ca4a34a4e19dbe7b172f52ae",
+          "finalText": "345a22fa4cd723331adda9449ceb182c",
+          "childTaskCorrect": true,
+          "submittedValue": "345a22fa4cd723331adda9449ceb182c",
+          "agreement": true
+        },
+        {
+          "key": "task-1",
+          "childId": "subagent_f5464a8f0d0f988fa80ec7cd31d4371e",
+          "finalText": "d9d011d83e7d299f7a6c4742337e3bfb",
+          "childTaskCorrect": true,
+          "submittedValue": "d9d011d83e7d299f7a6c4742337e3bfb",
+          "agreement": true
+        }
+      ],
+      "completedChildren": 2,
+      "waits": [
+        {
+          "sequence": 229,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-c4e2ab7e-5f0c-49fc-9e1f-9ec946ebe932",
+            "turn_id": "turn_0eb8704da3423fe8006aa35ca3ef2c8191be17a39ec3400317",
+            "status": "completed",
+            "sender_agent_id": "agent_0c41c95b7bf9434db440bb47bc77f52a7241417710754828a0",
+            "recipient_agent_ids": [
+              "subagent_4e546ea8ca4a34a4e19dbe7b172f52ae"
+            ]
+          }
+        },
+        {
+          "sequence": 232,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-1525bd40-30f1-405d-9ac4-1f24f831163f",
+            "turn_id": "turn_0eb8704da3423fe8006aa35ca3ef2c8191be17a39ec3400317",
+            "status": "completed",
+            "sender_agent_id": "agent_0c41c95b7bf9434db440bb47bc77f52a7241417710754828a0",
+            "recipient_agent_ids": [
+              "subagent_f5464a8f0d0f988fa80ec7cd31d4371e"
+            ]
+          }
+        }
+      ],
+      "reportedSourcePresent": true,
+      "route": "unestablished"
+    },
+    {
+      "trial": "b2-programmatic-native",
+      "arm": "programmatic-native",
+      "sessionId": "sess_04273f70149108d8006aa35ce0edbc8191852a07b8720ee903",
+      "taskCorrect": false,
+      "collectionAgreement": false,
+      "agreement": [
+        {
+          "key": "task-0",
+          "agreement": false,
+          "reason": "CHILD_MAPPING_UNESTABLISHED"
+        },
+        {
+          "key": "task-1",
+          "agreement": false,
+          "reason": "CHILD_MAPPING_UNESTABLISHED"
+        }
+      ],
+      "completedChildren": 2,
+      "waits": [
+        {
+          "sequence": 223,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-f7011f14-d5d7-4e90-b34d-b525541e44ee",
+            "turn_id": "turn_04273f70149108d8006aa35ce8b17c81919f1e68124a0e422b",
+            "status": "completed",
+            "sender_agent_id": "agent_96cbbb9e9eaa4e70a9ce01b3431411b5a5d7c650bb3b4c8dbe",
+            "recipient_agent_ids": [
+              "subagent_7a58536a2201db614a7b85e655d7661a"
+            ]
+          }
+        },
+        {
+          "sequence": 226,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-ad1ad7c0-e4cc-4434-8c00-0a731631475f",
+            "turn_id": "turn_04273f70149108d8006aa35ce8b17c81919f1e68124a0e422b",
+            "status": "completed",
+            "sender_agent_id": "agent_96cbbb9e9eaa4e70a9ce01b3431411b5a5d7c650bb3b4c8dbe",
+            "recipient_agent_ids": [
+              "subagent_9d9d128fd6953b2f8cc3023e16f3409a"
+            ]
+          }
+        }
+      ],
+      "reportedSourcePresent": true,
+      "route": "unestablished"
+    },
+    {
+      "trial": "b2-direct-native",
+      "arm": "direct-native",
+      "sessionId": "sess_0db47b8d74f7d1fc006aa35d3ade748191ad54eff592b924fc",
+      "taskCorrect": false,
+      "collectionAgreement": true,
+      "agreement": [
+        {
+          "key": "task-0",
+          "childId": "subagent_d8f3ecd4742d8278f2ba2f3d206a1719",
+          "finalText": "eb1dba67ee305f0283c0cbf90e82b814",
+          "childTaskCorrect": false,
+          "submittedValue": "eb1dba67ee305f0283c0cbf90e82b814",
+          "agreement": true
+        },
+        {
+          "key": "task-1",
+          "childId": "subagent_bbc3446c96b6c3f001be8531f211229c",
+          "finalText": "bbe67d0aa4e2be21cd451ba6036e0188",
+          "childTaskCorrect": true,
+          "submittedValue": "bbe67d0aa4e2be21cd451ba6036e0188",
+          "agreement": true
+        }
+      ],
+      "completedChildren": 2,
+      "waits": [
+        {
+          "sequence": 241,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-bfd9c6da-6e94-47a2-a288-810269fa6e97",
+            "turn_id": "turn_0db47b8d74f7d1fc006aa35d4339ec8191ba02fdbacdd70881",
+            "status": "completed",
+            "sender_agent_id": "agent_0af372ab3e9445c09dc376c77f6f1b36d75a50c1165a48a080",
+            "recipient_agent_ids": [
+              "subagent_bbc3446c96b6c3f001be8531f211229c"
+            ]
+          }
+        },
+        {
+          "sequence": 244,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-a70b447d-e42b-4165-9e38-30974e3c5680",
+            "turn_id": "turn_0db47b8d74f7d1fc006aa35d4339ec8191ba02fdbacdd70881",
+            "status": "completed",
+            "sender_agent_id": "agent_0af372ab3e9445c09dc376c77f6f1b36d75a50c1165a48a080",
+            "recipient_agent_ids": [
+              "subagent_d8f3ecd4742d8278f2ba2f3d206a1719"
+            ]
+          }
+        }
+      ],
+      "reportedSourcePresent": false,
+      "route": "unestablished"
+    },
+    {
+      "trial": "b3-direct-native",
+      "arm": "direct-native",
+      "sessionId": "sess_094829f2f1bc7db9006aa35d75fc7081918d9f6df9ead488c3",
+      "taskCorrect": false,
+      "collectionAgreement": true,
+      "agreement": [
+        {
+          "key": "task-0",
+          "childId": "subagent_df325836bac80d9365df5cf668d77754",
+          "finalText": "2469b23d902e1bbf8e319ba27becf67b",
+          "childTaskCorrect": false,
+          "submittedValue": "2469b23d902e1bbf8e319ba27becf67b",
+          "agreement": true
+        },
+        {
+          "key": "task-1",
+          "childId": "subagent_2e6ffa86830cba58f198f215f19af001",
+          "finalText": "c464ae7edc82192a6a2136de69e2f856",
+          "childTaskCorrect": true,
+          "submittedValue": "c464ae7edc82192a6a2136de69e2f856",
+          "agreement": true
+        }
+      ],
+      "completedChildren": 2,
+      "waits": [
+        {
+          "sequence": 216,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-9e79bffa-4a10-4a49-bb92-2901b19a4faf",
+            "turn_id": "turn_094829f2f1bc7db9006aa35d7e0ee08191b5b9c26755cbcf57",
+            "status": "completed",
+            "sender_agent_id": "agent_9abfece63b7043108d5880dcc0296b52b31326e32b934d84a5",
+            "recipient_agent_ids": [
+              "subagent_df325836bac80d9365df5cf668d77754"
+            ]
+          }
+        },
+        {
+          "sequence": 219,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-c5ca913e-4660-431f-a2f2-f9a609118fd1",
+            "turn_id": "turn_094829f2f1bc7db9006aa35d7e0ee08191b5b9c26755cbcf57",
+            "status": "completed",
+            "sender_agent_id": "agent_9abfece63b7043108d5880dcc0296b52b31326e32b934d84a5",
+            "recipient_agent_ids": [
+              "subagent_2e6ffa86830cba58f198f215f19af001"
+            ]
+          }
+        }
+      ],
+      "reportedSourcePresent": false,
+      "route": "unestablished"
+    },
+    {
+      "trial": "b3-programmatic-native",
+      "arm": "programmatic-native",
+      "sessionId": "sess_0572bf85db53bd95006aa35db54e5c8191916d4b59ad70ba62",
+      "taskCorrect": false,
+      "collectionAgreement": true,
+      "agreement": [
+        {
+          "key": "task-0",
+          "childId": "subagent_df1a53a95f488c6b1fff6253e5cc732e",
+          "finalText": "aeca1f54834bee9cd0c6ad3e8d20bb2",
+          "childTaskCorrect": false,
+          "submittedValue": "aeca1f54834bee9cd0c6ad3e8d20bb2",
+          "agreement": true
+        },
+        {
+          "key": "task-1",
+          "childId": "subagent_dd8fcec64661518cb766519cecd90b63",
+          "finalText": "5b82ede5995760f4585e1955ec21cffe",
+          "childTaskCorrect": true,
+          "submittedValue": "5b82ede5995760f4585e1955ec21cffe",
+          "agreement": true
+        }
+      ],
+      "completedChildren": 2,
+      "waits": [
+        {
+          "sequence": 91,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-15bcf0ca-aadf-4271-8ce4-afaf2bfed9ee",
+            "turn_id": "turn_0572bf85db53bd95006aa35dbe212081918f1e9b68b342df7c",
+            "status": "completed",
+            "sender_agent_id": "agent_d2d9a9ccba174ecdb5d17373aaa01b83760c146ccd56463387",
+            "recipient_agent_ids": [
+              "subagent_dd8fcec64661518cb766519cecd90b63"
+            ]
+          }
+        },
+        {
+          "sequence": 94,
+          "item": {
+            "type": "wait_for_subagents_call",
+            "id": "exec-b5c2ba60-ebf5-4c73-b42f-8bce48a25c56",
+            "turn_id": "turn_0572bf85db53bd95006aa35dbe212081918f1e9b68b342df7c",
+            "status": "completed",
+            "sender_agent_id": "agent_d2d9a9ccba174ecdb5d17373aaa01b83760c146ccd56463387",
+            "recipient_agent_ids": [
+              "subagent_df1a53a95f488c6b1fff6253e5cc732e"
+            ]
+          }
+        }
+      ],
+      "reportedSourcePresent": true,
+      "route": "unestablished"
+    }
+  ]
+}

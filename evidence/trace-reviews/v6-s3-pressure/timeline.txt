@@ -1,0 +1,47 @@
+- region "Session graph":
+    - button "Turn 1, Root agent. Agent. Completed. Duration 15s."
+    - button "Turn 1, Generation · gpt-5.6-luna. Generation. Completed. Duration 2s."
+    - button "Turn 1, tracer_manifest. Tool. Completed. Duration 11s."
+    - button "Turn 1, Generation · gpt-5.6-luna. Generation. Completed. Duration 975ms."
+    - button "Turn 2, Root agent. Agent. Completed. Duration 33s."
+    - button "Turn 2, Generation · gpt-5.6-luna. Generation. Completed. Duration 13s."
+    - button "Turn 2, tracer_state_read. Tool. Completed. Duration 9s."
+    - button "Turn 2, Generation · gpt-5.6-luna. Generation. Completed. Duration 2ms."
+    - button "Turn 2, tracer_state_submit. Tool. Completed. Duration 9s."
+    - button "Turn 2, Generation · gpt-5.6-luna. Generation. Completed. Duration 662ms."
+    - generic: 8:55:00
+    - generic: 8:55:15
+    - generic: 8:55:30
+    - generic: 8:55:45
+    - generic "Timeline controls":
+      - button "Fit timeline":
+      - button "Zoom out":
+      - button "Zoom in":
+  - region "Session event list":
+    - heading "Turn 1 Completed 15s" [level=3]:
+      - button "Turn 1 Completed 15s" [expanded]:
+        - generic: Turn 1
+        - img "Completed":
+        - generic: 15s
+    - tree "Events for Turn 1":
+      - treeitem "Root agent" [expanded] [level=1]:
+        - generic: Root agent
+        - generic: 15s
+        - generic: Agent event. Completed. Duration 15s.
+        - treeitem "Generation · gpt-5.6-luna" [level=2]:
+          - generic: Generation · gpt-5.6-luna
+          - generic: 2s
+          - generic: Generation event. Completed. Duration 2s.
+        - treeitem "tracer_manifest" [level=2]:
+          - generic: tracer_manifest
+          - generic: 11s
+          - generic: Tool event. Completed. Duration 11s.
+        - treeitem "Generation · gpt-5.6-luna" [level=2]:
+          - generic: Generation · gpt-5.6-luna
+          - generic: 975ms
+          - generic: Generation event. Completed. Duration 975ms.
+    - heading "Turn 2 Completed 33s" [level=3]:
+      - button "Turn 2 Completed 33s":
+        - generic: Turn 2
+        - img "Completed":
+        - generic: 33s
