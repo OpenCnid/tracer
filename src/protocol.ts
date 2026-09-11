@@ -1,12 +1,14 @@
 import { createHash } from 'node:crypto';
 import type { SessionCreateParamsStreaming } from 'openai/resources/beta/agents/sessions/sessions';
 
-export const PROTOCOL = 'native-seam-v1';
+export const PROTOCOL = 'native-seam-v2';
+export const DEFAULT_MODEL = 'gpt-5.6-luna';
+export const PREREGISTRATION = 'evidence/preregistration-v2.json';
 export const SDK_VERSION = '7.15.0';
 export const LIMITS = Object.freeze({
   sessions: 9, toolExecutions: 2, toolOutputBytes: 16_384,
   httpRequests: 40, pages: 12, events: 2_000, evidenceBytes: 8_388_608,
-  deadlineMs: 120_000, studyUsd: 5, reservationUsd: 0.5,
+  deadlineMs: 120_000, studyUsd: 2, reservationUsd: 0.2,
 });
 export const ARMS = ['direct-native', 'programmatic-local', 'programmatic-native'] as const;
 export type Arm = typeof ARMS[number];

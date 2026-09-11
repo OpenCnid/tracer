@@ -1,8 +1,7 @@
-// Transport implementation. The CLI's paid gate remains closed on this SDK.
-// Tests exercise this collector with the official SDK and a mock HTTP transport.
+// Transport implementation with explicit cancellation and reported-usage guards.
 import type OpenAI from 'openai';
 import type { AgentSessionEvent, AgentSession } from 'openai/resources/beta/agents/agents';
-import { AdmissionCounter } from './budget.js';
+import { AdmissionCounter, type UsageGuard } from './budget.js';
 import { Evidence, safeError } from './evidence.js';
 import { checkResults, fixture, LIMITS, requestFor, type Trial } from './protocol.js';
 
@@ -56,13 +55,31 @@ export interface Collected {
   completedChildren: number; historyComplete: boolean; route: 'unestablished'; error: unknown;
 }
 
-export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evidence): Promise<Collected> {
+export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evidence, budget?: UsageGuard): Promise<Collected> {
   const result: Collected = { sessionId: null, terminal: null, taskCorrect: null,
     completedChildren: 0, historyComplete: false, route: 'unestablished', error: null };
   const ledger = new FunctionLedger(trial, evidence);
   const request = requestFor(trial); evidence.write('request.json', request);
   const abort = new AbortController();
-  const deadline = setTimeout(() => abort.abort(new Error('TRIAL_DEADLINE')), LIMITS.deadlineMs);
+  const started = Date.now(); let stopped: Error | undefined;
+  const stop = (error: Error) => { stopped ??= error; abort.abort(error); };
+  const deadline = setTimeout(() => stop(new Error('TRIAL_DEADLINE')), LIMITS.deadlineMs);
+  let polling: Promise<void> | undefined; let finalizing = false;
+  const poll = budget ? setInterval(() => {
+    if (!result.sessionId || polling || abort.signal.aborted) return;
+    const id = result.sessionId;
+    polling = (async () => {
+      const current = await client.beta.agents.sessions.retrieve(id, { signal: abort.signal });
+      evidence.record('budget.session', current);
+      budget.observeModel(current.agent.model); budget.observeSession(id, current.usage);
+      const turns = await allPages(client.beta.agents.sessions.turns.list(id, {limit: 100, order: 'asc'},
+        {signal: abort.signal}), evidence, 'budget.turns');
+      for (const turn of turns) budget.observeTurn(id, turn);
+      evidence.record('budget.snapshot', budget.snapshot()); budget.check(id);
+      if (Date.now() - started >= 30_000 && !budget.hasUsage(id)) throw new Error('USAGE_UNAVAILABLE_AFTER_GRACE');
+    })().catch(error => { if (!finalizing) stop(error instanceof Error ? error : new Error('BUDGET_TELEMETRY_FAILED')); })
+      .finally(() => { polling = undefined; });
+  }, 10_000) : undefined;
   const seen = new Set<string>(); const childrenSeen = new Set<string>(); let eventCount = 0;
   let stream: Awaited<ReturnType<typeof client.beta.agents.sessions.events.stream>> | undefined;
   try {
@@ -73,6 +90,12 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
       if ('session_id' in event) result.sessionId = event.session_id;
       if (event.type === 'agent.session.created') result.sessionId = event.session.id;
       evidence.record('sse', event);
+      if (budget && result.sessionId) {
+        if ('session' in event) { budget.observeSession(result.sessionId, event.session.usage); budget.observeModel(event.session.agent.model); }
+        if ('turn' in event) budget.observeTurn(result.sessionId, event.turn, 'usage' in event ? event.usage : undefined);
+        if ('item' in event && event.item.type === 'create_subagent_call') budget.observeModel(event.item.model);
+        budget.check(result.sessionId);
+      }
       if (++eventCount > LIMITS.events) throw new Error('EVENT_CAP');
       if (seen.has(event.event_id)) continue;
       seen.add(event.event_id);
@@ -85,6 +108,7 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
         // Pending actions, not historical function-call items, authorize execution.
         const current = await client.beta.agents.sessions.retrieve(result.sessionId, { signal: abort.signal });
         evidence.record('required-actions.snapshot', current);
+        if (budget) { budget.observeSession(result.sessionId, current.usage); budget.check(result.sessionId); }
         for (const action of current.required_actions) {
           if (action.type !== 'function_call') throw new Error('UNEXPECTED_ENVIRONMENT_ACTION');
           const output = ledger.handle(result.sessionId, action);
@@ -101,11 +125,16 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
         throw new Error(`LIFECYCLE_FAILURE:${event.type}`);
     }
     if (!result.terminal) throw new Error('STREAM_ENDED_WITHOUT_ROOT_TERMINAL');
+    if (poll) clearInterval(poll);
+    await polling; if (stopped) throw stopped;
     if (result.sessionId) {
       const id = result.sessionId;
       const opts = { signal: abort.signal };
-      await allPages(client.beta.agents.sessions.items.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'root.items');
+      const items = await allPages(client.beta.agents.sessions.items.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'root.items');
+      for (const item of items) if (item.type === 'create_subagent_call') budget?.observeModel(item.model);
       const turns = await allPages(client.beta.agents.sessions.turns.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'session.turns');
+      for (const turn of turns) budget?.observeTurn(id, turn);
+      let finalUsageMissing = turns.some(turn => turn.usage == null);
       const children = await allPages(client.beta.agents.sessions.subagents.list(id, { limit: 100, order: 'asc' }, opts), evidence, 'children');
       if (children.length > 2) throw new Error('EXCESS_CHILDREN_OBSERVED');
       for (const child of children) {
@@ -113,22 +142,30 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
           { session_id: id, limit: 100, order: 'asc' }, opts), evidence, `child.items:${child.id}`);
         const childTurns = await allPages(client.beta.agents.sessions.subagents.turns.list(child.id,
           { session_id: id, limit: 100, order: 'asc' }, opts), evidence, `child.turns:${child.id}`);
+        for (const turn of childTurns) budget?.observeTurn(id, turn);
+        finalUsageMissing ||= childTurns.some(turn => turn.usage == null);
         if (childTurns.length === 1 && childTurns[0]?.status === 'completed') result.completedChildren++;
       }
       evidence.record('usage.snapshot', turns.map(turn => ({ id: turn.id, subagent_id: turn.subagent_id, usage: turn.usage })));
-      evidence.record('session.snapshot', await client.beta.agents.sessions.retrieve(id, opts));
+      const current = await client.beta.agents.sessions.retrieve(id, opts);
+      evidence.record('session.snapshot', current);
+      budget?.observeSession(id, current.usage);
       result.historyComplete = true;
+      if (budget && finalUsageMissing) throw new Error('FINAL_USAGE_INCOMPLETE');
+      budget?.requireComplete(id);
     }
   } catch (error) {
+    error = stopped ?? error;
     result.error = { ...safeError(error), localReason: error instanceof Error &&
       /^[A-Z_]+(?::[a-z.]+)?$/.test(error.message) ? error.message : null };
     evidence.tryRecord('collector.error', result.error);
   } finally {
-    clearTimeout(deadline); stream?.controller.abort();
+    finalizing = true; clearTimeout(deadline); if (poll) clearInterval(poll);
+    abort.abort(); stream?.controller.abort(); await polling;
     result.taskCorrect = ledger.correct;
     // Closing SSE does not stop managed work. Explicitly send cancellation.
     // This is cleanup, never a hard billing guarantee or proof all descendants stopped.
-    if (result.sessionId && (result.terminal !== 'agent.session.turn.completed' ||
+    if (result.sessionId && (result.error !== null || result.terminal !== 'agent.session.turn.completed' ||
         (trial.arm !== 'programmatic-local' && result.completedChildren !== 2))) {
       try {
         await client.beta.agents.sessions.events.create(result.sessionId,
@@ -139,6 +176,7 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
     }
     evidence.tryRecord('cleanup.retention', { retainedForTraceReview: !!result.sessionId,
       environment: 'none', serverDescendantTerminationGuaranteed: false });
+    if (budget) evidence.write('budget.json', budget.snapshot());
     evidence.write('collection.json', result);
   }
   return result;

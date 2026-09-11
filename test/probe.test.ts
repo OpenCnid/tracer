@@ -3,11 +3,11 @@ import OpenAI from 'openai';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { AdmissionCounter, authorizePaidInference, boundedFetch } from '../src/budget.js';
+import { AdmissionCounter, authorizePaidInference, boundedFetch, UsageGuard } from '../src/budget.js';
 import { allPages, collectTrial, FunctionLedger } from '../src/collector.js';
 import { decide, type TrialEvidence } from '../src/decision.js';
 import { Evidence, verifyLog } from '../src/evidence.js';
-import { fixture, LIMITS, matrix, requestFor } from '../src/protocol.js';
+import { DEFAULT_MODEL, fixture, LIMITS, matrix, PREREGISTRATION, PROTOCOL, requestFor, sha256 } from '../src/protocol.js';
 import { auditSdk } from '../src/sdk-audit.js';
 
 const dirs: string[] = [];
@@ -20,6 +20,19 @@ const trial = matrix('test-only-seed', 'test-model')[0]!;
 const answers = (t = trial) => ({ results: fixture(t).tasks.map(task => ({ key: task.key, value: [...task.nonce].reverse().join('') })) });
 
 describe('protocol and budget', () => {
+  it('binds the USD 2 Luna cohort to both frozen documents', () => {
+    const frozen = JSON.parse(readFileSync(PREREGISTRATION, 'utf8')) as {
+      protocol: string; sha256: string; documents: Array<{path: string; sha256: string}>;
+    };
+    expect(frozen.protocol).toBe(PROTOCOL);
+    expect(DEFAULT_MODEL).toBe('gpt-5.6-luna');
+    expect(LIMITS.studyUsd).toBe(2);
+    expect(LIMITS.reservationUsd * LIMITS.sessions).toBeLessThanOrEqual(LIMITS.studyUsd);
+    const documents = frozen.documents.map(doc => ({path: doc.path,
+      sha256: sha256(readFileSync(doc.path, 'utf8').replace(/\r\n/g, '\n'))}));
+    expect(documents).toEqual(frozen.documents);
+    expect(sha256(JSON.stringify(documents))).toBe(frozen.sha256);
+  });
   it('has nine fresh seeds, rotating arm order, and no nonce in any request', () => {
     const trials = matrix('fixed-seed', 'test-model');
     expect(new Set(trials.map(t => t.seed)).size).toBe(9);
@@ -31,6 +44,10 @@ describe('protocol and budget', () => {
     const dispatch = vi.fn();
     expect(() => { authorizePaidInference(); dispatch(); }).toThrow('Paid inference refused');
     expect(dispatch).not.toHaveBeenCalled();
+  });
+  it('admits the explicitly approved reported-usage policy without claiming a hard cap', () => {
+    expect(() => authorizePaidInference('reported-usage-stop')).not.toThrow();
+    expect(new UsageGuard(DEFAULT_MODEL).snapshot()).toMatchObject({overshootPossible: true, invoice: false, estimateUsd: null});
   });
   it('rejects excess output before incrementing admissions', () => {
     const cap = new AdmissionCounter();
@@ -55,6 +72,41 @@ describe('protocol and budget', () => {
     expect(audit.properties.SessionCreateParamsBase).toContain('environment');
     expect(audit.properties.Agent).not.toContain('max_output_tokens');
     expect(audit.maximumEnforceableSpendUsd).toBeNull();
+  });
+});
+
+describe('reported usage stopping guard', () => {
+  const usage = (input: number, output = 0) => ({input_tokens: input, output_tokens: output, total_tokens: input + output,
+    input_tokens_details: {cached_tokens: input}, output_tokens_details: {reasoning_tokens: output}});
+  it('deduplicates root/child snapshots and uses the greater aggregate instead of adding it', () => {
+    const guard = new UsageGuard(DEFAULT_MODEL);
+    guard.observeTurn('s', {id: 'root', usage: usage(1000)});
+    guard.observeTurn('s', {id: 'root', usage: usage(1000)});
+    guard.observeTurn('s', {id: 'child', usage: usage(2000)});
+    guard.observeSession('s', usage(3000));
+    expect(guard.snapshot().estimateUsd).toBeCloseTo(0.0015);
+    guard.observeTurn('s', {id: 'root', usage: usage(0)});
+    guard.observeSession('s', usage(0));
+    expect(guard.snapshot().estimateUsd).toBeCloseTo(0.0015);
+  });
+  it('includes reasoning within output once, ignores cache discounts, and stops at the trial threshold', () => {
+    const guard = new UsageGuard(DEFAULT_MODEL);
+    guard.observeTurn('s', {id: 'root', usage: usage(400_000)});
+    expect(guard.snapshot().estimateUsd).toBeCloseTo(0.2);
+    expect(() => guard.check('s')).toThrow('TRIAL_SPEND_THRESHOLD');
+    const other = new UsageGuard(DEFAULT_MODEL);
+    other.observeTurn('s', {id: 'root', usage: usage(0, 10_000)});
+    expect(other.snapshot().estimateUsd).toBeCloseTo(0.018);
+  });
+  it('stops on total study usage, missing turns, invalid counts, or a different model', () => {
+    const guard = new UsageGuard(DEFAULT_MODEL, 0.02, 0.02);
+    guard.observeTurn('a', {id: 'root', usage: usage(20_000)});
+    guard.observeTurn('b', {id: 'root', usage: usage(20_000)});
+    expect(() => guard.check('b')).toThrow('STUDY_SPEND_THRESHOLD');
+    guard.observeTurn('c', {id: 'child', usage: null});
+    expect(() => guard.requireComplete('c')).toThrow('FINAL_USAGE_INCOMPLETE');
+    expect(() => guard.observeSession('d', usage(-1))).toThrow('INVALID_USAGE_COUNTS');
+    expect(() => guard.observeModel('different-model')).toThrow('UNEXPECTED_BILLED_MODEL');
   });
 });
 
@@ -145,6 +197,46 @@ describe('official SDK transport, synthetic HTTP only', () => {
   const session = { id: 'session-test', required_actions: [], usage: null, status: 'idle' };
   const terminal = { event_id: 'end', type: 'agent.session.turn.completed', session_id: session.id,
     turn_id: 'turn-test', turn: { id: 'turn-test', subagent_id: null, status: 'completed', usage: null } };
+  it('cancels managed work when reported usage reaches the trial stopping threshold', async () => {
+    let cancelled = false;
+    const current = {...session, agent: {model: DEFAULT_MODEL}};
+    const usage = {input_tokens: 400_000, output_tokens: 0, total_tokens: 400_000,
+      input_tokens_details: {cached_tokens: 0}, output_tokens_details: {reasoning_tokens: 0}};
+    const mock = vi.fn<typeof fetch>(async (input, init) => {
+      if (init?.method === 'POST' && String(input).endsWith('/agents/sessions')) return sse([
+        {event_id: 'created', type: 'agent.session.created', session: current},
+        {...terminal, turn: {...terminal.turn, usage}},
+      ]);
+      if (init?.method === 'POST') {cancelled = true; return new Response(null, {status: 204});}
+      return json(current);
+    });
+    const result = await collectTrial(new OpenAI({apiKey: 'fake-test-secret', maxRetries: 0, fetch: mock}),
+      trial, evidence(), new UsageGuard(DEFAULT_MODEL));
+    expect(cancelled).toBe(true);
+    expect(result.error).toMatchObject({localReason: 'TRIAL_SPEND_THRESHOLD'});
+  });
+  it('polls and cancels a live stream when current-session usage remains unknown', async () => {
+    vi.useFakeTimers(); let cancelled = false; let usageReads = 0;
+    const current = {...session, agent: {model: DEFAULT_MODEL}};
+    const mock = vi.fn<typeof fetch>(async (input, init) => {
+      if (init?.method === 'POST' && String(input).endsWith('/agents/sessions')) {
+        const stream = new ReadableStream<Uint8Array>({start(controller) {
+          controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify({event_id: 'created', type: 'agent.session.created', session: current})}\n\n`));
+          init.signal?.addEventListener('abort', () => controller.error(new Error('MOCK_ABORT')));
+        }});
+        return new Response(stream, {headers: {'content-type': 'text/event-stream'}});
+      }
+      if (init?.method === 'POST') {cancelled = true; return new Response(null, {status: 204});}
+      if (new URL(String(input)).pathname.endsWith('/turns')) {usageReads++; return json({data: [terminal.turn], has_more: false});}
+      return json(current);
+    });
+    const collecting = collectTrial(new OpenAI({apiKey: 'fake-test-secret', maxRetries: 0, fetch: mock}),
+      trial, evidence(), new UsageGuard(DEFAULT_MODEL));
+    await vi.advanceTimersByTimeAsync(30_001);
+    const result = await collecting;
+    expect(usageReads).toBe(3); expect(cancelled).toBe(true);
+    expect(result.error).toMatchObject({localReason: 'USAGE_UNAVAILABLE_AFTER_GRACE'});
+  });
   it('still cancels if the evidence log reaches its cap', async () => {
     const log = evidence(); const original = log.record.bind(log); let cancelled = false;
     vi.spyOn(log, 'record').mockImplementation((kind, data) => {
