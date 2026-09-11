@@ -18,7 +18,9 @@
     "state-probe": "tsx src/state-probe.ts",
     "state-replay": "tsx src/state-replay.ts",
     "compact-probe": "tsx src/compact-probe.ts",
-    "compact-replay": "tsx src/compact-replay.ts"
+    "compact-replay": "tsx src/compact-replay.ts",
+    "checkpoint-probe": "tsx src/checkpoint-probe.ts",
+    "checkpoint-replay": "tsx src/checkpoint-replay.ts"
   },
   "dependencies": { "openai": "7.15.0" },
   "devDependencies": {

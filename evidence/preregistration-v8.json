@@ -1,0 +1,10 @@
+{
+  "protocol": "checkpoint-resume-v8",
+  "model": "gpt-5.6-luna",
+  "sdk": "7.15.0",
+  "protocolHash": "8212a65cc2bafe66f6e498d5328ca0e9a16e5db5b9b9eb929752448e7d1b58a5",
+  "registeredAt": "2026-09-11T03:41:37.450Z",
+  "priorInference": false,
+  "thresholdUsd": 2,
+  "overshootAccepted": true
+}

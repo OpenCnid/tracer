@@ -60,6 +60,7 @@ export interface CollectionOptions {
   request?: SessionCreateParamsStreaming;
   ledger?: Pick<FunctionLedger, 'handle' | 'correct'>;
   continuation?: {sessionId: string; input: string};
+  onSession?: (sessionId: string) => void;
 }
 
 export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evidence, budget?: UsageGuard,
@@ -89,6 +90,7 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
       .finally(() => { polling = undefined; });
   }, 10_000) : undefined;
   const seen = new Set<string>(); const childrenSeen = new Set<string>(); let eventCount = 0;
+  let boundSession: string | null = null;
   let stream: (AsyncIterable<AgentSessionEvent> & {controller: AbortController}) | undefined;
   try {
     if (options.continuation) {
@@ -106,6 +108,10 @@ export async function collectTrial(client: OpenAI, trial: Trial, evidence: Evide
       if ('session_id' in event) result.sessionId = event.session_id;
       if (event.type === 'agent.session.created') result.sessionId = event.session.id;
       evidence.record('sse', event);
+      if (result.sessionId && options.onSession) {
+        if (boundSession && boundSession !== result.sessionId) throw new Error('SESSION_ID_CHANGED');
+        if (!boundSession) { options.onSession(result.sessionId); boundSession = result.sessionId; }
+      }
       if (budget && result.sessionId) {
         if ('session' in event) { budget.observeSession(result.sessionId, event.session.usage); budget.observeModel(event.session.agent.model); }
         if ('turn' in event) budget.observeTurn(result.sessionId, event.turn, 'usage' in event ? event.usage : undefined);
